@@ -131,7 +131,7 @@
 		<tr>
 			<% int day = Integer.parseInt(request.getParameter("day")); %>
 			<td><%=year %>-<%=month %>-<%=day %></td>
-			<td>주토피아호텔<%=i %></td>
+			<td>주토피아 호텔<%=i %></td>
 			<td><%=i*100%>,000원</td>			
 		</tr>
 		<%} %>
