@@ -1,0 +1,258 @@
+@charset "UTF-8";
+
+body{
+	font-size: 9pt;
+	color: black;
+	overflow: auto; overflow-x:hidden;
+	font-family: 굴림, verdana, tahoma;	
+}
+.maindiv{
+	align-items: center;
+	position:absolute;
+	top:50px;
+	left:50px;
+	flex-direction: column;
+}
+
+ul{
+	list-style: none;
+}
+
+td{
+	font-size: 9pt;
+	color: black;
+	font-family: 굴림, verdana, tahoma;
+}
+
+select{
+	font-size: 9pt;
+	color: black;
+	line-height: 160%;
+	font-family: 굴림, verdana, tahoma;
+}
+
+div{
+	font-size: 9pt;
+	color: black;
+	
+	font-family:굴림, verdana, tahoma;
+}
+
+form{
+	font-size: 9pt;
+	color: black;
+	line-height: 160%;
+	font-family: 굴림, verdana, tahoma;
+}
+
+textarea{
+	font-size : 9pt;
+	border-right:1px solid #999999;
+	border-top: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	font-family: 굴림, verdana, tahoma;
+	background-color: white;
+}
+
+input{
+	font-size : 9pt;
+	border-right:1px solid #999999;
+	border-top: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	font-family: 굴림, verdana, tahoma;
+	background-color: white;
+}
+
+a:link{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+	text-decoration: yes;
+	color: white;
+}
+a:visit{
+	text-decoration: none;
+	color: #330066;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* header css */
+#header{
+	background-color: yellow;
+	width: 100%;
+	height: 15%;
+
+}
+.container_header{
+	
+ width:100%;
+  display: flex;
+  justify-content: space-between;
+  padding:20px;
+  align-items: center;
+  
+}
+#logo{
+	margin-left: 15px;
+}
+.nav_ul{ 
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+  font-size: 15px;
+   
+}
+.nav_li{
+	padding: 8px;
+	margin: 0 4px;
+}
+.nav_li:hover{
+	border: 1px solid rgb(154, 166, 199);
+  border-radius: 10%;
+  background-color: aqua;
+  
+}
+#login__logo{
+	margin-right: 50px;
+}
+
+/* section css */
+section{
+	height: 75%;
+}
+.section_bar{
+	width:100%;
+	padding: 30px;
+	background-color: rgb(0, 255, 64);
+}
+
+.logindiv{
+	border: 1px solid black;
+	
+}
+
+/* section regForm*/
+ form.reg{
+            width:400px;
+            height:800px;
+            display : flex;
+            flex-direction: column;
+            align-items:center;     
+            border: 1px solid rgb(89,117,196);
+            border-radius: 10px;
+        }
+form.login{
+            width:400px;
+            height:400px;
+            display : flex;
+            flex-direction: column;
+            align-items:center;
+           
+            border: 1px solid rgb(89,117,196);
+            border-radius: 10px;
+        }        
+
+        .input-field {
+            width: 300px;
+            height: 40px;
+            border : 1px solid rgb(89,117,196);
+            border-radius:5px;
+            padding: 0 10px;
+            margin-bottom: 10px;
+        }
+        .input-field-phone{
+        	width: 90px;
+        	height:25px;
+        	border : 1px solid rgb(89,117,196);
+        	border-radius:5px;
+        	padding: 0 10px;
+            margin-bottom: 10px;
+        }
+        .input-field.birth{
+        	margin-bottom: 30px;
+        }
+        label {
+            width:300px;
+            height:30px;
+            margin-top :4px;
+        }
+.form-button{
+	  background-color: rgb(89,117,196);
+            color : white;
+            width:300px;
+            height:50px;
+            font-size: 17px;
+            border : none;
+            border-radius: 5px;
+            margin : 0px 0 20px 0;
+}
+        button {
+            background-color: rgb(89,117,196);
+            color : white;
+            width:300px;
+            height:50px;
+            font-size: 17px;
+            border : none;
+            border-radius: 5px;
+            margin : 0px 0 20px 0;
+        }
+
+        .title {
+            font-size : 50px;
+            margin: 40px 0 30px 0;
+        }
+
+        .msg {
+            height: 30px;
+            text-align:center;
+            font-size:16px;
+            color:red;
+            margin-bottom: 20px;
+        }
+        .sns-chk {
+            margin-top : 5px; 
+        }
+
+    .span-field {
+            width: 300px;
+            height: 20px;
+            border : 1px solid rgb(89,117,196);
+            border-radius:5px;
+            padding: 0 10px;
+            margin-bottom: 10px;
+           
+        }
+
+/* section regForm*/
+footer{
+	background-color: orange;
+	width:100%;
+	height: 10%;
+}
+.container_footer{
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+	position: relative;
+}
+.footer_ul{ 
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+  font-size: 15px;
+   
+}
+.footer_li{
+	padding: 8px;
+	margin: 0 4px;
+}
