@@ -27,7 +27,7 @@
                   <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="use.jsp">호텔</a></li>
                   <li class="nav_li"><a href="event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="expert.html">이용후기</a></li>
+                 <li class="nav_li"><a href="expert.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>     
                 
               </ul>
