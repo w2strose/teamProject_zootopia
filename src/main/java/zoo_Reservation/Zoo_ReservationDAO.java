@@ -39,7 +39,7 @@ public class Zoo_ReservationDAO {
 			pstmt = con.prepareStatement(strQuery);
 			//pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			
+					
 			if(rs.next()) {// 아이디에 해당하는 회원이 존재한다면 
 				/*vo = new zoomemberVO();
 				vo.setId(rs.getString("id"));
