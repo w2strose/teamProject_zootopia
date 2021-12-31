@@ -1,6 +1,7 @@
 package zootopia;
 
 public class zoomemberVO {
+	
 	private String id;
 	private String pass;
 	private String name;

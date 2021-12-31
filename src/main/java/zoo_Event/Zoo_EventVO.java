@@ -1,3 +1,4 @@
+
 package zoo_Event;
 
 import java.sql.Timestamp;
@@ -6,6 +7,7 @@ public class Zoo_EventVO {
 	private int E_number;
 	private String E_name;
 	private String E_content;
+	private String E_image;
 	private int E_readcount;
 	private Timestamp E_regdate;
 	
@@ -26,6 +28,12 @@ public class Zoo_EventVO {
 	}
 	public void setE_content(String e_content) {
 		E_content = e_content;
+	}
+	public String getE_image() {
+		return E_image;
+	}
+	public void setE_image(String e_image) {
+		E_image = e_image;
 	}
 	public int getE_readcount() {
 		return E_readcount;
