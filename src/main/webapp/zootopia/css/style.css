@@ -71,7 +71,7 @@ a:link{
 }
 a:hover{
 	text-decoration: yes;
-	color: white;
+	color: blue;
 }
 a:visit{
 	text-decoration: none;
@@ -139,6 +139,34 @@ section{
 	border: 1px solid black;
 	
 }
+
+
+/* imsi */
+.qs_title {
+    float: left;
+    width: 100%;
+    border-top: 1px solid #7e7e7e;
+    color: #333;
+    font-size: 45px;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    padding: 37px 27px 30px;
+    margin-top: 0;
+}
+
+.qs_info_wrap {
+    float: left;
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    
+}
+
+
+
+
 
 /* section regForm*/
  form.reg{
@@ -232,7 +260,18 @@ form.login{
            
         }
 
-/* section regForm*/
+/* Image */
+#productImage{
+	width: 200px;
+	height: 300px;
+	border: none;
+}
+#viewImage{
+	width: 700px;
+	height: 500px;
+	
+}
+/* footer regForm*/
 footer{
 	background-color: orange;
 	width:100%;

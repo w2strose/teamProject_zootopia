@@ -66,7 +66,7 @@ private static Zoo_EventDAO instance = null;
 		try {
 			con = ConnUtil.getConnection();			
 					pstmt = con.prepareStatement(
-						"select * from (select rownum rnum, E_number, E_name, E_content, E_image, E_readcount, E_regdate from (select * from Zoo_Event order by E_number asc)) where rnum >=? and rnum <=?");
+						"select * from (select rownum rnum, E_number, E_name, E_content, E_image, E_readcount, E_regdate from (select * from Zoo_Event order by E_number desc)) where rnum >=? and rnum <=?");
 					pstmt.setInt(1, start);  //
 					pstmt.setInt(2, end);   // 수정3
 					rs = pstmt.executeQuery();
@@ -101,6 +101,49 @@ private static Zoo_EventDAO instance = null;
 
 	}
 
+	// board table에서 가져올 메소드 구현 (List로 구현)                       q               f
+	public List<Zoo_EventVO> getEvents(){// 수정1
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Zoo_EventVO> eventList = null;
+		
+		try {
+			con = ConnUtil.getConnection();			
+					pstmt = con.prepareStatement("select * from Zoo_Event order by E_number desc");
+					rs = pstmt.executeQuery();
+							
+			if(rs.next()) {
+				eventList = new ArrayList<Zoo_EventVO>();
+				do {
+					Zoo_EventVO event = new Zoo_EventVO();
+					event.setE_number(rs.getInt("E_number"));
+					event.setE_name(rs.getString("E_name"));
+					event.setE_content(rs.getString("E_content"));
+					event.setE_image(rs.getString("E_image"));
+					event.setE_readcount(rs.getInt("E_readcount"));
+					event.setE_regdate(rs.getTimestamp("E_regdate"));
+							
+					eventList.add(event);
+					
+				}while(rs.next()); // end of do-while
+			}else {
+				eventList = new ArrayList<Zoo_EventVO>();
+			}
+			
+		}catch(Exception se) {
+			System.out.println("Exception " + se);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s1) {}
+		}// end of try&catch
+
+		return eventList;
+
+	}
+	
 
 	/*
 	 * 글 제목을 누르면 글 내용을 볼 수 있도록 해야함.

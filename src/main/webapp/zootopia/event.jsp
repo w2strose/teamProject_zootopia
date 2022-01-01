@@ -10,9 +10,9 @@
 	//request.setCharacterEncoding("utf-8");
 	//response.setCharacterEncoding("text/html; charset=utf-8");
 	//한페이지에 보여줄 목록 수 지정
-	int pageSize = 3;
+	int pageSize = 4;
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
@@ -81,36 +81,44 @@
       </header>
       
 <!-- Section -->      
-<section>
+<section style="height: 800px;">
 	<div class="section_bar" align="left" >
 		Event Page
 		이벤트 페이지
 	</div>
-	
-	<b>이벤트 목록 (전체이벤트 : <%=count %>)</b><br>
-	
+	<div class="eventPage" align="center" style="margin: 50px; ">
+	<b>이벤트 목록 (전체이벤트 : <%=count %>)</b>
+	</div>
 		<%if(count == 0){// 이벤트 없을경우 %>
 			 <br><br>
 		<span>게시판에 저장된 글이 없습니다..</span>
-		<%}else{ // 글이 있을경우%>
+		<%}else{ // 글이 있을경우 %>
 	
-	
+	<div class="events" style="display: flex; justify-content: center">
 		<%for(int i = 0; i<eventList.size(); i++){ 
 		Zoo_EventVO event = (Zoo_EventVO)eventList.get(i);
-		
 		%>
-		<div align="center">		
-		<span>
-			이벤트 이름 : <%= event.getE_name() %><br>
-			이벤트 내용 : <%= event.getE_content() %><br>
+		
+			<div align="center">		
+				<span style="align-items:cetner; float:left; ;margin: 10px;">
+					<a href="eventView.jsp?E_number=<%= event.getE_number()%>&pageNum=<%=currentPage%>">
+			<img alt="" src="img/<%= event.getE_image()%>" id="productImage"><br><br>
+			이벤트 이름 : <%= event.getE_name() %><br><br>
+			이벤트 내용 : <%= event.getE_content() %><br><br>
 			이벤트 이미지 : <%= event.getE_image() %><br><br>
-		</span>
-	
-		</div>
+					</a>	
+				</span>
+			</div>
+		
 		<%} %>	
-	
+		</div>	
 	<%} %>
+
 	
+	
+	
+
+<div class="numberPage" align="center" style="margin: 50px;" >
 		<%
 		if (count > 0) {
 			int pageBlock = 5;
@@ -142,11 +150,13 @@
 			} 
 		%>
 		
-	
+	</div>	
 </section>
 
+
+
 <!--  Footer -->
-<footer>
+<footer style="height: 100px;">
 	<div class="container_footer">
 		<ul style="padding-left: 20px;">
 			<li></li>
