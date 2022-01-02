@@ -60,7 +60,6 @@
 	<div class="section_bar" align="left" style="font-size: 34px;
     color: black;
     width: 100%;">
-		Event Detail<br>
 		이벤트 상세
 	</div>
 	

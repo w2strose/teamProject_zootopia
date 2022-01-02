@@ -1,11 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="zoo_Event.Zoo_EventDAO" %>
+<%@ page import="zoo_Event.Zoo_EventVO" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ZootopiaMain</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
 <link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script>
+    $(document).ready(function(){
+      $('.slider').bxSlider();
+    });
+  </script>
+
 </head>
 <body>
 <!-- 호텔, 이벤트, 이용후기, 예약 -->
@@ -38,16 +52,23 @@
         </div>
       </header>
 
-<section>
-	<div class="section_bar">
-		Main Section
-	
+<section style="height: 800px;">
+	<div class="section_bar"  style="font-size: 34px; color: black;">
+		메인 페이지
 	</div>
+		<div align="center" style="font: 20px bold;">진행중인 이벤트</div>
+	 <div class="slider" style="padding: 50px;">
+   <img alt="" src="img/event.jpg" id="viewImage">
+   <img alt="" src="img/event2.jpg" id="viewImage">
+   <img alt="" src="img/event3.jpg" id="viewImage">
+   <img alt="" src="img/event4.jpg" id="viewImage">
+  </div>
 
+		
 
 </section>
 
-<footer>
+<footer style="height: 100px;">
 	<div class="container_footer">
 		<ul style="padding-left: 20px;">
 			<li></li>
