@@ -42,11 +42,11 @@
 					============================================= -->
             <nav id="primary-menu">
               <ul class="nav_ul">
-                  <li class="nav_li"><a href="reservation.html">예약하기</a></li>
-                  <li class="nav_li"><a href="use.html">호텔</a></li>
+                  <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
+                  <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="event.jsp">이벤트</a></li>
-                  <li class="nav_li"><a href="#">이용후기</a></li>
-                  <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>                  
+                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>                  
               </ul>
             </nav>
             <!-- #primary-menu end -->

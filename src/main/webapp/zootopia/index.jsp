@@ -56,9 +56,9 @@ if(count > 0){
             <nav id="primary-menu">
               <ul class="nav_ul">
                   <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
-                  <li class="nav_li"><a href="use.jsp">호텔</a></li>
+                  <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="expert.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>     
                 
               </ul>
@@ -70,7 +70,7 @@ if(count > 0){
       </header>
 
 <section style="height: 800px;">
-	<div class="section_bar"  style="font-size: 34px; color: black;">
+	<div class="section_bar">
 		메인 페이지
 	</div>
 	
