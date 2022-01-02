@@ -188,9 +188,7 @@ private static Zoo_EventDAO instance = null;
 			if(con != null) try {con.close();}catch(SQLException s1) {}
 		}// end of try&catch
 		return event;
-	
-	
 	}
-	
 
+		
 }

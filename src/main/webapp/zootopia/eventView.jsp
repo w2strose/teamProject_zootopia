@@ -73,12 +73,7 @@
                   
                     	<div style="margin-left: 20px; font-size: 15px;">
                     		<img src="img/dateicon.png">
-                        		<span class="event_date">
-                        		<%= event.getE_regdate() %> 
-                        		~ 
-                        		
-                        		
-                        		</span>
+                        		<span class="event_date"> <%= event.getE_regdate() %> </span>
                         </div>
                         <div class="qs_info" style="margin-right: 20px; font-size: 15px;">
                             <p><img src="img/viewuser.png" />

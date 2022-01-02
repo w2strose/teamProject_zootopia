@@ -2,6 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ page import="zoo_Event.Zoo_EventDAO" %>
 <%@ page import="zoo_Event.Zoo_EventVO" %>
+<%@ page import="java.util.List"%>
+<%
+int count = 0;
+List<Zoo_EventVO> eventList = null;
+Zoo_EventDAO dbPro = new Zoo_EventDAO();
+dbPro = Zoo_EventDAO.getinstance();
+count = dbPro.getEventCount();
+if(count > 0){
+	eventList = dbPro.getEvents();
+}
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +28,12 @@
 
 <script>
     $(document).ready(function(){
-      $('.slider').bxSlider();
+      $('.slider').bxSlider({
+    	  auto:true,
+    	  speed:500,
+    	  autoControls:true,
+    	  touchEnabled:(navigator.maxTouchPoint >0)
+    	});
     });
   </script>
 
@@ -56,15 +73,27 @@
 	<div class="section_bar"  style="font-size: 34px; color: black;">
 		메인 페이지
 	</div>
-		<div align="center" style="font: 20px bold;">진행중인 이벤트</div>
-	 <div class="slider" style="padding: 50px;">
-   <img alt="" src="img/event.jpg" id="viewImage">
-   <img alt="" src="img/event2.jpg" id="viewImage">
-   <img alt="" src="img/event3.jpg" id="viewImage">
-   <img alt="" src="img/event4.jpg" id="viewImage">
-  </div>
-
+	
+	<%if(count == 0){// 이벤트 없을경우 %>
+			 <br><br>
+		<span>게시판에 저장된 글이 없습니다..</span>
+		<%}else{ // 글이 있을경우 %>
+	
 		
+		<div align="center" style="font: 20px bold; margin-top: 10px;">진행중인 이벤트</div>
+	 <div class="slider" style="" align="center">
+	 <% for(int i = 0; i<eventList.size(); i++){
+			Zoo_EventVO event = (Zoo_EventVO)eventList.get(i);	 
+		 %>
+	 
+	 	<a href="eventView.jsp?E_number=<%= event.getE_number()%>">
+   			<img alt="" src="img/<%= event.getE_image()%>" style="width: 1000px; height: 500px;" >
+   		</a>	
+   		<%} %>
+   <%} %>
+  </div>
+		
+	
 
 </section>
 
