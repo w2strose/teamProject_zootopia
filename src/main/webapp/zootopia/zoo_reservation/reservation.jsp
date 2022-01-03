@@ -1,8 +1,12 @@
+<%@page import="org.apache.commons.collections4.bag.SynchronizedSortedBag"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="zoo_Reservation.Zoo_OperationVO,zoo_Reservation.Zoo_ReservationDAO" %>
+
 <%
+	request.setCharacterEncoding("utf-8");
 	Calendar cal = Calendar.getInstance();
 
 	int nowYear = cal.get(Calendar.YEAR);
@@ -10,6 +14,7 @@
 	
 	String fyear = request.getParameter("year");
 	String fmonth = request.getParameter("month");
+	
 	
 	int year = nowYear;
 	int month = nowMonth;
@@ -29,6 +34,11 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	int week = cal.get(Calendar.DAY_OF_WEEK);
 	
+	String loginID = (String)session.getAttribute("loginID");
+	Zoo_ReservationDAO dao = new Zoo_ReservationDAO();
+	int day;
+	
+			
 		
 %>
 
@@ -72,7 +82,7 @@
 
 <section>
 	<div class="section_bar">
-		Main Section
+		Reservation Section
 	
 	</div>
 	<div>
@@ -122,24 +132,58 @@
 			}%>
 		</tr>
 	</table>
-	<%if(request.getParameter("day")!=null){ %> 
+	<%
+	
+	if(request.getParameter("day")!=null){ 
+		day = Integer.parseInt(request.getParameter("day"));
+		
+		Zoo_OperationVO ovo = dao.operationSearch(year, month, day);
+		
+		
+	%> 
 	<table border="1">
+		<%if(ovo!=null){ %>
 		<tr>
 			<td>예약 일자</td>
-			<td>호텔 이름</td>
+			<td>예약 번호</td>
+			<td>호텔 번호</td>
+			<td>방 종류</td>
 			<td>예약 가격</td>
+			<td>예약 가능여부</td>
+		</tr>
+		<tr>
+			<% 
+			%>
+			<td><%=year%>-<%=month%>-<%=day%></td>
+			<td><%=ovo.getO_number() %></td>
+			<td><%=ovo.getH_number() %></td>
+			<td><%=ovo.getO_type() %></td>
+			<td><%=ovo.getO_charge() %></td>
+			<td><% 
+			String ok = null;
+			if(ovo.getO_ok().equals("1")) {
+				ok = "예약가능";			
+					
+				}
+				%>
+				<%=ok %>
+				</td>
+			
+			
 			
 		</tr>
-		<%for(int i = 1; i<6; i++){ %>
+		<%}else{
+		%>	
 		<tr>
-			<% int day = Integer.parseInt(request.getParameter("day")); %>
-			<td><%=year %>-<%=month %>-<%=day %></td>
-			<td>주토피아 호텔<%=i %></td>
-			<td><%=i*100%>,000원</td>			
+			<td>예약가능한 호텔이 없습니다.</td>
 		</tr>
-		<%} %>
+		<%}
+		
+		
+		}
+		
+		%>
 	</table>
-	<%} %>
 	
 	
 	</div>

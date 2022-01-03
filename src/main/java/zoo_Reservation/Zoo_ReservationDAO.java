@@ -3,10 +3,11 @@ package zoo_Reservation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
+import zoo_Reservation.Zoo_OperationVO;
 
 public class Zoo_ReservationDAO {
 
@@ -26,33 +27,40 @@ public class Zoo_ReservationDAO {
 	}
 	
 	
-	public void reservationSearch(int year, int month, int day) {
+	public Zoo_OperationVO operationSearch(int year, int month, int day) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null; // 바인딩변수
 		ResultSet rs = null;
+		Zoo_OperationVO vo = null;
+		
 		
 		try {
 			con = getConnection();
 			
-			String strQuery = "select * from zoomember where id=?";
+			String strQuery = "select * from zoo_operation where o_date=?";
 			pstmt = con.prepareStatement(strQuery);
-			//pstmt.setString(1, id);
+			pstmt.setString(1, year+"-"+month+"-"+day);
 			rs = pstmt.executeQuery();
 					
 			if(rs.next()) {// 아이디에 해당하는 회원이 존재한다면 
-				/*vo = new zoomemberVO();
-				vo.setId(rs.getString("id"));
-				vo.setPass(rs.getString("pass"));
-				vo.setName(rs.getString("name"));
-				vo.setPhone1(rs.getString("phone1"));
-				vo.setPhone2(rs.getString("phone2"));
-				vo.setPhone3(rs.getString("phone3"));
-				vo.setEmail(rs.getString("email"));
-				vo.setBirth(rs.getString("birth"));*/
+				vo = new Zoo_OperationVO();
+				vo.setH_number(rs.getInt("h_number"));
+				vo.setO_number(rs.getInt("o_number"));
+				vo.setO_type(rs.getString("o_type"));
+				vo.setO_date(rs.getString("o_date"));
+				vo.setO_charge(rs.getString("o_charge"));
+				vo.setO_ok(rs.getString("o_ok"));
+			
 			}// end of if
 			
-		}catch(Exception e) {	}
-		
+		}catch(Exception se) {
+			System.out.println("Exception " + se);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s1) {}
+		}
+		return vo;
 	}
 }
