@@ -1,15 +1,15 @@
 
 package zoo_Event;
 
-import java.sql.Timestamp;
-
 public class Zoo_EventVO {
 	private int E_number;
 	private String E_name;
 	private String E_content;
 	private String E_image;
 	private int E_readcount;
-	private Timestamp E_regdate;
+	private String E_startDate;
+	private String E_endDate;
+	
 	
 	public int getE_number() {
 		return E_number;
@@ -41,13 +41,18 @@ public class Zoo_EventVO {
 	public void setE_readcount(int e_readcount) {
 		E_readcount = e_readcount;
 	}
-	public Timestamp getE_regdate() {
-		return E_regdate;
-	}
-	public void setE_regdate(Timestamp e_regdate) {
-		E_regdate = e_regdate;
-	}
 	
-	
+	public String getE_startDate() {
+		return E_startDate;
+	}
+	public void setE_startDate(String e_startDate) {
+		E_startDate = e_startDate;
+	}
+	public String getE_endDate() {
+		return E_endDate;
+	}
+	public void setE_endDate(String e_endDate) {
+		E_endDate = e_endDate;
+	}
 	
 }

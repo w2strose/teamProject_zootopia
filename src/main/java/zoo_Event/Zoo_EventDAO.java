@@ -23,6 +23,35 @@ private static Zoo_EventDAO instance = null;
 		return instance;
 	}
 	
+	public void insertEvent(Zoo_EventVO event) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		try {
+			con = ConnUtil.getConnection();
+			
+			
+			sql = "insert into Zoo_Event(E_number, E_name, E_content, E_image, E_startDate, E_endDate) values(event_seq.nextval,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, event.getE_name());
+			pstmt.setString(2, event.getE_content());
+			pstmt.setString(3, event.getE_image());
+			pstmt.setString(4, event.getE_startDate());
+			pstmt.setString(5, event.getE_endDate());
+			pstmt.executeUpdate();
+			
+		}catch(Exception se) {
+			System.out.println("Exception " + se);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s1) {}
+		}// end of try&catch
+	
+	}
+	
 	
 
 	// 전체 글의 개수를 가져올 메소드 구현하기
@@ -66,7 +95,7 @@ private static Zoo_EventDAO instance = null;
 		try {
 			con = ConnUtil.getConnection();			
 					pstmt = con.prepareStatement(
-						"select * from (select rownum rnum, E_number, E_name, E_content, E_image, E_readcount, E_regdate from (select * from Zoo_Event order by E_number desc)) where rnum >=? and rnum <=?");
+						"select * from (select rownum rnum, E_number, E_name, E_content, E_image, E_readcount, E_startDate, E_endDate from (select * from Zoo_Event order by E_number desc)) where rnum >=? and rnum <=?");
 					pstmt.setInt(1, start);  //
 					pstmt.setInt(2, end);   // 수정3
 					rs = pstmt.executeQuery();
@@ -80,7 +109,8 @@ private static Zoo_EventDAO instance = null;
 					event.setE_content(rs.getString("E_content"));
 					event.setE_image(rs.getString("E_image"));
 					event.setE_readcount(rs.getInt("E_readcount"));
-					event.setE_regdate(rs.getTimestamp("E_regdate"));
+					event.setE_startDate(rs.getString("E_startDate"));
+					event.setE_endDate(rs.getString("E_endDate"));
 							
 					eventList.add(event);
 					
@@ -123,7 +153,8 @@ private static Zoo_EventDAO instance = null;
 					event.setE_content(rs.getString("E_content"));
 					event.setE_image(rs.getString("E_image"));
 					event.setE_readcount(rs.getInt("E_readcount"));
-					event.setE_regdate(rs.getTimestamp("E_regdate"));
+					event.setE_startDate(rs.getString("E_startDate"));
+					event.setE_endDate(rs.getString("E_endDate"));
 							
 					eventList.add(event);
 					
@@ -177,7 +208,8 @@ private static Zoo_EventDAO instance = null;
 				event.setE_content(rs.getString("E_content"));
 				event.setE_image(rs.getString("E_image"));
 				event.setE_readcount(rs.getInt("E_readcount"));
-				event.setE_regdate(rs.getTimestamp("E_regdate"));
+				event.setE_startDate(rs.getString("E_startDate"));
+				event.setE_endDate(rs.getString("E_endDate"));
 			}
 	
 		}catch(Exception se) {
