@@ -10,7 +10,7 @@
 	//request.setCharacterEncoding("utf-8");
 	//response.setCharacterEncoding("text/html; charset=utf-8");
 	//한페이지에 보여줄 목록 수 지정
-	int pageSize = 4;
+	int pageSize = 5;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -46,7 +46,7 @@
 <head>
 <meta charset="UTF-8">
 <title>zootopia Event</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 
@@ -57,7 +57,7 @@
           <div class="container_header">
             <!-- Logo -->
             <div id="logo"> 
-              <a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
+              <a href="../index.jsp"><img id="main__logo" src="../img/pomelogo.png" width="70px" height="70px"/></a>
               <div align="center">ZOOTOPIA</div>            
   
             </div>
@@ -67,15 +67,15 @@
 					============================================= -->
             <nav id="primary-menu">
               <ul class="nav_ul">
-                  <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
-                  <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
-                  <li class="nav_li"><a href="event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>                  
+                  <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
+                  <li class="nav_li"><a href="../hotel.jsp">호텔</a></li>
+                  <li class="nav_li"><a href="../event.jsp">이벤트</a></li>
+                 <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="../Q&A.jsp">Q&A</a></li>                  
               </ul>
             </nav>
             <!-- #primary-menu end -->
-              <a href="login.jsp"><img id="login__logo" src="img/login2.png" width="30px" height="30px"/></a>
+              <a href="../login.jsp"><img id="login__logo" src="../img/login2.png" width="30px" height="30px"/></a>
           </div>
         </div>
       </header>
@@ -102,7 +102,7 @@
 			<div align="center">		
 				<span style="align-items:cetner; float:left; ;margin: 10px;">
 					<a href="eventView.jsp?E_number=<%= event.getE_number()%>&pageNum=<%=currentPage%>">
-			<img alt="" src="img/<%= event.getE_image()%>" id="productImage"><br><br>
+			<img alt="" src="../img/<%= event.getE_image()%>" id="productImage"><br><br>
 			이벤트 이름 : <%= event.getE_name() %><br><br>
 			이벤트 내용 : <%= event.getE_content() %><br><br>
 			이벤트 이미지 : <%= event.getE_image() %><br><br>
