@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>zootopia Event</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <%
@@ -32,7 +32,7 @@
           <div class="container_header">
             <!-- Logo -->
             <div id="logo"> 
-              <a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
+              <a href="../index.jsp"><img id="main__logo" src="../img/pomelogo.png" width="70px" height="70px"/></a>
               <div align="center">ZOOTOPIA</div>            
   
             </div>
@@ -42,15 +42,15 @@
 					============================================= -->
             <nav id="primary-menu">
               <ul class="nav_ul">
-                  <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
-                  <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
-                  <li class="nav_li"><a href="event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>                  
+                  <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
+                  <li class="nav_li"><a href="../hotel.jsp">호텔</a></li>
+                  <li class="nav_li"><a href="../event.jsp">이벤트</a></li>
+                 <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="../Q&A.jsp">Q&A</a></li>                  
               </ul>
             </nav>
             <!-- #primary-menu end -->
-              <a href="login.jsp"><img id="login__logo" src="img/login2.png" width="30px" height="30px"/></a>
+              <a href="../login.jsp"><img id="login__logo" src="../img/login2.png" width="30px" height="30px"/></a>
           </div>
         </div>
       </header>
@@ -72,11 +72,11 @@
                     <div class="qs_info_wrap" style="display: flex; align-items: center; justify-content: space-between; font-size: 15px;">
                   
                     	<div style="margin-left: 20px; font-size: 15px;">
-                    		<img src="img/dateicon.png">
+                    		<img src="../img/dateicon.png">
                         		<span class="event_date"> <%= event.getE_regdate() %> </span>
                         </div>
                         <div class="qs_info" style="margin-right: 20px; font-size: 15px;">
-                            <p><img src="img/viewuser.png" />
+                            <p><img src="../img/viewuser.png" />
                             <%= event.getE_readcount() %>
                             </p>                        
                         </div>
@@ -85,7 +85,7 @@
     
     
 	<div align="center" style="margin-top: 200px; padding: 50px;">
-	<img alt="" src="img/<%= event.getE_image()%>" id="viewImage"><br><br><br><br>
+	<img alt="" src="../img/<%= event.getE_image()%>" id="viewImage"><br><br><br><br>
 	
 		<input type="button" value="목록" onclick="document.location.href='event.jsp'">
 	</div>

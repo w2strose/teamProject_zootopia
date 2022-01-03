@@ -37,7 +37,7 @@
 <head>
 <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;">
 <title>ZootopiaMain</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!-- 호텔, 이벤트, 이용후기, 예약 -->
@@ -46,7 +46,7 @@
           <div class="container_header">
             <!-- Logo -->
             <div id="logo"> 
-              <a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
+              <a href="../index.jsp"><img id="main__logo" src="../img/pomelogo.png" width="70px" height="70px"/></a>
               <div align="center">ZOOTOPIA</div>            
   
             </div>
@@ -57,15 +57,15 @@
             <nav id="primary-menu">
               <ul class="nav_ul">
                   <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
-                  <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
-                  <li class="nav_li"><a href="event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>   
+                  <li class="nav_li"><a href="../hotel.jsp">호텔</a></li>
+                  <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
+                 <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="../Q&A.jsp">Q&A</a></li>   
                 
               </ul>
             </nav>
             <!-- #primary-menu end -->
-            <a href="login.jsp"><img id="login__logo" src="img/login2.png" width="30px" height="30px"/></a>
+            <a href="../login.jsp"><img id="login__logo" src="../img/login2.png" width="30px" height="30px"/></a>
           </div>
         </div>
       </header>

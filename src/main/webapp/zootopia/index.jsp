@@ -30,7 +30,7 @@ if(count > 0){
     $(document).ready(function(){
       $('.slider').bxSlider({
     	  auto:true,
-    	  speed:500,
+    	  speed:400,
     	  autoControls:true,
     	  touchEnabled:(navigator.maxTouchPoint >0)
     	});
@@ -55,11 +55,11 @@ if(count > 0){
 					============================================= -->
             <nav id="primary-menu">
               <ul class="nav_ul">
-                  <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
+                    <li class="nav_li"><a href="zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
-                  <li class="nav_li"><a href="event.jsp">이벤트</a></li>
+                  <li class="nav_li"><a href="zoo_event/event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>     
+                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>   
                 
               </ul>
             </nav>
@@ -86,7 +86,7 @@ if(count > 0){
 			Zoo_EventVO event = (Zoo_EventVO)eventList.get(i);	 
 		 %>
 	 
-	 	<a href="eventView.jsp?E_number=<%= event.getE_number()%>">
+	 	<a href="zoo_event/eventView.jsp?E_number=<%= event.getE_number()%>">
    			<img alt="" src="img/<%= event.getE_image()%>" style="width: 1000px; height: 500px;" >
    		</a>	
    		<%} %>
