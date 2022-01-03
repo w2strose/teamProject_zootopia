@@ -39,6 +39,7 @@ if(count > 0){
 
 </head>
 <body>
+
 <!-- 호텔, 이벤트, 이용후기, 예약 -->
   <header id="header" class="full-header">
         <div id="header-wrap">

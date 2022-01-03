@@ -156,3 +156,14 @@ function checkIt(){
 		return false;
 	}
 }
+
+
+
+
+//    =================   event  js  ==================
+function eventWriteSave(){
+	
+}        
+
+
+

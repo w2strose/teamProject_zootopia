@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
-<%@ page import="java.text.SimpleDateFormat"%>    
+
 <%@page import="zoo_Event.Zoo_EventDAO"%>    
 <%@page import="zoo_Event.Zoo_EventVO"%>    
 <%@page import="zoo_Event.ConnUtil" %>
 
 <%
+	String loginID = (String)session.getAttribute("loginID");
+	try{
 	//request.setCharacterEncoding("utf-8");
 	//response.setCharacterEncoding("text/html; charset=utf-8");
 	//한페이지에 보여줄 목록 수 지정
 	int pageSize = 5;
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	String pageNum = request.getParameter("pageNum");
 	if(pageNum == null){
@@ -69,7 +69,7 @@
               <ul class="nav_ul">
                   <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../hotel.jsp">호텔</a></li>
-                  <li class="nav_li"><a href="../event.jsp">이벤트</a></li>
+                  <li class="nav_li"><a href="event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="../Q&A.jsp">Q&A</a></li>                  
               </ul>
@@ -114,10 +114,6 @@
 		</div>	
 	<%} %>
 
-	
-	
-	
-
 <div class="numberPage" align="center" style="margin: 50px;" >
 		<%
 		if (count > 0) {
@@ -151,9 +147,19 @@
 		%>
 		
 	</div>	
+	
+	<%
+	if(session.getAttribute("loginID")==null || session.getAttribute("loginID").equals("") || session.getAttribute("loginID").equals(null)){
+		%>
+		<input type="hidden" value="이벤트 등록하기" onclick="window.location='eventWriteFrom.jsp'">
+		<% } %>
+	<% if(loginID.equals("GM")){ %>
+		<input type="button" value="이벤트 등록하기" onclick="window.location='eventWriteFrom.jsp'">
+	<%}else{} %>
+	
 </section>
 
-
+<%}catch(Exception e){e.printStackTrace();} %>
 
 <!--  Footer -->
 <footer style="height: 100px;">

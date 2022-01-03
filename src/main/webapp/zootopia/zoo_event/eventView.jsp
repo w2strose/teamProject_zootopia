@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="java.text.SimpleDateFormat"%>    
 <%@page import="zoo_Event.Zoo_EventDAO"%>    
 <%@page import="zoo_Event.Zoo_EventVO"%>    
 
@@ -17,7 +16,6 @@
 
 	int E_number = Integer.parseInt(request.getParameter("E_number"));
 	String pageNum = request.getParameter("pageNum");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	try{
 		Zoo_EventDAO dbPro = Zoo_EventDAO.getinstance();	
@@ -44,7 +42,7 @@
               <ul class="nav_ul">
                   <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../hotel.jsp">호텔</a></li>
-                  <li class="nav_li"><a href="../event.jsp">이벤트</a></li>
+                  <li class="nav_li"><a href="event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="../Q&A.jsp">Q&A</a></li>                  
               </ul>
@@ -73,7 +71,7 @@
                   
                     	<div style="margin-left: 20px; font-size: 15px;">
                     		<img src="../img/dateicon.png">
-                        		<span class="event_date"> <%= event.getE_regdate() %> </span>
+                        		<span class="event_date"> <%= event.getE_startDate() %>~ <%= event.getE_endDate() %> </span>
                         </div>
                         <div class="qs_info" style="margin-right: 20px; font-size: 15px;">
                             <p><img src="../img/viewuser.png" />
