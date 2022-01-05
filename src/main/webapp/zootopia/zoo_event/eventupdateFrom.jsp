@@ -4,12 +4,20 @@
 <%@page import="zoo_Event.Zoo_EventDAO"%>    
 <%@page import="zoo_Event.Zoo_EventVO"%>    
 <%@page import="zoo_Event.ConnUtil" %>
+<%
+String loginID = (String)session.getAttribute("loginID");
+int E_number = Integer.parseInt(request.getParameter("E_number"));
+String pageNum = request.getParameter("pageNum");
 
+	Zoo_EventDAO dbPro = Zoo_EventDAO.getinstance();	
+	Zoo_EventVO event = dbPro.getEvent(E_number);
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>zootopia EventWrite</title>
+<title>zootopia EventUpdate</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
@@ -79,10 +87,10 @@
 <!-- Section -->      
 <section style="height: 800px;">
 	<div class="section_bar" align="left" >
-		이벤트 등록
+		이벤트 수정
 	</div>
 	
-	<form action="eventwriteProc.jsp" enctype="multipart/form-data" method="post" name="eventWrite"
+	<form action="eventupdateProc.jsp?E_number=<%=event.getE_number()%>&pageNum=<%=pageNum %>" enctype="multipart/form-data" method="post" name="eventWrite"
 		onsubmit="return eventWriteSave()" style="margin-top: 50px;">
 		
 		<input type="hidden" name="E_number">
@@ -97,20 +105,20 @@
 			<tr>
 				<td width="200" align="center">이벤트 제목</td>
 				<td width="300" >
-					<input type="text" size="50" maxlength="50" name="E_name">
+					<input type="text" size="50" maxlength="50" name="E_name" value="<%=event.getE_name() %>">
 				</td>
 			</tr>
 			<tr>
 				<td width="200" align="center">내용</td>
 				<td width="300" >
-					<textarea rows="13" cols="50" name="E_content"></textarea>
+					<textarea rows="13" cols="50" name="E_content"><%=event.getE_content() %></textarea>
 				</td>
 			</tr>
 			
 			<tr>
 				<td width="200" align="center">이미지</td>
 				<td width="300" >
-					<input type="file" name="E_image" value="이미지 파일첨부"/>
+					<input type="file" name="E_image" value="<%=event.getE_image() %>"/>
 					
 				</td>
 			</tr>
@@ -133,7 +141,7 @@
 			
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="이벤트쓰기" id="writeEvent">					
+					<input type="submit" value="이벤트수정" id="writeEvent">					
 					<input type="reset" value="다시작성">
 					<input type="button" value="목록" onClick="window.location='event.jsp'">					
 				</td>							
@@ -143,7 +151,7 @@
 		</table>
 		
 	</form>
-	
+
 	
 </section>
 

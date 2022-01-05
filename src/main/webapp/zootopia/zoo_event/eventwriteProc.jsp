@@ -1,25 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% request.setCharacterEncoding("utf-8");%>
+ <%@page import="zoo_Event.Zoo_EventVO"%>
+<%@page import="zoo_Event.Zoo_EventDAO"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="java.io.File" %>
 
-<jsp:useBean id="dao" class="zoo_Event.Zoo_EventDAO" />
-<jsp:useBean id="event" class="zoo_Event.Zoo_EventVO">
-	<jsp:setProperty property="*" name="event"/>
-</jsp:useBean>
+<% 
 
-<%
- 	String name = request.getParameter("E_name");
-	out.println(name);
+	String realFolder = "";
+	String saveFolder = "/zootopia/img";
+	int maxFileSize = 1024 * 1024 * 50;
+	String encType = "utf-8";
 	
-	event.setE_name(request.getParameter("E_name"));
-	event.setE_content(request.getParameter("E_content"));
-	event.setE_image(request.getParameter("E_image"));
-	event.setE_startDate(request.getParameter("E_startDate"));
-	event.setE_endDate(request.getParameter("E_endDate"));
+	ServletContext context = request.getServletContext();
+	realFolder = context.getRealPath(saveFolder);
+	System.out.println("============ uploadFilePath = " + realFolder);
 	
-	//, E_name, E_content, E_image, E_startDate, E_endDate
-	dao.insertEvent(event);
- 	response.sendRedirect("event.jsp");
+	MultipartRequest multi 
+		= new MultipartRequest(request, realFolder, maxFileSize, encType, new DefaultFileRenamePolicy() ); 
+	
+	
+	String E_name = multi.getParameter("E_name"); 
+	String E_content = multi.getParameter("E_content");
+	String E_image =  multi.getFilesystemName("E_image");
+	String E_startDate = multi.getParameter("E_startDate");
+	String E_endDate = multi.getParameter("E_endDate");
+	
+	File file = multi.getFile( "E_image" );
+	long filesize = 0;
+	if ( file != null ) {
+		filesize = file.length();
+	}
+	
+	Zoo_EventVO vo = new Zoo_EventVO();
+	Zoo_EventDAO dao = new Zoo_EventDAO();
+	vo.setE_name(E_name);
+	vo.setE_content(E_content);
+	vo.setE_image(E_image);
+	vo.setE_startDate(E_startDate);
+	vo.setE_endDate(E_endDate);
+	
+	int flag = dao.insertEvent2(vo);
+	
+	out.println( " <script type='text/javascript'> " );
+	if( flag == 0 ) {
+		out.println( " alert('글쓰기에 성공했습니다.'); " );
+		out.println( " location.href='event.jsp;'" );
+	} else {
+		out.println( " alert('글쓰기에 실패했습니다.'); " );
+		out.println( " history.back(); " );
+	}
+	out.println( " </script> " );  
+	
 	
 %>

@@ -10,7 +10,6 @@ public class Zoo_EventVO {
 	private String E_startDate;
 	private String E_endDate;
 	
-	
 	public int getE_number() {
 		return E_number;
 	}
