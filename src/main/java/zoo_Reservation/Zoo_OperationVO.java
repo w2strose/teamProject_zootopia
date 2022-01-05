@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Zoo_OperationVO {
 
 	private int h_number,o_number;
-	private String o_type,o_ok, o_charge,O_date;
+	private String o_type,o_ok, o_charge,o_date;
 	
 	public String getO_charge() {
 		return o_charge;
@@ -39,10 +39,10 @@ public class Zoo_OperationVO {
 		this.o_ok = o_ok;
 	}
 	public String getO_date() {
-		return O_date;
+		return o_date;
 	}
 	public void setO_date(String o_date) {
-		O_date = o_date;
+		this.o_date = o_date;
 	}
 	
 	

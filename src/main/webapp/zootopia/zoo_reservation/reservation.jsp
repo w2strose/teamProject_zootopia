@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="zoo_Reservation.Zoo_OperationVO,zoo_Reservation.Zoo_ReservationDAO" %>
+<%@ page import="zoo_Reservation.Zoo_OperationVO,zoo_Reservation.Zoo_ReservationDAO,java.util.List" %>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -85,7 +85,7 @@
 		Reservation Section
 	
 	</div>
-	<div>
+	<form action="reservation_page.jsp" method="post">
 	<a href="reservation.jsp?year=<%=year%>&month=<%=month-1%>">이전달</a>&nbsp;
 	<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
 	<a href="reservation.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;다음달</a>
@@ -137,12 +137,12 @@
 	if(request.getParameter("day")!=null){ 
 		day = Integer.parseInt(request.getParameter("day"));
 		
-		Zoo_OperationVO ovo = dao.operationSearch(year, month, day);
+		Zoo_OperationVO vo = new Zoo_OperationVO();
+		List<Zoo_OperationVO> voList = dao.operationSearch(year, month, day);
 		
 		
 	%> 
-	<table border="1">
-		<%if(ovo!=null){ %>
+	<table border="1" >
 		<tr>
 			<td>예약 일자</td>
 			<td>예약 번호</td>
@@ -151,42 +151,36 @@
 			<td>예약 가격</td>
 			<td>예약 가능여부</td>
 		</tr>
+		<%for(Zoo_OperationVO ovoo : voList) {%>
 		<tr>
-			<% 
-			%>
 			<td><%=year%>-<%=month%>-<%=day%></td>
-			<td><%=ovo.getO_number() %></td>
-			<td><%=ovo.getH_number() %></td>
-			<td><%=ovo.getO_type() %></td>
-			<td><%=ovo.getO_charge() %></td>
-			<td><% 
-			String ok = null;
-			if(ovo.getO_ok().equals("1")) {
-				ok = "예약가능";			
-					
-				}
-				%>
-				<%=ok %>
-				</td>
-			
-			
-			
-		</tr>
-		<%}else{
-		%>	
-		<tr>
-			<td>예약가능한 호텔이 없습니다.</td>
+			<td><%=ovoo.getO_number() %></td>
+			<td><%=ovoo.getH_number() %></td>
+			<td><%=ovoo.getO_type() %></td>
+			<td><%=ovoo.getO_charge() %></td>
+			<td><%String ok = null;
+				if(ovoo.getO_ok().equals("1")) {
+					ok = "예약가능";	%>
+				<input type="hidden" name="O_date" value="<%=year%>-<%=month%>-<%=day%>">
+				<input type="hidden" name="O_number" value="<%=ovoo.getO_number()%>">
+				<input type="hidden" name="O_type" value="<%=ovoo.getO_type()%>">
+				<input type="hidden" name="O_charge" value="<%=ovoo.getO_charge()%>">
+				
+				<%-- <a href="reservation_Proc.jsp?O_number=<%=ovoo.getO_number()%>"><%=ok %></a> --%> 
+				<input type="submit" value="<%=ok%>">
+				<%}else{ %>
+				예약불가
+				<%} %>
+			</td>	
 		</tr>
 		<%}
 		
+		} %>
 		
-		}
-		
-		%>
 	</table>
 	
 	
-	</div>
+	</form>
 
 </section>
 
