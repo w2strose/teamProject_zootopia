@@ -11,9 +11,18 @@
 <title>zootopia Event</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	function deleteCheck() {
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+	    	document.deleteform.submit();
+		}else{   //취소
+	    	return false;
+		}
+	}
+</script>
 </head>
 <%
-
+	String loginID = (String)session.getAttribute("loginID");
 	int E_number = Integer.parseInt(request.getParameter("E_number"));
 	String pageNum = request.getParameter("pageNum");
 
@@ -54,7 +63,7 @@
       </header>
       
 <!-- Section -->      
-<section style="height: 1100px;">
+<section style="height: 1000px;">
 	<div class="section_bar" align="left" style="font-size: 34px;
     color: black;
     width: 100%;">
@@ -80,15 +89,27 @@
                         </div>
                     </div>
     </div>
-    
-    
-	<div align="center" style="margin-top: 200px; padding: 50px;">
+    <div align="center" style="margin-top: 230px;">
 	<img alt="" src="../img/<%= event.getE_image()%>" id="viewImage"><br><br><br><br>
+	<div align="center" style="margin-top: 20px; display: flex; justify-content: center">
 	
 		<input type="button" value="목록" onclick="document.location.href='event.jsp'">
+	<%
+	if(session.getAttribute("loginID")==null || session.getAttribute("loginID").equals("") || session.getAttribute("loginID").equals(null)){
+		%>
+		
+		<% } %>
+	<% if(loginID.equals("GM")){ %>
+			<input type="button" value="이벤트 수정하기" onclick="window.location='eventupdateFrom.jsp?E_number=<%=event.getE_number()%>&pageNum=<%=pageNum%>'">
+			<form action="eventdeleteFrom.jsp?E_number=<%=event.getE_number()%>&pageNum=<%=pageNum%>" name="deleteform" method="post">
+				<input type="button" value="이벤트 삭제하기" onclick="deleteCheck()">
+			</form>
+	<%}else{} %>	
+		
+		</div>
 	</div>
 	
-	
+	<%}catch(Exception e){} %>
 	
 </section>
 
@@ -114,11 +135,7 @@
 </body>
 
 </html>
-<%}catch(Exception e){
-		e.printStackTrace();
-	} 
-%>
-	
+
 	
 	
 	

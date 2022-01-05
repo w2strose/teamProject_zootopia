@@ -91,7 +91,9 @@
 	</div>
 		<%if(count == 0){// 이벤트 없을경우 %>
 			 <br><br>
-		<span>게시판에 저장된 글이 없습니다..</span>
+			 <div align="center">
+				<span>현재 진행중인 이벤트가 없습니다..</span>
+			</div>
 		<%}else{ // 글이 있을경우 %>
 	
 	<div class="events" style="display: flex; justify-content: center">
@@ -114,7 +116,7 @@
 		</div>	
 	<%} %>
 
-<div class="numberPage" align="center" style="margin: 50px;" >
+<div class="numberPage" align="center" style="margin: 20px;" >
 		<%
 		if (count > 0) {
 			int pageBlock = 5;
@@ -154,12 +156,14 @@
 		<input type="hidden" value="이벤트 등록하기" onclick="window.location='eventWriteFrom.jsp'">
 		<% } %>
 	<% if(loginID.equals("GM")){ %>
-		<input type="button" value="이벤트 등록하기" onclick="window.location='eventWriteFrom.jsp'">
+		<div align="center">
+			<input type="button" value="이벤트 등록하기" onclick="window.location='eventWriteFrom.jsp'">
+		</div>
 	<%}else{} %>
 	
 </section>
 
-<%}catch(Exception e){e.printStackTrace();} %>
+<%}catch(Exception e){} %>
 
 <!--  Footer -->
 <footer style="height: 100px;">

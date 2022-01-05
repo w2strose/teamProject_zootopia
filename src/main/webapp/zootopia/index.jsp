@@ -77,7 +77,10 @@ if(count > 0){
 	
 	<%if(count == 0){// 이벤트 없을경우 %>
 			 <br><br>
-		<span>게시판에 저장된 글이 없습니다..</span>
+			  <div align="center">
+				<span>현재 진행중인 이벤트가 없습니다..</span>
+			</div>
+		
 		<%}else{ // 글이 있을경우 %>
 	
 		
