@@ -13,7 +13,7 @@ public class zoomemberDAO {
 			
 			try {
 				InitialContext ctx = new InitialContext();	
-				DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mydb");
+				DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/orcl");
 				con = ds.getConnection();
 			}catch(Exception e) {
 				System.out.println("Connection ½ÇÆÐ");
