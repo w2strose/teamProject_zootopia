@@ -1,38 +1,57 @@
-<%@page import="org.apache.commons.collections4.bag.SynchronizedSortedBag"%>
-<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.Calendar" %>
-<%@ page import="zoo_Reservation.Zoo_OperationVO,zoo_Reservation.Zoo_ReservationDAO,java.util.List" %>
-
+<%@ page import="zoo_Hotel.zoo_HotelDAO" %>
+<%@ page import="zoo_Hotel.zoo_HotelVO" %>
+<%@ page import="java.util.*"%>
+<%@ page import="java.sql.*" %>
 <%
-	request.setCharacterEncoding("utf-8");
-	String loginID = (String)session.getAttribute("loginID");
-	String O_number = request.getParameter("O_number");
-	out.println(O_number);
-	String date = request.getParameter("O_date");
-	out.println(date);
-	String type = request.getParameter("O_type");
-	out.println(type);
-	String charge = request.getParameter("O_charge");
-	out.println(charge);
-%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+String loginID = (String)session.getAttribute("loginID");
+request.setCharacterEncoding("UTF-8");
+ArrayList<zoo_HotelVO> listHt = null;
+
+zoo_HotelDAO dbPro = new zoo_HotelDAO();
+listHt = dbPro.listHt(loginID);
+
+
+%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="Content-Type" content="text/html;">
-<title>ZootopiaMain</title>
+<meta charset="UTF-8">
+<title>ZootopiaHotel</title>
+
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<script type="text/javascript" src="../js/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<style type="text/css">
+table
+{
+	margin : auto
+}
+</style>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script>
+    $(document).ready(function(){
+      $('.slider').bxSlider({
+    	  auto:true,
+    	  speed:400,
+    	  autoControls:true,
+    	  touchEnabled:(navigator.maxTouchPoint >0)
+    	});
+    });
+  </script>
+
 </head>
 <body>
-<!-- header -->
+<!-- Header -->
    <header id="header" class="full-header">
             <div id="header-wrap">
           <div class="container_header">     
@@ -46,55 +65,57 @@
           <div class="inner">
     	<nav id="primary-menu">
               <ul class="nav_ul">
-                  <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
+                  <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../zoo_hotel/hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="../zoo_qna/QnAList.jsp">Q&A</a></li>                     
+                 <li class="nav_li"><a href="../zoo_qna/qnaList.jsp">Q&A</a></li>                     
               </ul>
             </nav>
     </div> 
-<!-- section -->
-<section>
-	<div class="section_bar" align="center">
-		Reservation Section
-	
-	</div>
-	<form action="reservation_proc.jsp" method="post" >
-	<table width="400" border="1" cellpadding="0" cellspacing="0" align="center" >
- 		
- 		<tr>
- 			<td width="200"  align="center">예약날짜</td>
- 			<td width="200" align="left"><%=date %>
- 			</td>
- 		</tr>
- 		<tr>
- 			<td width="200"  align="center">방 종류</td>
- 			<td width="200" align="left"><%=type %>
- 			</td>
- 		</tr>
- 		<tr>
- 			<td width="200"  align="center">방 가격</td>
- 			<td width="200" align="left"><%=charge %>
- 			</td>
- 		</tr>
- 		<tr>
- 			<td width="200"  align="center">맡기실 마리 수</td>
- 			<td width="200" align="left">
-				<input type="text" name="R_member">
- 			</td>
- 		<tr>
- 			<td colspan="2"  align="center"> 
- 				<input type="hidden" name="R_date" value="<%=date%>">
-				<input type="hidden" name="O_number" value="<%=O_number%>">
- 				<input type="submit" value="예약하기">
- 				<input type="reset" value="다시작성">
-  			</td>
- 		
- 		</tr>
-	</table>
-</form>
+      
+<!-- Section -->  
 
+<section style="height: 800px;">
+	<div class="section_bar" align="center">
+		호텔 정보 
+	</div>
+	<h3 align="center"> 호텔 정보 페이지</h3>
+	<br><br>
+	
+	 <% for(zoo_HotelVO vo : listHt) 
+	
+	
+	{	%>
+	<table border="1" width="1200" height="500">
+		<tr>
+			<td colspan="3" align="center"><%=vo.getH_name() %></td>
+			<td align="center">방 개수 : <%= vo.getH_roomnumber()%></td>
+		</tr>
+		<tr>
+			<td align="center">전화번호</td>
+			<td align="center"><%=vo.getH_phone1() %></td>
+			<td align="center"><%=vo.getH_phone2() %></td>
+			<td align="center"><%=vo.getH_phone3() %></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">주소 : <%=vo.getH_address() %></td>
+			<td align="center">우편 번호 : <%=vo.getH_postnum() %></td>
+			<td align="center">상세 주소 : <%=vo.getH_jibunaddress() %></td>
+		</tr>
+		<tr height="500">
+			<td colspan="4" align="center"><%=vo.getH_coment() %></td>
+		</tr>
+	</table>
+	<% } %> 
+	
+	
+	
+	<!-- 지도 -->
+	
+	
+	
+	
 </section>
 
 <!-- footer -->
@@ -138,6 +159,7 @@
  </div>
        
 </footer>
+
 
 </body>
 </html>
