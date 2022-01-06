@@ -1,6 +1,7 @@
-package zoo_Event;
+package zoo_Hotel;
 
 import java.sql.Connection;
+
 import java.sql.SQLException;
 
 import javax.naming.InitialContext;

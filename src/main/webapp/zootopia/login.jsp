@@ -72,6 +72,9 @@
 			<td width="100" align="center">
 				<a href="reservation.jsp">예약내역</a>
 			</td>
+			<td width="100" align="center">
+				<a href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
+			</td>
 		</tr>
 		
 	</table>
