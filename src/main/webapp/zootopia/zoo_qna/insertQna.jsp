@@ -4,18 +4,14 @@
     pageEncoding="UTF-8"%>
 <%
 	String loginID = (String)session.getAttribute("loginID");
-	
-	int num = Integer.parseInt(request.getParameter("num")); 
-	String pageNum = request.getParameter("pageNum");
 
 	Zoo_qnaDAO dao = new Zoo_qnaDAO();
-	Zoo_qnaVO board = dao.getBoard(num);
 
 
 
 %>
 
-
+<%-- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,47 +56,32 @@
 	
 	</div>
 	
-	<div align="center"><b>글 상세보기</b><br><br>
+	<div align="center"><b>질문 올리기</b><br><br>
 	<form action="">
 		<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" >	
 			<tr height="30">
-				<td align="center" width="125" >글 번호</td>
-				<td align="center"><%=board.getB_number()%></td>
-				
-				<%-- <td align="center" width="125" >조회수</td>
-				<td align="center"><%=article.getReadcount() %></td> --%>
-			</tr>
-			<tr height="30">
 				<td align="center" width="125" >작성자</td>
-				<td align="center"><%=board.getId()%></td>
-				
-				<%-- <td align="center" width="125" >작성일</td>
-				<td align="center"><%=sdf.format(article.getRegdate()) %></td> --%>
+				<td align="center"><%=loginID%></td>
 			</tr>
 			<tr height="30">
 				<td align="center" width="125" >글 제목</td>
-				<td align="center" colspan="3"><%=board.getB_subject()%></td>
+				<td align="center" colspan="3"><input type="text" name="B_subject"> </td>
 			
 			</tr>
 			<tr height="30">
 				<td align="center" width="125" >글 내용</td>
-				<td align="left" width="375" colspan="3"><pre><%=board.getB_content()%></pre></td>
+				<td align="left" width="375" colspan="3"><textarea rows="10" cols="40" name="B_content"></textarea> </td>
 			</tr>
 			<tr height="30">
 				<td colspan="4"  align="right">
-				<input type="button" value="글수정" onclick="document.location.href='updateForm.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'"> 
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" value="글삭제" onclick="document.location.href='deleteForm.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'"> 
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<%-- <input type="button" value="답글쓰기" onclick="document.location.href='writeForm.jsp?num=<%=num%>&ref=<%=ref%>&step=<%=step%>&depth=<%=depth%>'"> 
-				&nbsp;&nbsp;&nbsp;&nbsp; --%>
-				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp?pageNum=<%=pageNum %>'"> 
+				<input type="button" value="질문 작성" onclick="document.location.href='updateForm.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'"> 
+				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp?'"> 
 				</td>
 			
 			</tr>
 			
 		</table>
-		<%-- <%}catch(Exception e){} %> --%>
+		<%}catch(Exception e){} %>
 
 	</form>
 	<%try{ if(loginID.equals("GM")||loginID.equals(board.getId())){ %>
@@ -145,7 +126,7 @@
 			<li class="footer_li">API</li>
 			<li class="footer_li">About</li>
 		</ul>
-</footer>
+</footer> --%>
 
 </body>
 </html>

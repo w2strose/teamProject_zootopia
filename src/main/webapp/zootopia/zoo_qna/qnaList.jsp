@@ -4,7 +4,7 @@
 <%
 
 //한 페이지에 보여줄 목록 수 지정
-int pageSize = 5;
+int pageSize = 10;
 
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -84,12 +84,7 @@ number = count -(currentPage-1)*pageSize;
 	</div>
 	
 	<div align="center"><b>글목록(전체 글:<%=count %>)</b>
-	<table width="700">
-		<tr>
-			<td align="right" >
-			<a href="writeForm.jsp">글쓰기</a></td>
-		</tr>
-	</table>
+	
 <%
 	if(count==0){ // 저장된 글이 없을 경우
 %>
@@ -125,6 +120,9 @@ number = count -(currentPage-1)*pageSize;
 		<%-- 	<img src="../img/level.gif" width="<%=wid%>"height="16"> --%>
 		<%//} %>
 		<a href="getqna.jsp?num=<%=article.getB_number()%>&pageNum=<%=currentPage%>">
+			<%try{if(!article.getB_answer().equals(null)){ %>
+			(답변완료)
+			<%} }catch(Exception e){}%>
 			<%=article.getB_subject()%></a>
 			<%-- <%if(article.getReadcount()>=20){ %>
 			<img alt="" src="../img/hot.gif" border="0" height="16">
@@ -168,8 +166,14 @@ if(count>0){
 	
 	<%}
 	} %>
-
-
+	<table width="700">
+		<tr>
+			<td align="right" >
+			<input type="button" value="글쓰기" onclick="window.location='insertQna.jsp'"> 
+			</td>
+		</tr>
+	</table>
+</div>
 
 </section>
 

@@ -78,7 +78,7 @@ public class Zoo_qnaDAO {
 			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			}else{
-				pstmt = con.prepareStatement("select * from (select rownum rnum, id, b_number, b_subject, b_content from (select * from Zoo_board order by B_number desc)) where rnum >= ? and rnum <=?");
+				pstmt = con.prepareStatement("select * from (select rownum rnum, id, b_number, b_subject, b_content, b_answer from (select * from Zoo_board order by B_number desc)) where rnum >= ? and rnum <=?");
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 				
@@ -94,7 +94,7 @@ public class Zoo_qnaDAO {
 					board.setB_number(rs.getInt("b_number"));
 					board.setB_subject(rs.getString("b_subject"));
 					board.setB_content(rs.getString("b_content"));
-					
+					board.setB_answer(rs.getString("b_answer"));
 					boardList.add(board);
 				 
 				}while(rs.next());
@@ -133,7 +133,8 @@ public class Zoo_qnaDAO {
 				board.setId(rs.getString("id"));
 				board.setB_subject(rs.getString("B_subject"));
 				board.setB_content(rs.getString("B_content"));
-			}
+				board.setB_answer(rs.getString("B_answer"));
+			}	
 			
 		}catch(Exception se) {
 			System.out.println("Exception"+se);

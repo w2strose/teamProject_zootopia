@@ -17,7 +17,7 @@ public class ConnUtil {
 		try {
 
 			InitialContext ctx = new InitialContext();	
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/orcl");
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mydb");
 
 		}catch(NamingException e) {
 			e.printStackTrace();

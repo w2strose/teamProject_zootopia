@@ -21,7 +21,7 @@ public class Zoo_ReservationDAO {
 		
 		try {
 			InitialContext ctx = new InitialContext();	
-			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/orcl");
+			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mydb");
 			con = ds.getConnection();
 		}catch(Exception e) {
 			System.out.println("Connection ½ÇÆÐ");

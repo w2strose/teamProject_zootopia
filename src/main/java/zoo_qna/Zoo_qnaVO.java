@@ -2,7 +2,13 @@ package zoo_qna;
 
 public class Zoo_qnaVO {
 
-	private String id, b_subject, b_content;
+	private String id, b_subject, b_content, b_answer;
+	public String getB_answer() {
+		return b_answer;
+	}
+	public void setB_answer(String b_answer) {
+		this.b_answer = b_answer;
+	}
 	private int b_number;
 	public String getId() {
 		return id;
