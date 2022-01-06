@@ -66,11 +66,11 @@
 					============================================= -->
             <nav id="primary-menu">
               <ul class="nav_ul">
-                  <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
+                  <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="../Q&A.jsp">Q&A</a></li>   
+                 <li class="nav_li"><a href="../zoo_qna/qnaList.jsp">Q&A</a></li>   
                 
               </ul>
             </nav>
@@ -178,6 +178,16 @@
 		} %>
 		
 	</table>
+	
+	<%
+		try{	
+	if(loginID.equals("GM")){ %>
+		<div align="center">
+			<input type="button" value="방 등록하기" onclick="window.location='insertOperation.jsp'">
+		</div>
+	<%}else {}
+	
+	}catch(Exception e){}%>
 	
 	
 	</form>

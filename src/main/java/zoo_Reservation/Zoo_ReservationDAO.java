@@ -120,4 +120,33 @@ public class Zoo_ReservationDAO {
 			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
 		}
 	}
+	
+	public void insertOperation(Zoo_OperationVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con=getConnection();
+			pstmt=con.prepareStatement("insert into zoo_operation(H_number, O_number, O_type, O_date, O_charge, O_ok) values(?, operation_seq.nextval, ?, ?, ?, 1)");
+			pstmt.setInt(1, vo.getH_number());
+			pstmt.setString(2, vo.getO_type());
+			pstmt.setString(3, vo.getO_date());
+			pstmt.setString(4, vo.getO_charge());
+			
+			pstmt.executeUpdate();
+			
+			
+			
+		}catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
+		}
+	}
+	
+	
 }

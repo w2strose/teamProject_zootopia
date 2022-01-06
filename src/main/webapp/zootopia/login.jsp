@@ -38,7 +38,7 @@
                   <li class="nav_li"><a href="hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="zoo_event/event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="Q&A.jsp">Q&A</a></li>                     
+                 <li class="nav_li"><a href="zoo_qna/qnaList.jsp">Q&A</a></li>                     
               </ul>
             </nav>
             <!-- #primary-menu end -->

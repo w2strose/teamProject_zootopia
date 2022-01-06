@@ -8,14 +8,6 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String loginID = (String)session.getAttribute("loginID");
-	String O_number = request.getParameter("O_number");
-	out.println(O_number);
-	String date = request.getParameter("O_date");
-	out.println(date);
-	String type = request.getParameter("O_type");
-	out.println(type);
-	String charge = request.getParameter("O_charge");
-	out.println(charge);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,34 +53,35 @@
 		Reservation Section
 	
 	</div>
-	<form action="reservation_proc.jsp" method="post" >
+	<form action="insertOperation_proc.jsp" method="post" >
 	<table width="400" border="1" cellpadding="0" cellspacing="0" align="center" >
  		
  		<tr>
- 			<td width="200"  align="center">예약날짜</td>
- 			<td width="200" align="left"><%=date %>
+ 			<td width="200"  align="center">호텔 번호</td>
+ 			<td width="200" align="left">
+ 			<input type="text" name="H_number"> 
  			</td>
  		</tr>
  		<tr>
  			<td width="200"  align="center">방 종류</td>
- 			<td width="200" align="left"><%=type %>
- 			</td>
- 		</tr>
- 		<tr>
- 			<td width="200"  align="center">방 가격</td>
- 			<td width="200" align="left"><%=charge %>
- 			</td>
- 		</tr>
- 		<tr>
- 			<td width="200"  align="center">맡기실 마리 수</td>
  			<td width="200" align="left">
-				<input type="text" name="R_member">
+			<input type="text" name="O_type">
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<td width="200"  align="center">예약가능 날짜</td>
+ 			<td width="200" align="left">
+			<input type="text" name="O_date" value="2022-1-5">
+ 			</td> 
+ 		</tr>
+ 		<tr>
+ 			<td width="200"  align="center">가격</td>
+ 			<td width="200" align="left">
+				<input type="text" name="O_charge">
  			</td>
  		<tr>
  			<td colspan="2"  align="center"> 
- 				<input type="hidden" name="R_date" value="<%=date%>">
-				<input type="hidden" name="O_number" value="<%=O_number%>">
- 				<input type="submit" value="예약하기">
+ 				<input type="submit" value="등록하기">
  				<input type="reset" value="다시작성">
   			</td>
  		
