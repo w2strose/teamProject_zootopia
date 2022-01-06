@@ -119,7 +119,7 @@ number = count -(currentPage-1)*pageSize;
 		<%//}else{%>
 		<%-- 	<img src="../img/level.gif" width="<%=wid%>"height="16"> --%>
 		<%//} %>
-		<a href="getqna.jsp?num=<%=article.getB_number()%>&pageNum=<%=currentPage%>">
+		<a href="getQna.jsp?num=<%=article.getB_number()%>&pageNum=<%=currentPage%>">
 			<%try{if(!article.getB_answer().equals(null)){ %>
 			(답변완료)
 			<%} }catch(Exception e){}%>
