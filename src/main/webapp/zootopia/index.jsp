@@ -33,7 +33,7 @@ if(count > 0){
     $(document).ready(function(){
       $('.slider').bxSlider({
     	  auto:true,
-    	  speed:400,
+    	  speed:300,
     	  autoControls:true,
     	  touchEnabled:(navigator.maxTouchPoint >0)
     	});
@@ -87,7 +87,7 @@ if(count > 0){
 		 %>
 	 
 	 	<a href="zoo_event/eventView.jsp?E_number=<%= event.getE_number()%>">
-   			<img alt="" src="img/<%= event.getE_image()%>" style="width: 1000px; height: 500px;" >
+   			<img alt="" src="img/<%= event.getE_image()%>" style="width: 800px; height: 400px;" >
    		</a>	
    		<%} %>
    <%} %>

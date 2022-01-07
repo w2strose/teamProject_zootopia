@@ -19,6 +19,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	function logoutCheck() {
+		if (confirm("정말 로그아웃하시겠습니까??") == true){    //확인
+			location.href="logout.jsp";
+		}else{   //취소
+	    	return false;
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -48,14 +57,26 @@
 	<div class="section_bar" align="center" >
 		회원정보 수정
 	</div>
-	<div align="center" style="margin-top: 100px; margin-bottom: 100px;" >
-		 <form class="form reg" name="regForm" action="modifyProc.jsp" method="post">
+	<div align="center">
+		<div class="loginOutside">
+	
+			<div class="loginInside">
+				
+		<a class="loginbox " href="login.jsp">회원정보</a>
+		<a class="loginbox loginboxActive" href="modifyForm.jsp">정보수정</a>
+		<a class="loginbox" href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
+		<a class="loginbox" href="deleteForm.jsp">회원탈퇴</a>
+		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
+			</div>
+			
+			<div align="center" style="width: 600px; height: 500px; border: 1px solid black;">
+				 <form name="regForm" action="modifyProc.jsp" method="post">
    		 <div class="title">회원정보 수정</div>
    		 <hr>
-   		 <div>아이디</div>
-  		 <span class="span-field"><%= vo.getId() %></span>
-  		 <label for="">비밀번호</label>
-  		 <input class="input-field" type="password" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합">
+   		 <div>  아이디   :    <%= vo.getId() %></div>
+  		 
+  		 <div>비밀번호   :    <input class="input-field" type="password" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합"></div>
+  		 
   		 <label for="">비밀번호 확인</label>
   		 <input class="input-field" type="password" name="repass" placeholder="8~12자리의 영대소문자와 숫자 조합">
   	  	 <label for="">이름</label>
@@ -80,7 +101,11 @@
          <button type="button" onClick="updateCheck()">정보수정</button>
          <button type="button" onClick="javascript:window.location='login.jsp'">로그인화면으로 돌아가기</button>
          </form> 
-	</div>
+			</div>
+		</div>
+	</div>		
+	
+	
 	
 
 </section>

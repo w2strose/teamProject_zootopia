@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String loginID = (String)session.getAttribute("loginID");    
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +15,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript">
+	function logoutCheck() {
+		if (confirm("정말 로그아웃하시겠습니까??") == true){    //확인
+			location.href="logout.jsp";
+		}else{   //취소
+	    	return false;
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -42,34 +54,52 @@
 	<div class="section_bar" align="center" >
 		회원탈퇴
 	</div>
-	<div align="center" style="margin-top: 100px;" >
-	<form action="deleteProc.jsp" name="myForm" 
-	method="post" onsubmit="return checkIt()">
-	<table width="260" border="1" align="center">
-		<tr>
-			<td colspan="2" align="center">
-				<b>회원탈퇴</b>
-			</td>		
-		</tr>
-				
-		<tr>
-			<td width="150">
-				<b>비밀번호 입력</b>
-			</td>
-			<td width="110">
-				<input type="password" name="pass" size="15">
-			</td> 
-		</tr>
 	
-		<tr>
-			<td colspan="2" align="center">
-				<input type="submit" value="회원탈퇴">
-				<input type="button" value="취소" onClick="javascript:window.location='login.jsp'">				
-			</td>
-		</tr>
-	</table>
-	</form>
-	</div>
+	<div align="center">
+		<div class="loginOutside">
+	
+			<div class="loginInside">
+				
+		<a class="loginbox " href="login.jsp">회원정보</a>
+		<a class="loginbox" href="modifyForm.jsp">정보수정</a>
+		<a class="loginbox" href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
+		<a class="loginbox loginboxActive" href="deleteForm.jsp">회원탈퇴</a>
+		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
+			</div>
+			
+			<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center;">
+				<form action="deleteProc.jsp" name="myForm" method="post" onsubmit="return checkIt()">
+					<table width="260" border="1" align="center">
+						<tr>
+							<td colspan="2" align="center">
+								<b>회원탈퇴</b>
+							</td>		
+						</tr>
+				
+						<tr>
+							<td width="150">
+								<b>비밀번호 입력</b>
+							</td>
+							<td width="110">
+								<input type="password" name="pass" size="15">
+							</td> 
+						</tr>
+	
+						<tr>
+							<td colspan="2" align="center">
+								<input type="submit" value="회원탈퇴">
+								<input type="button" value="취소" onClick="javascript:window.location='login.jsp'">				
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>		
+	
+	
+	
+	
 </section>
 
 <footer class="site-footer">

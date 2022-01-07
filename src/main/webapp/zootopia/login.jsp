@@ -19,6 +19,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+	function logoutCheck() {
+		if (confirm("정말 로그아웃하시겠습니까??") == true){    //확인
+			location.href="logout.jsp";
+		}else{   //취소
+	    	return false;
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -45,55 +54,45 @@
             </nav>
     </div> 
       
-<section style="height: 700px;">
-	<div class="section_bar" align="center" >
-		회원 로그인 
-	</div>
+<section style="height: 710px;" >
+	
 	<% if(loginID != null){  // 로그인 성공한 경우%>
-	<div align="center" style="margin-top: 100px; margin-bottom: 100px;" >
-	<table width="300" border="1">
-		<tr>
-			<td colspan="4" align="center">
-				<%= loginID %>님 환영합니다.
-			</td>
-		</tr>
-		<tr>
-			<td width="100" align="center">
-				<a href="modifyForm.jsp">정보수정</a>
-			</td>
-			<td width="100" align="center">
-				<a href="deleteForm.jsp">회원삭제</a>
-			</td>
-			<td width="100" align="center"> 
-				<a href="logout.jsp">로그아웃</a>
-			</td>
-			<td width="100" align="center">
-				<a href="reservation.jsp">예약내역</a>
-			</td>
-			<td width="100" align="center">
-				<a href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
-			</td>
-		</tr>
-		
-	</table>
-	
-	<br><br>
-	
-		<div> 
-			<% if(vo != null){ %>
-			<%= loginID %>님의 정보입니다.<br>
-			비밀번호는 <%= vo.getPass() %> 입니다. <br>
-			성함은 <%= vo.getName() %>입니다. <br>
-			전화번호는 <%= vo.getPhone1() %> -  <%= vo.getPhone2() %> - <%= vo.getPhone3() %> 입니다. <br>
-			이메일은 <%= vo.getEmail() %> 입니다. <br>
-			생년월일은 <%= vo.getBirth() %> 입니다.
-			
-			<% } %>			
-		</div>
+	<div class="section_bar" align="center" >
+		회원 관리
 	</div>
+	<div align="center">
+		<div class="loginOutside">
+	
+			<div class="loginInside">
+				
+				
+		<a class="loginbox loginboxActive" href="login.jsp">회원정보</a>
+		<a class="loginbox" href="modifyForm.jsp">정보수정</a>
+		<a class="loginbox" href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
+		<a class="loginbox" href="deleteForm.jsp">회원탈퇴</a>
+		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
+			</div>
+			
+			<div style="width: 600px; height: 500px; border: 1px solid black;  flex-direction: column;">
+				<% if(vo != null){ %>
+				<div style="height: 150px; align-items: center; display: flex; justify-content: center;"><%= loginID %>님의 회원정보입니다.</div>
+				비밀번호는 <%= vo.getPass() %> 입니다. <br><br>
+				성함은 <%= vo.getName() %>입니다. <br><br>
+				전화번호는 <%= vo.getPhone1() %> -  <%= vo.getPhone2() %> - <%= vo.getPhone3() %> 입니다. <br><br>
+				이메일은 <%= vo.getEmail() %> 입니다. <br><br>
+				생년월일은 <%= vo.getBirth() %> 입니다.
+			<% } %>	
+			</div>
+		</div>
+	</div>		
+	
+	
 	
 	
 	<%}else{ //로그인 안된경우%>
+	<div class="section_bar" align="center" >
+		회원 로그인
+	</div>
 	<div align="center" style="margin-top: 100px; margin-bottom: 100px;">
 	<form action="loginProc.jsp" method="post" class="form login">
 	     <div class="title">회원 로그인</div>
