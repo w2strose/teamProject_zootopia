@@ -147,4 +147,93 @@ public class Zoo_qnaDAO {
 		
 	}
 	
+	public void insertQna(Zoo_qnaVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			pstmt= con.prepareStatement("insert into zoo_board(id, b_number, b_subject, b_content) values(?,board_seq.nextval,?,?)");
+			
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getB_subject());
+			pstmt.setString(3, vo.getB_content());
+
+			pstmt.executeUpdate();
+			
+		} catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+		}
+		
+	}
+	public void replyQna(Zoo_qnaVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			pstmt= con.prepareStatement("update zoo_board set b_answer=? where b_number=?");
+			
+			pstmt.setString(1, vo.getB_answer());
+			pstmt.setInt(2, vo.getB_number());
+
+			pstmt.executeUpdate();
+			
+		} catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+		}
+		
+	}
+	public void updateQna(Zoo_qnaVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			pstmt= con.prepareStatement("update zoo_board set b_subject=?, b_content=? where b_number=?");
+			
+			pstmt.setString(1, vo.getB_subject());
+			pstmt.setString(2, vo.getB_content());
+			pstmt.setInt(3, vo.getB_number());
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+		}
+		
+	}
+	public void deleteQna(Zoo_qnaVO vo) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = getConnection();
+			pstmt= con.prepareStatement("delete from zoo_board where b_number=?");
+			
+			pstmt.setInt(1, vo.getB_number());
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+		}
+		
+	}
 }

@@ -23,7 +23,7 @@
 <title>Zootopia getQnA</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
@@ -88,10 +88,12 @@
 			</tr>
 			<tr height="30">
 				<td colspan="4"  align="right">
-				<input type="button" value="글수정" onclick="document.location.href='updateForm.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'"> 
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" value="글삭제" onclick="document.location.href='deleteForm.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'"> 
-				&nbsp;&nbsp;&nbsp;&nbsp;
+				<%try{ if(loginID.equals(board.getId())){ %>
+				<input type="button" value="글수정" onclick="document.location.href='updateQna.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
+				&nbsp;&nbsp;
+				<input type="button" value="글삭제" onclick="document.location.href='deleteQna_proc.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
+				<%}}catch(Exception e){} %> 
+				&nbsp;&nbsp;
 				<%-- <input type="button" value="답글쓰기" onclick="document.location.href='writeForm.jsp?num=<%=num%>&ref=<%=ref%>&step=<%=step%>&depth=<%=depth%>'"> 
 				&nbsp;&nbsp;&nbsp;&nbsp; --%>
 				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp?pageNum=<%=pageNum %>'"> 
@@ -110,14 +112,20 @@
 		<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" >	
 			<tr height="30">
 				<td align="center" width="125" >답변글</td>
-				<td align="left" width="375" colspan="3"><%=board.getB_answer()%></td>
+				<td align="left" width="375" colspan="3">
+				<%if(board.getB_answer()==null){ %>			
+				답변이 없습니다.
+				<%}else{ %>
+				<%=board.getB_answer()%>
+				<%} %>
+				</td>
 			</tr>
 		</table>	
 		<table width="500" border="0" cellpadding="0" cellspacing="0" align="center" >	
 			<tr height="30" >
 				<td colspan="4" align="right">
 					<%try{ if(loginID.equals("GM")){ %>
-					<input type="button" value="답변달기" onclick="document.location.href='updateForm.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
+					<input type="button" value="답변달기" onclick="document.location.href='replyQna.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
 					<%}}catch(Exception e){} %>
 				</td>
 			</tr>

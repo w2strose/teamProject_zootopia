@@ -1,52 +1,44 @@
+<%@page import="zoo_qna.Zoo_qnaVO"%>
+<%@page import="zoo_qna.Zoo_qnaDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,java.text.*,zoo_qna.*" %>
 <%
-
-//한 페이지에 보여줄 목록 수 지정
-int pageSize = 10;
-
-String loginID = (String)session.getAttribute("loginID");
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-String pageNum = request.getParameter("pageNum");
-if(pageNum==null){
-	pageNum = "1";
-}
-//현재 페이지
-int currentPage = Integer.parseInt(pageNum);
-int startRow = (currentPage-1)*pageSize+1;
-int endRow = currentPage*pageSize;
-
-String searchWhat = request.getParameter("searchWhat");
-String searchText = request.getParameter("searchText");
-
-
-int count = 0;
-int number = 0;
-
-List<Zoo_qnaVO> qnaList = null;
-Zoo_qnaDAO dao = new Zoo_qnaDAO();
-count = dao.getboardCount();// 전체 글수
-if(count>0) {
-	qnaList = dao.getBoardList(startRow,endRow,searchWhat,searchText);
+	String loginID = (String)session.getAttribute("loginID");
 	
-}
-number = count -(currentPage-1)*pageSize;
+	int num = Integer.parseInt(request.getParameter("num")); 
+	String pageNum = request.getParameter("pageNum");
 
-
+	Zoo_qnaDAO dao = new Zoo_qnaDAO();
+	Zoo_qnaVO board = dao.getBoard(num);
 
 
 
 %>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;">
-<title>ZootopiaQnA</title>
+<title>Zootopia getQnA</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript">
+function check() {
+
+	if(document.update.B_subject.value==""){
+		alert("제목을 입력하세요.");
+		document.update.B_subject.focus();
+		return false;
+	}
+	if(document.update.B_content.value==""){
+		alert("내용을 입력하세요.");
+		document.update.B_content.focus();
+		return false;
+	}
+}
+
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
@@ -71,7 +63,7 @@ number = count -(currentPage-1)*pageSize;
                   <li class="nav_li"><a href="../zoo_hotel/hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
                  <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
-                 <li class="nav_li"><a href="../zoo_qna/qnaList.jsp">Q&A</a></li>                     
+                 <li class="nav_li"><a href="qnaList.jsp">Q&A</a></li>                     
               </ul>
             </nav>
     </div> 
@@ -83,101 +75,43 @@ number = count -(currentPage-1)*pageSize;
 	
 	</div>
 	
-	<div align="center"><b>글목록(전체 글:<%=count %>)</b>
-	
-<%
-	if(count==0){ // 저장된 글이 없을 경우
-%>
-<table width="700" border="1" cellpadding="0" cellspacing="0">
-	<tr align="center">
-		<td>Q&A에 저장된 글이 없습니다.</td>
-	</tr>
-</table>
-<%}else{ // 글이 있을 경우%>
-<table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
-	<tr height="30" >
-		<td align="center" width="50">번호</td>
-		<td align="center" width="250">제목</td>
-		<td align="center" width="100">작성자</td>
-		<!-- <td align="center" width="150">작성일</td> -->
-	
-	</tr>
-	<%
-	for(int i =0;i<qnaList.size();i++){
-		Zoo_qnaVO article = (Zoo_qnaVO)qnaList.get(i);
-	%>
-	<tr height="30">
-		<td align="center" width="50"><%=number--%></td>
-		<td width="250">
-		<%
-		//	int wid = 0;
-		//	if(article.getDepth()>0){
-		//		wid = 5*(article.getDepth());
-		%>	
-			<%-- <img src="../img/level.gif" width="<%=wid%>"height="16">
-			<img src="../img/re.gif"> --%>
-		<%//}else{%>
-		<%-- 	<img src="../img/level.gif" width="<%=wid%>"height="16"> --%>
-		<%//} %>
-		<a href="getQna.jsp?num=<%=article.getB_number()%>&pageNum=<%=currentPage%>">
-			<%try{if(!article.getB_answer().equals(null)){ %>
-			(답변완료)
-			<%} }catch(Exception e){}%>
-			<%=article.getB_subject()%></a>
-			<%-- <%if(article.getReadcount()>=20){ %>
-			<img alt="" src="../img/hot.gif" border="0" height="16">
-			<%} %></td> --%>
-		<td align="center" width="100"><%=article.getId()%></td>
-		<%-- <td align="center" width="150"><%=sdf.format(article.getRegdate()) %></td> --%>
-	
-	</tr>
-	 <%} %> 	
-</table>
- <%} %> 
- 
-<%
-if(count>0){
-	int pageBlock = 5;
-	int imsi = count % pageSize == 0 ? 0 : 1;
-	int pageCount = count/pageSize + imsi;
-	int startPage = (int)((currentPage -1)/pageBlock)*pageBlock+1; 
-	int endPage = startPage + pageBlock-1;
-	
-	if(endPage > pageCount) endPage = pageCount;
-	if(startPage > pageBlock) {
-		
-%>
-<a href="qnaList.jsp?pageNum=<%=startPage-pageBlock%>">[이전]</a>
-	<%} 
-	 for(int i = startPage; i<=endPage; i++){
-	 if(searchText!=null){%>
-	 <a href="qnaList.jsp?searchWhat=<%=searchWhat%>&searchText=<%=searchText%>&pageNum=<%=i%>">[<%=i %>]</a>
-	 
-	<%	 
-	 }else{
-	%>
-<a href="qnaList.jsp?pageNum=<%=i%>">[<%=i %>]</a>
-<%}
-}
-	if(endPage < pageCount){
-		 
-	 %>
-<a href="qnaList.jsp?pageNum=<%=startPage+pageBlock%>">[다음]</a>
-	
-	<%}
-	} %>
-	<table width="700">
-		<tr>
-			<td align="right" >
-			<%try{if(!loginID.equals(null)){ %>
-			<input type="button" value="글쓰기" onclick="window.location='insertQna.jsp'"> 
-			<%} }catch(Exception e){}%>
-			</td>
-		</tr>
-	</table>
+	<div align="center"><b>글 수정하기</b><br><br>
+	<form action="updateQna_proc.jsp" name="update">
+		<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" >	
+			<tr height="30">
+				<td align="center" width="125" >글 번호</td>
+				<td align="center"><%=board.getB_number()%></td>
+			</tr>
+			<tr height="30">
+				<td align="center" width="125" >작성자</td>
+				<td align="center"><%=board.getId()%></td>
+			</tr>
+			<tr height="30">
+				<td align="center" width="125" >글 제목</td>
+				<td align="center" colspan="3">
+					<input type="text" size="50" maxlength="50" name="B_subject" value="<%=board.getB_subject()%>">
+				</td>
+			</tr>
+			<tr height="30">
+				<td align="center" width="125" >글 내용</td>
+				<td align="left" width="375" colspan="3">
+				<textarea rows="10" cols="50" name="B_content"><%=board.getB_content()%></textarea>
+			</tr>
+			<tr height="30">
+				<td colspan="4"  align="right">
+				<input type="hidden" name="num" value="<%=board.getB_number()%>">
+				<input type="submit" value="수정하기" onclick="return check()">&nbsp;&nbsp;
+ 				<input type="reset" value="다시작성">&nbsp;&nbsp;
+				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp'"> &nbsp;
+				</td>
+			</tr>
+		</table>
+	</form>
 </div>
 
+
 </section>
+
 <!-- footer -->
 <footer class="site-footer">
  <div class="container" style="display: flex; justify-content: space-around; align-items: center;">
