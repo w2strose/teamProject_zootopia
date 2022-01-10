@@ -51,6 +51,36 @@ number = count -(currentPage-1)*pageSize;
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+   font-family :'Hahmlet', serif;
+   font-size : 15px;
+  background: orange;
+}
+table.type11 td {
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
+
+</style>
 </head>
 <body>
 <!-- Header -->
@@ -83,22 +113,22 @@ number = count -(currentPage-1)*pageSize;
 	
 	</div>
 	
-	<div align="center"><b>글목록(전체 글:<%=count %>)</b>
+	<div align="center" style="margin-top: 70px;"><br>
 	
 <%
 	if(count==0){ // 저장된 글이 없을 경우
 %>
-<table width="700" border="1" cellpadding="0" cellspacing="0">
+<table width="600" cellpadding="0" cellspacing="0">
 	<tr align="center">
 		<td>Q&A에 저장된 글이 없습니다.</td>
 	</tr>
 </table>
 <%}else{ // 글이 있을 경우%>
-<table width="700" border="1" cellpadding="0" cellspacing="0" align="center">
+<table align="center" class="type11">
 	<tr height="30" >
-		<td align="center" width="50">번호</td>
-		<td align="center" width="250">제목</td>
-		<td align="center" width="100">작성자</td>
+		<th align="center" width="50">번호</th>
+		<th align="center" width="400">제목</th>
+		<th align="center" width="150">작성자</th>
 		<!-- <td align="center" width="150">작성일</td> -->
 	
 	</tr>
@@ -108,7 +138,7 @@ number = count -(currentPage-1)*pageSize;
 	%>
 	<tr height="30">
 		<td align="center" width="50"><%=number--%></td>
-		<td width="250">
+		<td width="400">
 		<%
 		//	int wid = 0;
 		//	if(article.getDepth()>0){
@@ -127,7 +157,7 @@ number = count -(currentPage-1)*pageSize;
 			<%-- <%if(article.getReadcount()>=20){ %>
 			<img alt="" src="../img/hot.gif" border="0" height="16">
 			<%} %></td> --%>
-		<td align="center" width="100"><%=article.getId()%></td>
+		<td align="center" width="150"><%=article.getId()%></td>
 		<%-- <td align="center" width="150"><%=sdf.format(article.getRegdate()) %></td> --%>
 	
 	</tr>
@@ -160,14 +190,19 @@ if(count>0){
 <%}
 }
 	if(endPage < pageCount){
-		 
+		  
 	 %>
 <a href="qnaList.jsp?pageNum=<%=startPage+pageBlock%>">[다음]</a>
 	
 	<%}
 	} %>
-	<table width="700">
+	<table width="650">
 		<tr>
+			<td align="left" >
+			<%try{if(!loginID.equals(null)){ %>
+			<input type="button" value="내가 작성한 글 보기" onclick="window.location='searchList.jsp'"> 
+			<%} }catch(Exception e){}%>
+			</td>
 			<td align="right" >
 			<%try{if(!loginID.equals(null)){ %>
 			<input type="button" value="글쓰기" onclick="window.location='insertQna.jsp'"> 

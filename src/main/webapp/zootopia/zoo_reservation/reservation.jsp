@@ -54,6 +54,63 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 20px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  width: 90px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+   font-family :'Hahmlet', serif;
+  background: orange;
+}
+table.type11 td {
+  width: 90px;
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+}
+table.type10 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 0.5;
+  margin: 20px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type10 th {
+  width: 10px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+  background: orange;
+  font-family :'Hahmlet', serif;
+}
+table.type10 td {
+  width: 10px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-family :'Hahmlet', serif;
+}
+
+</style>
 </head>
 <body>
  <!-- header -->
@@ -79,31 +136,32 @@
             </nav>
     </div> 
 <!-- section -->
-<section>
+<section style="height: 70%;">
 	<div class="section_bar" align="center">
 		Reservation Section
 	
-	</div>
-	<form action="reservation_page.jsp" method="post">
-	<a href="reservation.jsp?year=<%=year%>&month=<%=month-1%>">이전달</a>&nbsp;
-	<b><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
-	<a href="reservation.jsp?year=<%=year%>&month=<%=month+1%>">&nbsp;다음달</a>
-	<table border="1">
+	</div><br>
+	<div align="center">
+	<form action="reservation_page.jsp" method="post" align="center" style="font-size: 15px;" >
+	<a href="reservation.jsp?year=<%=year%>&month=<%=month-1%>" style="font-family:'Hahmlet', serif;">이전달</a>&nbsp;
+	<b style="font-family:'Hahmlet', serif;"><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
+	<a href="reservation.jsp?year=<%=year%>&month=<%=month+1%>" style="font-family:'Hahmlet', serif;">&nbsp;다음달</a>
+	<table class="type10">
 		<tr>
-			<td style=color:red;>일</td>
-			<td>월</td>
-			<td>화</td>
-			<td>수</td>
-			<td>목</td>
-			<td>금</td>
-			<td style=color:blue;>토</td>
+			<th style=color:red;>일</th>
+			<th>월</th>
+			<th>화</th>
+			<th>수</th>
+			<th>목</th>
+			<th>금</th>
+			<th style=color:blue;>토</th>
 		</tr>
 		
 		<tr>
 			<%
 				for(int i=1;i<week;i++){
 			%>
-			<td height="20">&nbsp;</td>
+			<td >&nbsp;</td>
 			<%
 				}
 			%>
@@ -130,7 +188,7 @@
 				<%}
 			}%>
 		</tr>
-	</table>
+	</table><br>
 	<%
 	
 	if(request.getParameter("day")!=null){ 
@@ -139,16 +197,17 @@
 		Zoo_OperationVO vo = new Zoo_OperationVO();
 		List<Zoo_OperationVO> voList = dao.operationSearch(year, month, day);
 		
-		
+	
 	%> 
-	<table border="1" >
+	<table class="type11" >
+		<%	if(voList.size()!=0){ %>
 		<tr>
-			<td>예약 일자</td>
-			<td>예약 번호</td>
-			<td>호텔 번호</td>
-			<td>방 종류</td>
-			<td>예약 가격</td>
-			<td>예약 가능여부</td>
+			<th>예약 일자</th>
+			<th>예약 번호</th>
+			<th>호텔 번호</th>
+			<th>방 종류</th>
+			<th>예약 가격</th>
+			<th>예약 가능여부</th>
 		</tr>
 		<%for(Zoo_OperationVO ovoo : voList) {%>
 		<tr>
@@ -166,17 +225,34 @@
 				<input type="hidden" name="O_charge" value="<%=ovoo.getO_charge()%>">
 				
 				<%-- <a href="reservation_Proc.jsp?O_number=<%=ovoo.getO_number()%>"><%=ok %></a> --%> 
-				<input type="submit" value="<%=ok%>">
+				<input type="submit" style="font-family: 'Hahmlet';"value="<%=ok%>">
 				<%}else{ %>
 				예약불가
 				<%} %>
 			</td>	
 		</tr>
 		<%}
+			
+		}else {%>
+		
+			<tr>
+				<th>예약 일자</th>
+				<th>예약 번호</th>
+				<th>호텔 번호</th>
+				<th>방 종류</th>
+				<th>예약 가격</th>
+				<th>예약 가능여부</th>
+			</tr>
+			<tr>
+				<td>-</td>
+				<td colspan="4">예약 가능한 방이 없습니다.</td>
+				<td>-</td>	
+			</tr>
+		<%}
 		
 		} %>
 		
-	</table>
+	</table><br>
 	
 	<%
 		try{	
@@ -190,7 +266,7 @@
 	
 	
 	</form>
-
+</div>
 </section>
 
 <!-- footer -->

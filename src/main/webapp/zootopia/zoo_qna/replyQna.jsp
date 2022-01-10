@@ -34,6 +34,36 @@ function check() {
 }
 
 </script>
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+   font-family :'Hahmlet', serif;
+   font-size : 15px;
+  background: orange;
+}
+table.type11 td {
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
+
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
@@ -70,24 +100,24 @@ function check() {
 	
 	</div>
 	
-	<div align="center"><b>질문에 답변달기</b><br><br>
+	<div align="center" style="margin-top: 70px;"><br>
 	<form action="">
-		<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" >	
+		<table align="center" class="type11" >	
 			<tr height="30">
-				<td align="center" width="125" >글 번호</td>
+				<th align="center" width="125" >글 번호</th>
 				<td align="center"><%=board.getB_number()%></td>
 			</tr>
 			<tr height="30">
-				<td align="center" width="125" >작성자</td>
+				<th align="center" width="125" >작성자</th>
 				<td align="center"><%=board.getId()%></td>
 			</tr>
 			<tr height="30">
-				<td align="center" width="125" >글 제목</td>
+				<th align="center" width="125" >글 제목</th>
 				<td align="center" colspan="3"><%=board.getB_subject()%></td>
 			</tr>
 			<tr height="30">
-				<td align="center" width="125" >글 내용</td>
-				<td align="left" width="375" colspan="3"><pre><%=board.getB_content()%></pre></td>
+				<th align="center" width="125" >글 내용</th>
+				<td align="left" width="375" colspan="3"><%=board.getB_content()%></td>
 			</tr>
 			<tr height="30">
 				<td colspan="4"  align="right">
@@ -101,9 +131,9 @@ function check() {
 	</form>
 	
 	<form action="replyQna_proc.jsp" name="reply">
-		<table width="500" border="1" cellpadding="0" cellspacing="0" align="center" >	
+		<table align="center" class="type11">	
 			<tr height="30">
-				<td align="center" width="125" >답변글</td>
+				<th align="center" width="125" >답변글</th>
 				<td align="left" width="375" colspan="3">
 				<textarea rows="10" cols="50" name="B_answer"><%=board.getB_answer() %></textarea>
 				</td>
