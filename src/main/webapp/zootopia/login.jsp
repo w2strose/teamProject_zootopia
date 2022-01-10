@@ -75,19 +75,40 @@
 			
 			<div style="width: 600px; height: 500px; border: 1px solid black;  flex-direction: column;">
 				<% if(vo != null){ %>
-				<div style="height: 150px; align-items: center; display: flex; justify-content: center;"><%= loginID %>님의 회원정보입니다.</div>
-				비밀번호는 <%= vo.getPass() %> 입니다. <br><br>
-				성함은 <%= vo.getName() %>입니다. <br><br>
-				전화번호는 <%= vo.getPhone1() %> -  <%= vo.getPhone2() %> - <%= vo.getPhone3() %> 입니다. <br><br>
-				이메일은 <%= vo.getEmail() %> 입니다. <br><br>
-				생년월일은 <%= vo.getBirth() %> 입니다.
+				<table class="type10">
+				<tr>
+					<td colspan="2" height="20px" align="center">[<%= loginID %>] 님의 회원정보</td>
+				</tr>
+				<tr>
+					<td class="type10" align="center" width="200px" >아이디</td>
+					<td class="type10" width="400px" align="left"><%= vo.getId() %></td>
+				</tr>
+				<tr>
+					<td class="type10" align="center">비밀번호</td>
+					<td class="type10" align="left"><%= vo.getPass() %></td>
+				</tr>
+				<tr>
+					<td class="type10" align="center">이름</td>
+					<td class="type10" align="left"><%= vo.getName() %></td>
+				</tr>
+				<tr>
+					<td class="type10" align="center">전화번호</td>
+					<td class="type10" align="left"><%= vo.getPhone1() %> -  <%= vo.getPhone2() %> - <%= vo.getPhone3() %></td>
+				</tr>
+				<tr>
+					<td class="type10" align="center">이메일</td>
+					<td class="type10" align="left"><%= vo.getEmail() %></td>
+				</tr>
+				<tr>
+					<td class="type10" align="center">생년월일</td>
+					<td class="type10" align="left"><%= vo.getBirth() %></td>
+				</tr>
+			
+				</table>
 			<% } %>	
 			</div>
 		</div>
 	</div>		
-	
-	
-	
 	
 	<%}else{ //로그인 안된경우%>
 	<div class="section_bar" align="center" >

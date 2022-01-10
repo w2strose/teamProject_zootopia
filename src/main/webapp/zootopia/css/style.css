@@ -178,10 +178,12 @@ html, body {
 	font-size: 16px;
 }
 .loginbox:hover{
-	background-color: #e4e4e4;
+	background-color: orange;
+	color: white;
 }
 .loginboxActive{
-	background-color: #e4e4e4;
+	background-color: orange;
+	color: white;
 }
 
 /* section css */
@@ -197,10 +199,7 @@ section{
 	
 }
 
-.logindiv{
-	border: 1px solid black;
-	
-}
+
 
 
 /* imsi */
@@ -316,10 +315,10 @@ form.login{
 
     .span-field {
             width: 300px;
-            height: 20px;
+            height: 30px;
             border : 1px solid rgb(89,117,196);
             border-radius:5px;
-            padding: 0 10px;
+            padding: 5px 10px;
             margin-bottom: 10px;
            
         }
@@ -425,4 +424,41 @@ footer{
 	font-size: 30px;
 	color: white;
 }
+
+
+table.type10 {
+border-collapse: separate;
+border-spacing: 1px;
+display: flex;
+justify-content: center;
+line-height: 1;
+background: rgb(246, 246, 246);
+font-family :'Hahmlet', serif;
+}
+table.type10 th {
+
+padding: 10px;
+font-weight: bold;
+vertical-align: top;
+color: rgb(246, 246, 246);
+font-family :'Hahmlet', serif;
+background-color: rgb(246, 246, 246);
+
+}
+table.type10 td {
+    font-size: 19px;
+font-family :'Hahmlet', serif;
+vertical-align: top;
+border-bottom: 1px solid #ccc;
+background-color: rgb(246, 246, 246);
+height: 19px;
+padding: 25px;
+}
+
+.logindiv{
+	height: 80px; align-items: center; display: flex; justify-content: center;
+	font-family :'Hahmlet', serif;
+	font-size: 20px;
+}
+
 

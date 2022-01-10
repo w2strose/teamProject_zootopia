@@ -67,31 +67,37 @@ String loginID = (String)session.getAttribute("loginID");
 		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
 			</div>
 			
-			<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center;">
+			<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center; background: rgb(246, 246, 246);">
 				<form action="deleteProc.jsp" name="myForm" method="post" onsubmit="return checkIt()">
-					<table width="260" border="1" align="center">
-						<tr>
-							<td colspan="2" align="center">
-								<b>회원탈퇴</b>
-							</td>		
-						</tr>
 				
-						<tr>
-							<td width="150">
-								<b>비밀번호 입력</b>
-							</td>
-							<td width="110">
-								<input type="password" name="pass" size="15">
-							</td> 
-						</tr>
+					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+								<b style="font-family :'Hahmlet', serif; font-size: 20px;">[회원탈퇴]</b>
+					</div>
+					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+							<a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
+					</div>
+					<div style="width: 300px; height: 100px; display: flex; justify-content: center; align-items: center;">						
+							<b style="font-family :'Hahmlet', serif; font-size: 18px; margin-top: 10px;">
+							그동안 이용해주셔서 감사합니다. <br>
+							회원님의 정보는 바로 삭제됩니다.	
+							</b>			
+					</div>
+						<div style="width: 300px; height: 100px;display: flex;justify-content: center; flex-direction: column;">
+						
+								<b style="font-family :'Hahmlet', serif; font-size: 20px; margin-bottom: 10px;">비밀번호 입력</b>
+						
+								<input type="password" name="pass" size="20" style="padding: 5px;">
+							 
+						</div>
 	
-						<tr>
-							<td colspan="2" align="center">
-								<input type="submit" value="회원탈퇴">
-								<input type="button" value="취소" onClick="javascript:window.location='login.jsp'">				
-							</td>
-						</tr>
-					</table>
+						<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column; ">
+							
+								<input type="submit" value="회원탈퇴" style="font-family :'Hahmlet', serif; font-size: 20px;">
+								<input type="button" value="취소" onClick="javascript:window.location='login.jsp'" 
+								style="font-family :'Hahmlet', serif; font-size: 20px;">				
+							
+						</div>
+					
 				</form>
 			</div>
 		</div>

@@ -4,6 +4,8 @@
 <%@ page import="zoo_Event.Zoo_EventVO" %>
 <%@ page import="java.util.List"%>
 <%
+
+String loginID = (String)session.getAttribute("loginID");
 int count = 0;
 List<Zoo_EventVO> eventList = null;
 Zoo_EventDAO dbPro = new Zoo_EventDAO();
@@ -79,7 +81,7 @@ if(count > 0){
 		
 		<%}else{ // 글이 있을경우 %>
 	
-		
+		<br>
 		<div align="center" style="font: 20px bold; margin-top: 10px;">진행중인 이벤트</div>
 	 <div class="slider" style="" align="center">
 	 <% for(int i = 0; i<eventList.size(); i++){
@@ -93,7 +95,24 @@ if(count > 0){
    <%} %>
   </div>
 		
-	
+	<script>
+	function chatWinOpen() {
+		var id = document.getElementById("chatId");
+		if(id.value == ""){
+			alert("닉네임 입력 후 채팅창을 열어주세요.");
+			id.focus();
+			return;
+		}
+		window.open("ChatWindow.jsp?chatId=" + id.value, "",
+				"width=320,height=500");
+		id.value = "";
+	}
+</script>
+	<div align="center">
+	<h2>웹 채팅</h2>
+	대화명 : <input type="text" id="chatId" />
+	<button onClick="chatWinOpen();">채팅참여</button>
+	</div>
 
 </section>
 

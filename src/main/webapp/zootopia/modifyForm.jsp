@@ -53,7 +53,7 @@
             </nav>
     </div> 
       
-<section style="height: 1050px;">
+<section>
 	<div class="section_bar" align="center" >
 		회원정보 수정
 	</div>
@@ -77,11 +77,11 @@
   		 
   		 <div>비밀번호   :    <input class="input-field" type="password" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합"></div>
   		 
-  		 <label for="">비밀번호 확인</label>
-  		 <input class="input-field" type="password" name="repass" placeholder="8~12자리의 영대소문자와 숫자 조합">
-  	  	 <label for="">이름</label>
-  		  <span class="span-field"><%= vo.getName() %></span>
-  		 <label for="">전화번호</label>
+  		 <div>비밀번호 확인    :    <input class="input-field" type="password" name="repass" placeholder="8~12자리의 영대소문자와 숫자 조합"></div>
+  		 
+  	  	 <div>이름    :    <span class="span-field"><%= vo.getName() %></span></div>
+  		  
+  		 <div>전화번호</div>
   		 <div>
   		 <select name="phone1" class="input-field-phone">
 			<option value="02">02</option>
