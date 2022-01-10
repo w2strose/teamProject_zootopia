@@ -9,13 +9,9 @@
 	request.setCharacterEncoding("utf-8");
 	String loginID = (String)session.getAttribute("loginID");
 	String O_number = request.getParameter("O_number");
-	out.println(O_number);
 	String date = request.getParameter("O_date");
-	out.println(date);
 	String type = request.getParameter("O_type");
-	out.println(type);
 	String charge = request.getParameter("O_charge");
-	out.println(charge);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,6 +26,35 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+   font-family :'Hahmlet', serif;
+   font-size : 15px;
+  background: orange;
+}
+table.type11 td {
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
+</style>
 </head>
 <body>
 <!-- header -->
@@ -61,25 +86,25 @@
 	
 	</div>
 	<form action="reservation_proc.jsp" method="post" >
-	<table width="400" border="1" cellpadding="0" cellspacing="0" align="center" >
+	<table align="center" class="type11">
  		
  		<tr>
- 			<td width="200"  align="center">예약날짜</td>
+ 			<th width="200"  align="center">예약날짜</th>
  			<td width="200" align="left"><%=date %>
  			</td>
  		</tr>
  		<tr>
- 			<td width="200"  align="center">방 종류</td>
+ 			<th width="200"  align="center">방 종류</th>
  			<td width="200" align="left"><%=type %>
  			</td>
  		</tr>
  		<tr>
- 			<td width="200"  align="center">방 가격</td>
+ 			<th width="200"  align="center">방 가격</th>
  			<td width="200" align="left"><%=charge %>
  			</td>
  		</tr>
  		<tr>
- 			<td width="200"  align="center">맡기실 마리 수</td>
+ 			<th width="200"  align="center">맡기실 마리 수</th>
  			<td width="200" align="left">
 				<input type="text" name="R_member">
  			</td>

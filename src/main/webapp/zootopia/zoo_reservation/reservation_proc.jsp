@@ -15,7 +15,6 @@
 	vo.setR_date(request.getParameter("R_date"));
 	vo.setO_number(Integer.parseInt(request.getParameter("O_number")));
 	vo.setR_member(Integer.parseInt(request.getParameter("R_member")));
-	out.println(loginID);
 	ovo.setO_number(Integer.parseInt(request.getParameter("O_number")));
 	Zoo_ReservationDAO dao = new Zoo_ReservationDAO();
 	if(loginID!=null){
@@ -24,6 +23,7 @@
 	
 	dao.updateOK(ovo);
 	
+	out.println("<script>alert('예약이 완료되었습니다.'); location.href='../login.jsp';</script>");
 	}else{
 		
 	

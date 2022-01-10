@@ -59,6 +59,37 @@ public class Zoo_qnaDAO {
 		return x;
 				
 	}
+	public int searchCount(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int x = 0;
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("select count(*) from zoo_board where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x = rs.getInt(1);
+				
+			}
+			
+			
+			
+		}catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
+		}
+		
+		return x;
+		
+	}
 	
 	public List<Zoo_qnaVO> getBoardList(int start, int end, String what, String text) { // ¼öÁ¤ 1
 		
@@ -97,6 +128,48 @@ public class Zoo_qnaDAO {
 					board.setB_answer(rs.getString("b_answer"));
 					boardList.add(board);
 				 
+				}while(rs.next());
+			}else {
+				boardList = new ArrayList<Zoo_qnaVO>();
+			}
+			
+		}catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
+		}
+		return boardList;
+	}
+	public List<Zoo_qnaVO> searchList(int start, int end, String id) { 
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Zoo_qnaVO> boardList = null;
+		
+		try {
+			con = getConnection();
+				pstmt = con.prepareStatement("select * from (select rownum rnum, id, b_number, b_subject, b_content, b_answer from (select * from Zoo_board where id=? order by B_number desc)) where rnum >= ? and rnum <=?");
+				pstmt.setString(1, id);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);
+				
+				rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				boardList = new ArrayList<Zoo_qnaVO>();
+				do {
+					Zoo_qnaVO board = new Zoo_qnaVO();
+					board.setId(rs.getString("id"));
+					board.setB_number(rs.getInt("b_number"));
+					board.setB_subject(rs.getString("b_subject"));
+					board.setB_content(rs.getString("b_content"));
+					board.setB_answer(rs.getString("b_answer"));
+					boardList.add(board);
+					
 				}while(rs.next());
 			}else {
 				boardList = new ArrayList<Zoo_qnaVO>();
