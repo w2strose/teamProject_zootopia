@@ -121,7 +121,7 @@ table.type11 td {
 			</tr>
 			<tr height="30">
 				<td colspan="4"  align="right">
-				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp?pageNum=<%=pageNum %>'"> 
+				<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="글목록" onclick="document.location.href='qnaList.jsp?pageNum=<%=pageNum %>'"> 
 				</td>
 			</tr>
 			
@@ -139,11 +139,11 @@ table.type11 td {
 				</td>
 			</tr>
 		</table>	
-		<table width="500" border="0" cellpadding="0" cellspacing="0" align="center" >	
+		<table width="522" border="0" cellpadding="0" cellspacing="0" align="center" >	
 			<tr height="30" >
 				<td colspan="4" align="right">
 					<input type="hidden" name="num" value="<%=board.getB_number()%>">
-					<input type="submit" value="답변달기" onclick="return check()">
+					<input type="submit" style="font-family:'Hahmlet';font-size: 13px;" value="답변달기" onclick="return check()">
 				</td>
 			</tr>
 		</table>

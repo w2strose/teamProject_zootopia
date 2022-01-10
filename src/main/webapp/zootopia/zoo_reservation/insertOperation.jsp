@@ -22,6 +22,35 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+   font-family :'Hahmlet', serif;
+   font-size : 15px;
+  background: orange;
+}
+table.type11 td {
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
+</style>
 </head>
 <body>
 <!-- header -->
@@ -53,35 +82,35 @@
 	
 	</div>
 	<form action="insertOperation_proc.jsp" method="post" >
-	<table width="400" border="1" cellpadding="0" cellspacing="0" align="center" >
+	<table align="center" class="type11">
  		
  		<tr>
- 			<td width="200"  align="center">호텔 번호</td>
+ 			<th width="200"  align="center">호텔 번호</th>
  			<td width="200" align="left">
  			<input type="text" name="H_number"> 
  			</td>
  		</tr>
  		<tr>
- 			<td width="200"  align="center">방 종류</td>
+ 			<th width="200"  align="center">방 종류</th>
  			<td width="200" align="left">
 			<input type="text" name="O_type">
  			</td>
  		</tr>
  		<tr>
- 			<td width="200"  align="center">예약가능 날짜</td>
+ 			<th width="200"  align="center">예약가능 날짜</th>
  			<td width="200" align="left">
 			<input type="text" name="O_date" value="2022-1-5">
  			</td> 
  		</tr>
  		<tr>
- 			<td width="200"  align="center">가격</td>
+ 			<th width="200"  align="center">가격</th>
  			<td width="200" align="left">
 				<input type="text" name="O_charge">
  			</td>
  		<tr>
  			<td colspan="2"  align="center"> 
- 				<input type="submit" value="등록하기">
- 				<input type="reset" value="다시작성">
+ 				<input type="submit" style="font-family:'Hahmlet';font-size: 13px;" value="등록하기">
+ 				<input type="reset" style="font-family:'Hahmlet';font-size: 13px;" value="다시작성">
   			</td>
  		
  		</tr>

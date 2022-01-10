@@ -177,22 +177,22 @@ if(count>0){
 	if(startPage > pageBlock) {
 		
 %>
-<a href="qnaList.jsp?pageNum=<%=startPage-pageBlock%>">[이전]</a>
+<a href="qnaList.jsp?pageNum=<%=startPage-pageBlock%>" style="font-family:'Hahmlet';font-size: 13px;">[이전]</a>
 	<%} 
 	 for(int i = startPage; i<=endPage; i++){
 	 if(searchText!=null){%>
-	 <a href="qnaList.jsp?searchWhat=<%=searchWhat%>&searchText=<%=searchText%>&pageNum=<%=i%>">[<%=i %>]</a>
+	 <a href="qnaList.jsp?searchWhat=<%=searchWhat%>&searchText=<%=searchText%>&pageNum=<%=i%>" style="font-family:'Hahmlet';font-size: 13px;">[<%=i %>]</a>
 	 
 	<%	 
 	 }else{
 	%>
-<a href="qnaList.jsp?pageNum=<%=i%>">[<%=i %>]</a>
+<a href="qnaList.jsp?pageNum=<%=i%>" style="font-family:'Hahmlet';font-size: 13px;">[<%=i %>]</a>
 <%}
 }
 	if(endPage < pageCount){
 		  
 	 %>
-<a href="qnaList.jsp?pageNum=<%=startPage+pageBlock%>">[다음]</a>
+<a href="qnaList.jsp?pageNum=<%=startPage+pageBlock%>" style="font-family:'Hahmlet';font-size: 13px;">[다음]</a>
 	
 	<%}
 	} %>
@@ -200,12 +200,12 @@ if(count>0){
 		<tr>
 			<td align="left" >
 			<%try{if(!loginID.equals(null)){ %>
-			<input type="button" value="내가 작성한 글 보기" onclick="window.location='searchList.jsp'"> 
+			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="내가 작성한 글 보기" onclick="window.location='searchList.jsp'"> 
 			<%} }catch(Exception e){}%>
 			</td>
 			<td align="right" >
 			<%try{if(!loginID.equals(null)){ %>
-			<input type="button" value="글쓰기" onclick="window.location='insertQna.jsp'"> 
+			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="글쓰기" onclick="window.location='insertQna.jsp'"> 
 			<%} }catch(Exception e){}%>
 			</td>
 		</tr>

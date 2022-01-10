@@ -56,7 +56,25 @@ table.type11 td {
   background: #eee;
   font-size: 10pt;
 }
-
+table.type12 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content : right;
+    line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type12 td {
+  padding: none;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
 </style>
 </head>
 <body>
@@ -119,14 +137,14 @@ table.type11 td {
 			<tr height="30">
 				<td colspan="4"  align="right">
 				<%try{ if(loginID.equals(board.getId())){ %>
-				<input type="button" value="글수정" onclick="document.location.href='updateQna.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
+				<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="글수정" onclick="document.location.href='updateQna.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
 				&nbsp;&nbsp;
-				<input type="button" value="글삭제" onclick="document.location.href='deleteQna_proc.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
+				<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="글삭제" onclick="document.location.href='deleteQna_proc.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
 				<%}}catch(Exception e){} %> 
 				&nbsp;&nbsp;
 				<%-- <input type="button" value="답글쓰기" onclick="document.location.href='writeForm.jsp?num=<%=num%>&ref=<%=ref%>&step=<%=step%>&depth=<%=depth%>'"> 
 				&nbsp;&nbsp;&nbsp;&nbsp; --%>
-				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp?pageNum=<%=pageNum %>'">
+				<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="글목록" onclick="document.location.href='qnaList.jsp?pageNum=<%=pageNum %>'">
 				</td>
 			
 			</tr>
@@ -151,11 +169,11 @@ table.type11 td {
 				</td>
 			</tr>
 		</table>	
-		<table width="500" border="0" cellpadding="0" cellspacing="0" align="center" >	
-			<tr >
+		<table width="522" border="0" cellpadding="0" cellspacing="0"  align="center" >	
+			<tr height="30">
 				<td colspan="4" align="right">
 					<%try{ if(loginID.equals("GM")){ %>
-					<input type="button" value="답변달기" onclick="document.location.href='replyQna.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
+					<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="답변달기" onclick="document.location.href='replyQna.jsp?num=<%=board.getB_number()%>&pageNum=<%=pageNum%>'">
 					<%}}catch(Exception e){} %>
 				</td>
 			</tr>

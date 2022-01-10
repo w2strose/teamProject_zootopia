@@ -225,7 +225,7 @@ table.type12 td {
 				<input type="hidden" name="O_charge" value="<%=ovoo.getO_charge()%>">
 				
 				<%-- <a href="reservation_Proc.jsp?O_number=<%=ovoo.getO_number()%>"><%=ok %></a> --%> 
-				<input type="submit" style="font-family: 'Hahmlet';"value="<%=ok%>">
+				<input type="submit" style="font-family:'Hahmlet';" value="<%=ok%>">
 				<%}else{ %>
 				예약불가
 				<%} %>
@@ -258,7 +258,7 @@ table.type12 td {
 		try{	
 	if(loginID.equals("GM")){ %>
 		<div align="center">
-			<input type="button" value="방 등록하기" onclick="window.location='insertOperation.jsp'">
+			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="방 등록하기" onclick="window.location='insertOperation.jsp'">
 		</div>
 	<%}else {}
 	

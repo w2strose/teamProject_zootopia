@@ -118,9 +118,9 @@ table.type11 td {
 			</tr>
 			<tr height="30">
 				<td colspan="4"  align="right">
-				<input type="submit" value="글쓰기" onclick="return check()">&nbsp;&nbsp;
- 				<input type="reset" value="다시작성">&nbsp;&nbsp;
-				<input type="button" value="글목록" onclick="document.location.href='qnaList.jsp'"> &nbsp;
+				<input type="submit" style="font-family:'Hahmlet';font-size: 13px;" value="글쓰기" onclick="return check()">&nbsp;&nbsp;
+ 				<input type="reset" style="font-family:'Hahmlet';font-size: 13px;" value="다시작성">&nbsp;&nbsp;
+				<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="글목록" onclick="document.location.href='qnaList.jsp'"> &nbsp;
 				</td>
 			</tr>
 		</table>

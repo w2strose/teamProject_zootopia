@@ -112,8 +112,8 @@ table.type11 td {
  			<td colspan="2"  align="center"> 
  				<input type="hidden" name="R_date" value="<%=date%>">
 				<input type="hidden" name="O_number" value="<%=O_number%>">
- 				<input type="submit" value="예약하기">
- 				<input type="reset" value="다시작성">
+ 				<input type="submit" style="font-family:'Hahmlet';font-size: 13px;" value="예약하기">
+ 				<input type="reset" style="font-family:'Hahmlet';font-size: 13px;" value="다시작성">
   			</td>
  		
  		</tr>
