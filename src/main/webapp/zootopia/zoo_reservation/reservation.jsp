@@ -82,7 +82,7 @@ table.type11 td {
   border-bottom: 1px solid #ccc;
   background: #eee;
 }
-table.type10 {
+table.type12 {
   border-collapse: separate;
   border-spacing: 1px;
   text-align: center;
@@ -92,7 +92,7 @@ table.type10 {
   margin: 20px 10px;
    font-family :'Hahmlet', serif;
 }
-table.type10 th {
+table.type12 th {
   width: 10px;
   padding: 10px;
   font-weight: bold;
@@ -101,7 +101,7 @@ table.type10 th {
   background: orange;
   font-family :'Hahmlet', serif;
 }
-table.type10 td {
+table.type12 td {
   width: 10px;
   padding: 10px;
   vertical-align: top;
@@ -146,7 +146,7 @@ table.type10 td {
 	<a href="reservation.jsp?year=<%=year%>&month=<%=month-1%>" style="font-family:'Hahmlet', serif;">이전달</a>&nbsp;
 	<b style="font-family:'Hahmlet', serif;"><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
 	<a href="reservation.jsp?year=<%=year%>&month=<%=month+1%>" style="font-family:'Hahmlet', serif;">&nbsp;다음달</a>
-	<table class="type10">
+	<table class="type12">
 		<tr>
 			<th style=color:red;>일</th>
 			<th>월</th>
