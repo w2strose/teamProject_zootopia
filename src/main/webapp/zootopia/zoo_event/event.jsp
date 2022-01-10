@@ -80,7 +80,7 @@
     </div> 
       
 <!-- Section -->      
-<section style="height: 700px;">
+<section style="height: 710px;">
 	<div class="section_bar" align="center" >
 		이벤트 페이지
 	</div>

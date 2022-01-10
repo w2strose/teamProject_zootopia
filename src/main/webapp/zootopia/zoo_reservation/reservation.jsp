@@ -270,7 +270,7 @@ table.type12 td {
 </section>
 
 <!-- footer -->
-<footer class="site-footer">
+<footer class="site-footer" style="margin-top:326px;">
  <div class="container" style="display: flex; justify-content: space-around; align-items: center;">
       	<div id="footericon">
       		<a href="#" id="footericon"><i class="fab fa-google"></i></a>&nbsp;
