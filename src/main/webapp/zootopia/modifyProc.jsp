@@ -50,17 +50,31 @@ dao.updateMember(vo);
       
 <section>
 
-	<div class="section_bar" align="left" >
-		Member Register
-		회원가입
-	</div>
-	<div align="center" style="margin-top: 100px; margin-bottom: 100px;" >
+	<div class="section_bar" align="center" >
+		회원정보 변경
 		
-		회원정보 변경이 완료되었습니다.<br><br>
-		  <a href="login.jsp">로그인화면으로 돌아가기</a>
-	
-	
 	</div>
+		
+	<div align="center">
+	<div class="loginOutside">
+	
+			<div class="loginInside">
+				
+		<a class="loginbox " href="login.jsp">회원정보</a>
+		<a class="loginbox loginboxActive" href="modifyForm.jsp">정보수정</a>
+		<a class="loginbox" href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
+		<a class="loginbox" href="deleteForm.jsp">회원탈퇴</a>
+		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
+			</div>
+			
+			<div align="center" style="width: 600px; height: 500px; border: 1px solid black; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+				 	회원정보 변경이 완료되었습니다.<br><br>
+		  			<a href="login.jsp">로그인화면으로 돌아가기</a>
+	
+			</div>
+		</div>
+	</div>
+
 	
 
 </section>

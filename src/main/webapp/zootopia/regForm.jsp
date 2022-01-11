@@ -37,10 +37,46 @@
             </nav>
     </div> 
     
-<section style="height: 1050px;">
+<section>
 	<div class="section_bar" align="left" >
 		회원가입
 	</div>
+	
+	<div style="display: flex; justify-content: center; margin-top: 70px;">
+		<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center; background: rgb(246, 246, 246);">
+				 <form class="form reg" name="regForm" action="regProc.jsp" method="post">
+				
+					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+								<b style="font-family :'Hahmlet', serif; font-size: 20px;">[회원 가입]</b>
+					</div>
+					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+							<a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
+					</div>
+					<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column;">						
+							<b style="font-family :'Hahmlet', serif; font-size: 18px; margin-bottom: 10px;">
+								아이디							
+							</b>			
+							<input type="text" name="id"  size="20" style="padding: 5px;">	
+					</div>
+						<div style="width: 300px; height: 100px;display: flex;justify-content: center; flex-direction: column;">
+						
+								<b style="font-family :'Hahmlet', serif; font-size: 20px; margin-bottom: 10px;">비밀번호 입력</b>
+						
+								<input type="password" name="pass" size="20" style="padding: 5px;">
+							 
+						</div>
+	
+						<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column; ">
+									
+							<button type="button" onClick="inputCheck()" style="font-family :'Hahmlet', serif; font-size: 20px;">회원 가입</button>
+        					<button type="reset" style="font-family :'Hahmlet', serif; font-size: 20px;">다시입력</button>
+						</div>
+					
+				</form>
+			</div>
+		</div>
+	
+	<!-- 
 	<div align="center" style="margin-top: 100px; margin-bottom: 100px;" >
 		 <form class="form reg" name="regForm" action="regProc.jsp" method="post">
    		 <div class="title">회원가입</div>
@@ -77,7 +113,7 @@
          <button type="reset">다시입력</button>
          </form> 
 	</div>
-	
+	-->
 
 </section>
 

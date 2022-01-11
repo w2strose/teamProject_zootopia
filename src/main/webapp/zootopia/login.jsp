@@ -114,20 +114,41 @@
 	<div class="section_bar" align="center" >
 		회원 로그인
 	</div>
-	<div align="center" style="margin-top: 100px; margin-bottom: 100px;">
-	<form action="loginProc.jsp" method="post" class="form login">
-	     <div class="title">회원 로그인</div>
-   		 <div id="msg" class="msg"> </div> 
-   		 <label for="">아이디</label>
-  		 <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합">
-  		 <label for="">패스워드</label>
-  		 <input class="input-field" type="text" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합" style="margin-bottom: 20px;">
-  		
-  	  	 <input type="submit" value="로그인" class="form-button">
-		 <input type="button" value="회원가입" class="form-button" onClick="javascript:window.location='regForm.jsp'">	
-     
-	</form>
-	</div>
+	    <div style="display: flex; justify-content: center; margin-top: 70px;">
+		<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center; background: rgb(246, 246, 246);">
+				<form action="loginProc.jsp" method="post" >
+				
+					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+								<b style="font-family :'Hahmlet', serif; font-size: 20px;">[회원 로그인]</b>
+					</div>
+					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+							<a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
+					</div>
+					<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column;">						
+							<b style="font-family :'Hahmlet', serif; font-size: 18px; margin-bottom: 10px;">
+								아이디							
+							</b>			
+							<input type="text" name="id"  size="20" style="padding: 5px;">	
+					</div>
+						<div style="width: 300px; height: 100px;display: flex;justify-content: center; flex-direction: column;">
+						
+								<b style="font-family :'Hahmlet', serif; font-size: 20px; margin-bottom: 10px;">비밀번호 입력</b>
+						
+								<input type="password" name="pass" size="20" style="padding: 5px;">
+							 
+						</div>
+	
+						<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column; ">
+							
+								<input type="submit" value="로그인" style="font-family :'Hahmlet', serif; font-size: 20px;">
+								<input type="button" value="회원가입" onClick="javascript:window.location='regForm.jsp'" 
+								style="font-family :'Hahmlet', serif; font-size: 20px;">				
+							
+						</div>
+					
+				</form>
+			</div>
+		</div>
 	<%} %>
 </section>
 
