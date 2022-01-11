@@ -39,11 +39,11 @@ number = count -(currentPage-1)*pageSize;
 
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="Content-Type" content="text/html;">
-<title>ZootopiaQnA</title>
+<meta charset="UTF-8">
+<title>zootopia QnA</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <script type="text/javascript" src="../js/script.js"></script>

@@ -42,11 +42,11 @@
 		
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="Content-Type" content="text/html;">
-<title>Zootopia Reservation</title>
+<meta charset="UTF-8">
+<title>zootopia Reservation</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <script type="text/javascript" src="../js/script.js"></script>
@@ -114,7 +114,7 @@ table.type12 td {
 </head>
 <body>
  <!-- header -->
-   <header id="header" class="full-header">
+    <header id="header" class="full-header">
             <div id="header-wrap">
           <div class="container_header">     
               <a href="../index.jsp"><img id="main__logo" src="../img/pomelogo.png" width="50px" height="50px"/></a>          
