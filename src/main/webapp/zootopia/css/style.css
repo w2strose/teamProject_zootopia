@@ -84,6 +84,10 @@ a:visit{
 	color: #330066;
 }
 
+.kakaobutton{
+	width: 30px; height: 30px;
+}
+
 html, body {
   width: 100%;
   

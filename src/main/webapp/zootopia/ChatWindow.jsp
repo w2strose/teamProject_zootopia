@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%String loginID = (String)session.getAttribute("loginID"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@ function enterKey() {
 }
 
 webSocket.onopen = function(event){
-	chatWindow.innerHTML += "웹소켓서버에 연결됨.<br/>";
+	chatWindow.innerHTML +=  "[<%=loginID%>]님 채팅서버에 연결되셨습니다.<br/>";
 };
 
 webSocket.onclose = function(event) {
@@ -75,7 +76,7 @@ webSocket.onmessage = function(event) {
 </head>
 <body>
 
-	대화명 : <input type="text" id="chatId" value="${param.chatId }" readonly="readonly"> 
+	대화명 : <%=loginID %><input type="hidden" id="chatId" value="${param.chatId }" readonly="readonly"> 
 	<button id="closeBtn" onclick="disconnect();">채팅종료</button>
 	<div id="chatWindow"></div>
 	<div>

@@ -13,7 +13,7 @@
  
   <context-param>
   		<param-name>CHAT_ADDR</param-name>
-  		<param-value>ws://localhost:9000/Zootopia</param-value>
+  		<param-value>ws://192.168.0.48:9000/Zootopia</param-value>
   </context-param>
 
 </web-app>

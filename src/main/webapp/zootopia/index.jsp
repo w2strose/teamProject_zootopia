@@ -97,21 +97,16 @@ if(count > 0){
 		
 	<script>
 	function chatWinOpen() {
-		var id = document.getElementById("chatId");
-		if(id.value == ""){
-			alert("닉네임 입력 후 채팅창을 열어주세요.");
-			id.focus();
-			return;
-		}
+		var id = document.getElementById("loginID");
+		
 		window.open("ChatWindow.jsp?chatId=" + id.value, "",
 				"width=320,height=500");
-		id.value = "";
+		
 	}
 </script>
-	<div align="center">
-	<h2>웹 채팅</h2>
-	대화명 : <input type="text" id="chatId" />
-	<button onClick="chatWinOpen();">채팅참여</button>
+	<div align="center" style="position: fixed; right: 20px; bottom: 20px;">
+	<input type="hidden" id="loginID" value="<%=loginID %>" />
+	<button onClick="chatWinOpen();" style="background-color:#f1ec07;width: 50px;height: 50px;border-radius: 12px;display: flex;justify-content: center;align-items: center;"><img src="img/kakao.png" alt=""  width="40px;" height="40px;"></button>
 	</div>
 
 </section>

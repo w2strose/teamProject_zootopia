@@ -58,6 +58,7 @@
 							 <input type="button" value="중복확인" onClick="idCheck(this.form.id.value)">
 							 </div>
 							 <input type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합" size="20" style="padding: 5px;">
+						
 								
 					</div>
 						<div style="width: 300px; height: 60px;display: flex;justify-content: center; flex-direction: column;">
