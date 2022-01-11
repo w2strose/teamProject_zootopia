@@ -2,23 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="zoo_Hotel.zoo_HotelDAO" %>
 <%@ page import="zoo_Hotel.zoo_HotelVO" %>
-<%@ page import="zoo_Star.StarListVO" %>
-<%@ page import="zoo_Star.StarDAO" %>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*" %>
 <%
 
-String loginID = "1";
-request.setCharacterEncoding("UTF-8");
- 
-ArrayList<zoo_HotelVO> listHt = null;
-
-zoo_HotelDAO dbPro = new zoo_HotelDAO();
-listHt = dbPro.listHt(loginID);
-
-
-
-
+	String r_number = request.getParameter("r_number");
+	String loginID = (String)session.getAttribute("loginID");
+	request.setAttribute("r_number", r_number);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -45,95 +36,30 @@ listHt = dbPro.listHt(loginID);
     	});
     });
   </script>
-<style type="text/css">
-
-	#tableHotel {
-	border-collapse: separate;
-	border-spacing: 1px;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	line-height: 1;
-	margin: 20px 10px;
-	font-family :'Hahmlet', serif;
-	}
-	#tableHotel th {
-	width: 90px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	font-family :'Hahmlet', serif;
-	background: orange;
-	}
-	#tableHotel td {
-	width: 90px;
-	padding: 10px;
-	font-family :'Hahmlet', serif;
-	vertical-align: top;
-	border-bottom: 1px solid #ccc;
-	background: #eee;
-	}
-</style>
-
-<!-- 지도관련 -->
-
-<!-- 사용자 정의 CSS -->
-<link rel="stylesheet" type="text/css" href="../css/reset.css" />
-<link rel="stylesheet" type="text/css" href="../css/common.css" />
-
-<!-- jQuery Framework 참조하기 -->
-<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
-
-<!-- plugin 참조 -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript" src="../plugins/gmap/gmaps.js"></script>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
+  
 <style type="text/css">
-#map 
-{ 
-	width: 50%; height: 450px; 
-	margin:auto;
+#tableHotel
+{
+	border : 1px solid;
+	border-collapse: separate;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
 }
+#tableHotel th
+{
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;	
+}
+#tableHotel td
+{
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+	
 </style>
 
-<!-- 사용자 스크립트 블록 -->
-<script type="text/javascript">
-	/** 전역변수들 생성 */
-	// 구글맵 객체
-	var map = null;
-	// 위도 기본값
-	var lat = 37.498627;
-	// 경도 기본값
-	var lng = 127.030767;
-		$(function() {
-		// 구글맵 생성 (기본 사용 방)
-		map = new GMaps({
-			// 지도가 출력될 div의 id
-			"el" : '#map',
-			// 지도가 표시될 위/경도
-			"lat" : lat,
-			"lng" : lng,
-			// 줌 컨트롤 사용 여부
-			"zoomControl" : true
-		});
-			// 표시중인 위치에 마커 추가
-			map.addMarker({
-			"lat" : lat,
-			"lng" : lng,
-			"title" : '글로벌인',
-			"click" : function(e) {
-				console.log(e);
-			},
-			"mouseover" : function(e) {
-				console.log(e);
-			},
-			"infoWindow" : {
-				"content" : '<p>글로벌인</p>'
-			}
-		});
-	});
-</script>
+
 </head>
 <body>
 <!-- Header -->
@@ -161,52 +87,52 @@ listHt = dbPro.listHt(loginID);
       
 <!-- Section -->  
 
-<section style="height: 1000px;">
+<section style="height: 1500px;">
 	<div class="section_bar" align="center">
-		호텔 정보 
+		별점 / 코멘트 
 	</div>
-	<br>
-	<h3 align="center"> 호텔 정보 페이지</h3>
+	<h3 align="center">별점/코멘트 입력 게시판</h3>
 	<br><br>
 	
-			<% for(zoo_HotelVO vo : listHt) { %>
-		<table id="tableHotel">
-			<tr>
-				<td align="center" colspan="4"><%=vo.getH_name() %></td>
-			</tr>
-			<tr>
-				<td align="center">방 개수</td>
-				<td align="center" colspan="3"><%= vo.getH_roomnumber()%></td>
-			</tr>
-			<tr>
-				<td align="center">전화번호</td>
-				<td align="center"><%=vo.getH_phone1() %></td>
-				<td align="center"><%=vo.getH_phone2() %></td>
-				<td align="center"><%=vo.getH_phone3() %></td>
-			</tr>
-			<tr>
-				<td align="center">주소</td>
-				<td align="center" colspan="3"><%=vo.getH_address() %></td>
-			</tr>
-			<tr>
-				<td align="center">우편 번호</td>
-				<td align="center" colspan="3"><%=vo.getH_postnum() %></td>
-			</tr>
-			<tr>	
-				<td align="center">상세 주소</td>
-				<td align="center" colspan="3"><%=vo.getH_jibunaddress() %></td>
-			</tr>
-			<tr>
-				<td colspan="4" align="center"><%=vo.getH_coment() %></td>
-			</tr>
-		</table>
+	<form action="starCommentProc.jsp" method="post">
 	
-		<% } %> 
-		</div>
-		<!-- 지도 -->
-		<div class="example">
-			<div id="map"></div>
-
+	<input type="hidden" name="r_number" value="<%=r_number %>" >
+	<table width="700" border="1px solid black" align="center">
+		<tr>
+			<td>예약 번호</td>
+			<td><%=r_number %></td>
+		</tr>
+		<tr align="center">
+			<td>제목</td>
+			<td><input type="text" name="title"></td>
+		</tr>
+		<tr align="center">
+		<td>별점</td>
+		<td>
+			<select style="width:50px;height:18px" name="star">
+				<option>0.0</option>
+				<option>0.5</option>
+				<option>1.0</option>
+				<option>1.5</option>
+				<option>2.0</option>
+				<option>2.5</option>
+				<option>3.0</option>
+				<option>3.5</option>
+				<option>4.0</option>
+				<option>4.5</option>
+				<option>5.0</option>
+			</select>
+		</td>
+		</tr>
+		<tr height="300">
+			<td colspan="2">
+			<textarea rows="20" cols="100" name="coment"></textarea>
+			</td>
+		</tr>
+		</table>
+		<input type="submit" value="등록하기">
+	</form>
+		
 	
 </section>
 

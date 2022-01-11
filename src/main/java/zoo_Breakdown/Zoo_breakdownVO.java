@@ -4,7 +4,8 @@ public class Zoo_breakdownVO {
 
 	
 	//select H.h_name,O.o_type, O.o_charge, R.r_date,R.r_member from zoo_hotel H, zoo_operation O, zoo_reservation R where H.id='gm_m';
-
+	
+	private int r_number;
 	private String id;
 	private String h_name;
 	private String o_type;
@@ -16,7 +17,7 @@ public class Zoo_breakdownVO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Zoo_breakdownVO(String id, String h_name, String o_type, String o_charge, String r_date, int r_member) {
+	public Zoo_breakdownVO(String id, String h_name, String o_type, String o_charge, String r_date, int r_member, int r_number) {
 
 		this.id = id;
 		this.h_name = h_name;
@@ -24,6 +25,7 @@ public class Zoo_breakdownVO {
 		this.o_charge = o_charge;
 		this.r_date = r_date;
 		this.r_member = r_member;
+		this.r_number = r_number;
 	
 	
 	}
@@ -74,6 +76,14 @@ public class Zoo_breakdownVO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getR_number() {
+		return r_number;
+	}
+
+	public void setR_number(int r_number) {
+		this.r_number = r_number;
 	}
 	
 	

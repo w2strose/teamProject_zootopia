@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="zoo_Breakdown.Zoo_breakdownDAO" %>
-<%@ page import="zoo_Breakdown.Zoo_breakdownVO" %>
+<%@ page import="zoo_Star.StarDAO" %>
+<%@ page import="zoo_Star.StarListVO" %>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*" %>
 <%
 
-String loginID = request.getParameter("loginID");
+String loginID = (String)session.getAttribute("loginID");
 request.setCharacterEncoding("UTF-8");
-ArrayList<Zoo_breakdownVO> listBk = null;
 
-Zoo_breakdownDAO dbPro = new Zoo_breakdownDAO();
-listBk = dbPro.listBk(loginID);
+StarDAO dao = new StarDAO();
+ArrayList<StarListVO> listBk = null;
+
+listBk = dao.listBk(loginID);
 
 %>
 <!DOCTYPE html>
@@ -115,24 +116,19 @@ listBk = dbPro.listBk(loginID);
 		<%if(listBk != null) {%>
 		
 		<tr>
-			<td align="center"> 예약 번호 </td>
-			<td align="center"> 호텔 이름 </td>
-			<td align="center"> 방 타입 </td>
-			<td align="center"> 방 요금 </td>
-			<td align="center"> 예약 날짜 </td>
-			<td align="center"> 예약 마리 수</td>
-			<td align="center"> 별점 / 코멘트</td>
+			<td align="center"> 예약번호 </td>
+			<td align="center"> 제목 </td>
+			<td align="center"> 별점 </td>
+			<td align="center"> 코멘트 날짜 </td>
+			<td align="center"> 내용</td>
 		</tr>
-		<%for(Zoo_breakdownVO vo : listBk) {%>
+		<%for(StarListVO vo : listBk) {%>
 		<tr>
 			<td align="center"><%=vo.getR_number() %></td>
-			<td align="center"><%=vo.getH_name() %></td>
-			<td align="center"><%=vo.getO_type() %></td>
-			<td align="center"><%=vo.getO_charge() %></td>
-			<td align="center"><%=vo.getR_date() %></td>
-			<td align="center"><%=vo.getR_member() %></td>
-			<td align="center"><input type="submit" value="등록하기"
-			onclick="location='zoo_starComment/starComment.jsp?loginID=<%=loginID%>&r_number=<%=vo.getR_number()%>'"></td>
+			<td align="center"><%=vo.getS_title() %></td>
+			<td align="center"><%=vo.getS_star()%></td>
+			<td align="center"><%=vo.getS_regdate() %></td>
+			<td align="center"><%=vo.getS_coment() %></td>
 		</tr>
 		<%} }else{%>
 		<tr>
