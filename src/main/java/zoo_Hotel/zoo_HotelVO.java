@@ -2,6 +2,7 @@ package zoo_Hotel;
 
 public class zoo_HotelVO {
 
+	private String id;
 	private int h_number;
 	private String h_name;
 	private String h_phone1;
@@ -17,11 +18,12 @@ public class zoo_HotelVO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public zoo_HotelVO(int h_number, String h_name,
+	public zoo_HotelVO(String id, int h_number, String h_name,
 	String h_phone1, String h_phone2, String h_phone3,
 	 String h_postnum, String h_address,String h_coment,
 	 String h_jibunaddress, String h_roomnumber) 
 	{
+		this.id = id;
 		this.h_number = h_number;
 		this.h_name = h_name;
 		this.h_phone1 = h_phone1;
@@ -34,6 +36,14 @@ public class zoo_HotelVO {
 		this.h_roomnumber = h_roomnumber;
 	}
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public int getH_number() {
 		return h_number;
 	}

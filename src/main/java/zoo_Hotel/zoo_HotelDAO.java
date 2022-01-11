@@ -29,7 +29,7 @@ public class zoo_HotelDAO {
 		}
 	
 	
-	public ArrayList<zoo_HotelVO> listHt(String id)
+	public ArrayList<zoo_HotelVO> listHt(int id)
 	{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -43,7 +43,7 @@ public class zoo_HotelDAO {
 			String sql = "select * from zoo_hotel where h_number = ?";
 			System.out.println(id);
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next())
 			{
@@ -51,7 +51,7 @@ public class zoo_HotelDAO {
 				
 				do
 				{
-					listBk.add(new zoo_HotelVO(rs.getInt("h_number"),
+					listBk.add(new zoo_HotelVO(rs.getString("id"),rs.getInt("h_number"),
 							rs.getString("h_name"), rs.getString("h_phone1"),
 							rs.getString("h_phone2"),rs.getString("h_phone3"),
 							rs.getString("h_postnum"),rs.getString("h_address"),

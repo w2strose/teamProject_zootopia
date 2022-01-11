@@ -23,7 +23,7 @@ dao.insertStar(loginID, r_number, title, star, coment);
 <title></title>
 <script type="text/javascript">
 	alert("등록 완료");
-	window.location = 'zoo_starComment/comment.jsp';
+	window.location = '../comment.jsp';
 </script>
 </head>
 

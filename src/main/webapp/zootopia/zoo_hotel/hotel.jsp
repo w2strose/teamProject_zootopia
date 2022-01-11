@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <%@ page import="zoo_Hotel.zoo_HotelDAO" %>
 <%@ page import="zoo_Hotel.zoo_HotelVO" %>
 <%@ page import="zoo_Star.StarListVO" %>
@@ -8,16 +7,13 @@
 <%@ page import="java.sql.*" %>
 <%
 
-String loginID = "1";
+int loginID = 1;
 request.setCharacterEncoding("UTF-8");
  
 ArrayList<zoo_HotelVO> listHt = null;
 
 zoo_HotelDAO dbPro = new zoo_HotelDAO();
 listHt = dbPro.listHt(loginID);
-
-
-
 
 %>
 <!DOCTYPE html>
@@ -153,7 +149,7 @@ listHt = dbPro.listHt(loginID);
                   <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../zoo_hotel/hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="../zoo_starComment/starComment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="../zoo_qna/qnaList.jsp">Q&A</a></li>                     
               </ul>
             </nav>
@@ -168,8 +164,13 @@ listHt = dbPro.listHt(loginID);
 	<br>
 	<h3 align="center"> 호텔 정보 페이지</h3>
 	<br><br>
-	
-			<% for(zoo_HotelVO vo : listHt) { %>
+	<% if(listHt == null) {%>
+		<table id="tableHotel">
+			<tr>
+				<td align="center" colspan="4">호텔 정보가<br>없습니다</td>
+			</tr>
+		</table>
+			<% }else{for(zoo_HotelVO vo : listHt) { %>
 		<table id="tableHotel">
 			<tr>
 				<td align="center" colspan="4"><%=vo.getH_name() %></td>
@@ -206,7 +207,7 @@ listHt = dbPro.listHt(loginID);
 		<!-- 지도 -->
 		<div class="example">
 			<div id="map"></div>
-
+	<%} %>
 	
 </section>
 
