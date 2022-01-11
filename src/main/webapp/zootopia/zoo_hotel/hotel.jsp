@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="zoo_Hotel.zoo_HotelDAO" %>
 <%@ page import="zoo_Hotel.zoo_HotelVO" %>
 <%@ page import="zoo_Star.StarListVO" %>
@@ -149,7 +150,7 @@ listHt = dbPro.listHt(loginID);
                   <li class="nav_li"><a href="../zoo_reservation/reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../zoo_hotel/hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="../comment.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="../zoo_qna/qnaList.jsp">Q&A</a></li>                     
               </ul>
             </nav>

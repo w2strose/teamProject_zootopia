@@ -39,7 +39,7 @@
 <title></title>
 <script type="text/javascript">
 alert("로그인 먼저 부탁드립니다.");
-history.go(-1);
+location.href='../login.jsp';
 </script>
 <%} %>
 </head>
