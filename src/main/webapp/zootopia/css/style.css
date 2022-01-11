@@ -67,6 +67,10 @@ input{
 	background-color: white;
 }
 
+.logoutbox:hover{
+	cursor:pointer;
+}
+
 a:link{
 	text-decoration: none;
 	color: black;
