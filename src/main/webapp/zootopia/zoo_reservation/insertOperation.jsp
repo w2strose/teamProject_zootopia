@@ -70,7 +70,7 @@ table.type11 td {
                   <li class="nav_li"><a href="reservation.jsp">예약하기</a></li>
                   <li class="nav_li"><a href="../zoo_hotel/hotel.jsp">호텔</a></li>
                   <li class="nav_li"><a href="../zoo_event/event.jsp">이벤트</a></li>
-                 <li class="nav_li"><a href="comment.jsp">이용후기</a></li>
+                 <li class="nav_li"><a href="zoo_starComment/starComment.jsp">이용후기</a></li>
                  <li class="nav_li"><a href="../zoo_qna/qnaList.jsp">Q&A</a></li>                     
               </ul>
             </nav>
@@ -93,7 +93,13 @@ table.type11 td {
  		<tr>
  			<th width="200"  align="center">방 종류</th>
  			<td width="200" align="left">
-			<input type="text" name="O_type">
+			<select name="O_type">
+				<option value="갓갓갓룸">갓갓갓룸
+				<option value="갓갓기룸">갓갓기룸
+				<option value="갓갓가룸">갓갓가룸
+				<option value="갓민기룸">갓민기룸
+				<option value="홍민기룸">홍민기룸
+			</select>
  			</td>
  		</tr>
  		<tr>
