@@ -38,82 +38,71 @@
     </div> 
     
 <section>
-	<div class="section_bar" align="left" >
+	<div class="section_bar" align="center" >
 		회원가입
 	</div>
 	
 	<div style="display: flex; justify-content: center; margin-top: 70px;">
 		<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center; background: rgb(246, 246, 246);">
-				 <form class="form reg" name="regForm" action="regProc.jsp" method="post">
+				 <form name="regForm" action="regProc.jsp" method="post">
 				
-					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
+					<div style="width: 600px; height: 50px; display: flex; align-items: center; justify-content: center;">
 								<b style="font-family :'Hahmlet', serif; font-size: 20px;">[회원 가입]</b>
 					</div>
-					<div style="width: 600px; height: 70px; display: flex; align-items: center; justify-content: center;">
-							<a href="index.jsp"><img id="main__logo" src="img/pomelogo.png" width="70px" height="70px"/></a>
-					</div>
-					<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column;">						
-							<b style="font-family :'Hahmlet', serif; font-size: 18px; margin-bottom: 10px;">
+				
+					<div style="width: 300px; height: 70px; display: flex; justify-content: center; flex-direction: column;">						
+							<b style="font-family :'Hahmlet', serif; font-size: 14px; ">
 								아이디							
 							</b>			
-							<input type="text" name="id"  size="20" style="padding: 5px;">	
+							<div style='margin-bottom: 5px; position: relative; left: 130px;'>
+							 <input type="button" value="중복확인" onClick="idCheck(this.form.id.value)">
+							 </div>
+							 <input type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합" size="20" style="padding: 5px;">
+								
 					</div>
-						<div style="width: 300px; height: 100px;display: flex;justify-content: center; flex-direction: column;">
-						
-								<b style="font-family :'Hahmlet', serif; font-size: 20px; margin-bottom: 10px;">비밀번호 입력</b>
-						
-								<input type="password" name="pass" size="20" style="padding: 5px;">
-							 
+						<div style="width: 300px; height: 60px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">비밀번호</b>
+								<input  type="password" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합"  size="20" style="padding: 5px;">
 						</div>
-	
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">비밀번호 확인</b>
+								<input  type="password" name="repass" placeholder="8~12자리의 영대소문자와 숫자 조합"  size="20" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">이름</b>
+								<input type="text" name="name" size="20" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 40px;display: flex;justify-content: space-around; align-items: center;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">전화번호</b>
+								 <select name="phone1" style="padding: 5px;">
+									<option value="02">02</option>
+									<option value="032">032</option>
+									<option value="033">033</option>
+									<option value="042">042</option>
+									<option value="010">010</option>
+								</select>-
+								<input type="text" name="phone2" size="7px" style="padding: 5px;">-
+								<input type="text" name="phone3" size="7px" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">이메일</b>
+								<input type="text" name="email" placeholder="example@google.com" size="20" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">생년월일</b>
+								<input type="date" name="birth" size="20" style="padding: 5px;">
+						</div>
+						
 						<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column; ">
 									
-							<button type="button" onClick="inputCheck()" style="font-family :'Hahmlet', serif; font-size: 20px;">회원 가입</button>
-        					<button type="reset" style="font-family :'Hahmlet', serif; font-size: 20px;">다시입력</button>
+							<button type="button" onClick="inputCheck()" style="font-family :'Hahmlet', serif; font-size: 15px;">회원 가입</button>
+        					<button type="reset" style="font-family :'Hahmlet', serif; font-size: 15px;">다시입력</button>
 						</div>
 					
 				</form>
 			</div>
 		</div>
 	
-	<!-- 
-	<div align="center" style="margin-top: 100px; margin-bottom: 100px;" >
-		 <form class="form reg" name="regForm" action="regProc.jsp" method="post">
-   		 <div class="title">회원가입</div>
-   		 <hr>
-   		 <div>아이디</div>
-   		 <div style='margin-bottom: 5px; position: relative; left: 130px;'>
-   		 <input type="button" value="중복확인" onClick="idCheck(this.form.id.value)">
-   		 </div>
-  		 <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합" >
-  		 <label for="">비밀번호</label>
-  		 <input class="input-field" type="password" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합">
-  		 <label for="">비밀번호 확인</label>
-  		 <input class="input-field" type="password" name="repass" placeholder="8~12자리의 영대소문자와 숫자 조합">
-  	  	 <label for="">이름</label>
-  		 <input class="input-field" type="text" name="name" placeholder="">
-  		 <label for="">전화번호</label>
-  		 <div>
-  		 <select name="phone1" class="input-field-phone">
-			<option value="02">02</option>
-			<option value="032">032</option>
-			<option value="033">033</option>
-			<option value="042">042</option>
-			<option value="010">010</option>
-			</select>-
-			<input type="text" name="phone2" size="5" class="input-field-phone">-
-			<input type="text" name="phone3" size="5" class="input-field-phone">
-		</div>	
-  	 	 <label for="">이메일</label>
-	     <input class="input-field" type="text" name="email" placeholder="example@google.com"> 
-	     <label for="">생년월일</label>
-  	     <input class="input-field birth" type="date" name="birth" placeholder="2021-12-31">
-    
-         <button type="button" onClick="inputCheck()">회원 가입</button>
-         <button type="reset">다시입력</button>
-         </form> 
-	</div>
-	-->
 
 </section>
 

@@ -68,7 +68,70 @@
 		<a class="loginbox" href="deleteForm.jsp">회원탈퇴</a>
 		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
 			</div>
-			
+			<div align="center" style="width: 600px; height: 500px; border: 1px solid black; align-items: center; display: flex; justify-content: center; background: rgb(246, 246, 246);">
+				 <form name="regForm" action="modifyProc.jsp" method="post">
+				
+					<div style="width: 597px; height: 50px; display: flex; align-items: center; justify-content: center;">
+								<b style="font-family :'Hahmlet', serif; font-size: 20px;">[회원 정보 수정]</b>
+					</div>
+				
+					<div style="width: 300px; height: 70px; display: flex; justify-content: center; flex-direction: column;">						
+							<b style="font-family :'Hahmlet', serif; font-size: 14px; ">
+								아이디							
+							</b>			
+							<div style="display: flex; justify-content:center; width: 300px; height: 20px; border: 1px solid black;
+							background-color: white; font-family :'Hahmlet', serif; font-size: 14px; ">
+							  <%= vo.getId() %>
+							</div>	
+					</div>
+						<div style="width: 300px; height: 60px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">비밀번호</b>
+								<input  type="password" name="pass" placeholder="8~12자리의 영대소문자와 숫자 조합"  size="20" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">비밀번호 확인</b>
+								<input  type="password" name="repass" placeholder="8~12자리의 영대소문자와 숫자 조합"  size="20" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">이름</b>
+								<div style="display: flex; justify-content:center; width: 300px; height: 20px; border: 1px solid black;
+							background-color: white; font-family :'Hahmlet', serif; font-size: 14px; ">
+							  <%= vo.getName() %>
+							</div>	
+						</div>
+						<div style="width: 300px; height: 40px;display: flex;justify-content: space-around; align-items: center;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">전화번호</b>
+								 <select name="phone1" style="padding: 5px;">
+									<option value="02">02</option>
+									<option value="032">032</option>
+									<option value="033">033</option>
+									<option value="042">042</option>
+									<option value="010">010</option>
+								</select>-
+								<input type="text" name="phone2" size="7px" style="padding: 5px;">-
+								<input type="text" name="phone3" size="7px" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">이메일</b>
+								<input type="text" name="email" placeholder="example@google.com" size="20" style="padding: 5px;">
+						</div>
+						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
+								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">생년월일</b>
+								<div style="display: flex; justify-content:center; width: 300px; height: 20px; border: 1px solid black;
+							background-color: white; font-family :'Hahmlet', serif; font-size: 14px; ">
+							  <%= vo.getBirth() %>
+							</div>	
+						</div>
+						
+						<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column; ">
+									
+							<button type="button" onClick="inputCheck()" style="font-family :'Hahmlet', serif; font-size: 15px;">회원정보 수정</button>
+        					<button type="reset" style="font-family :'Hahmlet', serif; font-size: 15px;">다시입력</button>
+						</div>
+					
+				</form>
+			</div>
+			<!-- 
 			<div align="center" style="width: 600px; height: 500px; border: 1px solid black;">
 				 <form name="regForm" action="modifyProc.jsp" method="post">
    		 <div class="title">회원정보 수정</div>
@@ -102,6 +165,8 @@
          <button type="button" onClick="javascript:window.location='login.jsp'">로그인화면으로 돌아가기</button>
          </form> 
 			</div>
+			
+			 -->
 		</div>
 	</div>		
 	
