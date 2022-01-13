@@ -19,7 +19,7 @@ public class ChatServer {
 	@OnOpen
 	public void onOpen(Session session) {
 		clients.add(session); // 세션추가
-		System.out.println("웹소켓 연결 : " + session.getId());
+		System.out.println(session.getId() + "님이 서버에 접속하셨습니다.");
 	}
 	
 	@OnMessage
@@ -37,7 +37,7 @@ public class ChatServer {
 	@OnClose
 	public void onClose(Session session) {
 		clients.remove(session);
-		System.out.println("웹소켓 종료 : " + session.getId());
+		System.out.println( session.getId() + "님이 서버에서 나가셨습니다.");
 	}
 	
 	@OnError

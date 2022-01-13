@@ -49,6 +49,40 @@
 		}
 	}
 </script>
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: middle;
+  
+  color: #fff;
+   font-family :'Hahmlet', serif;
+   font-size : 15px;
+  background: orange;
+}
+table.type11 td {
+vertical-align: middle;
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
+input {
+	font-family:'Hahmlet';font-size: 13px;
+}
+</style>
 </head>
 
 <body>
@@ -81,33 +115,34 @@
 		이벤트 등록
 	</div>
 	
+	<div style="display: flex; justify-content: center;">
 	<form action="eventwriteProc.jsp" enctype="multipart/form-data" method="post" name="eventWrite"
 		onsubmit="return eventWriteSave()" style="margin-top: 50px;">
 		
 		<input type="hidden" name="E_number">
 		
 		<table width="600" border="1" cellpadding="0" cellspacing="0"
-			align="center">
+			align="center" class="type11">
 
 			<tr>
-				<td align="center" colspan="2"><a href="event.jsp"> 이벤트목록 </a></td>
+				<th align="center" colspan="2"><a href="event.jsp" style="color: white;">이벤트목록 </a></th>
 			</tr> 
 			
 			<tr>
-				<td width="200" align="center">이벤트 제목</td>
+				<th width="200" align="center">이벤트 제목</th>
 				<td width="300" >
 					<input type="text" size="50" maxlength="50" name="E_name">
 				</td>
 			</tr>
 			<tr>
-				<td width="200" align="center">내용</td>
+				<th width="200" align="center" style="vertical-align: middle;">내용</th>
 				<td width="300" >
 					<textarea rows="13" cols="50" name="E_content"></textarea>
 				</td>
 			</tr>
 			
 			<tr>
-				<td width="200" align="center">이미지</td>
+				<th width="200" align="center">이미지</th>
 				<td width="300" >
 					<input type="file" name="E_image" value="이미지 파일첨부"/>
 					
@@ -115,15 +150,15 @@
 			</tr>
 		
 			<tr>
-			<td width="200" align="center">시작일</td>
-				<td width="300" >
+			<th width="200" align="center">시작일</th>
+				<td width="300" style="vertical-align: middle;">
 					<input class="input-field birth" type="date" name="E_startDate" placeholder="2022-01-01">
 				</td>
 			</tr>
 			
 			<tr>
-			<td width="200" align="center">종료일</td>
-				<td width="300" >
+			<th width="200" align="center">종료일</th>
+				<td width="300" style="vertical-align: middle;">
 					<input class="input-field birth" type="date" name="E_endDate" placeholder="2022-12-31">
 				</td>
 			</tr>
@@ -143,7 +178,7 @@
 		
 	</form>
 	
-	
+	</div>
 </section>
 
 <!--  Footer -->

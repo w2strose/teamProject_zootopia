@@ -30,11 +30,41 @@ if(count > 0){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<style type="text/css">
 
+
+/* The hero image */
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/7.jpg");
+
+  /* Set a specific height */
+  height: 50%;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family :'Hahmlet', serif; 
+  font-size: 20px;
+}
+</style>
 <script>
     $(document).ready(function(){
       $('.slider').bxSlider({
     	  auto:true,
+    	  slideWidth: 800,
     	  speed:300,
     	  autoControls:true,
     	  touchEnabled:(navigator.maxTouchPoint >0)
@@ -68,7 +98,7 @@ if(count > 0){
             </nav>
     </div> 
 
-<section style="height: 800px;">
+<section style="height: 1200px;">
 	<div class="section_bar" align="center">
 		메인 페이지
 	</div>
@@ -80,9 +110,23 @@ if(count > 0){
 			</div>
 		
 		<%}else{ // 글이 있을경우 %>
-	
+		
+		<div class="hero-image">
+  <div class="hero-text">
+  	<img id="main__logo" src="img/pome.jpg" width="70px" height="70px"/>
+    <h1 id="title__logo1">Zootopia</h1>
+    <p>반려동물과 함께 만드는 이야기</p>
+    
+  </div>
+</div>
+		
+		
 		<br>
-		<div align="center" style="font: 20px bold; margin-top: 10px;">진행중인 이벤트</div>
+		<div align="center" style="font: 20px bold; margin-top: 10px;  font-family :'Hahmlet', serif; font-size: 20px;">
+			진행중인 이벤트
+		</div>
+  		<br>
+		<div style="display: flex; align-items: center; justify-content: center">
 	 <div class="slider" style="" align="center">
 	 <% for(int i = 0; i<eventList.size(); i++){
 			Zoo_EventVO event = (Zoo_EventVO)eventList.get(i);	 
@@ -94,19 +138,20 @@ if(count > 0){
    		<%} %>
    <%} %>
   </div>
+  </div>
 		
 	<script>
 	function chatWinOpen() {
 		var id = document.getElementById("loginID");
-		
+	/* 	if(id == null) */
 		window.open("ChatWindow.jsp?chatId=" + id.value, "",
-				"width=320,height=500");
+				"width=330,height=480");
 		
 	}
 </script>
 	<div align="center" style="position: fixed; right: 20px; bottom: 20px;">
-	<input type="hidden" id="loginID" value="<%=loginID %>" />
-	<button onClick="chatWinOpen();" style="background-color:#f1ec07;width: 50px;height: 50px;border-radius: 12px;display: flex;justify-content: center;align-items: center;"><img src="img/kakao.png" alt=""  width="40px;" height="40px;"></button>
+	<input type="hidden" id="loginID" value="<%=loginID %>" name="loginValue" />
+	<button onClick="chatWinOpen();" style="background-color:orange;width: 50px;height: 50px;border-radius: 12px;display: flex;justify-content: center;align-items: center;"><img src="img/whitechat.png" alt=""  width="40px;" height="40px;"></button>
 	</div>
 
 </section>

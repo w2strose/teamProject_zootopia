@@ -39,8 +39,6 @@
 	}
 	number = count - (currentPage-1) * pageSize;
 %>
-    
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,6 +50,36 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
+<style type="text/css">
+table.type11 {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+  margin: 10px 10px;
+   font-family :'Hahmlet', serif;
+}
+table.type11 th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+   font-family :'Hahmlet', serif;
+   font-size : 15px;
+  background: orange;
+}
+table.type11 td {
+  padding: 10px;
+   font-family :'Hahmlet', serif;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+  font-size: 10pt;
+}
+</style>
+    
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 
@@ -81,11 +109,8 @@
       
 <!-- Section -->      
 <section style="height: 710px;">
-	<div class="section_bar" align="center" >
+	<div class="section_bar" align="center" style="margin-bottom: 20px;">
 		이벤트 페이지
-	</div>
-	<div class="eventPage" align="center" style="margin: 50px; ">
-	<b>이벤트 목록 (전체이벤트 : <%=count %>)</b>
 	</div>
 		<%if(count == 0){// 이벤트 없을경우 %>
 			 <br><br>
@@ -101,12 +126,22 @@
 		
 			<div align="center">		
 				<span style="align-items:cetner; float:left; ;margin: 10px;">
+				<table class="type11">
+				<td colspan="2">
 					<a href="eventView.jsp?E_number=<%= event.getE_number()%>&pageNum=<%=currentPage%>">
 			<img alt="" src="../img/<%= event.getE_image()%>" id="productImage"><br><br>
-			이벤트 이름 : <%= event.getE_name() %><br><br>
-			이벤트 내용 : <%= event.getE_content() %><br><br>
-			이벤트 이미지 : <%= event.getE_image() %><br><br>
-					</a>	
+					</a>
+					</td>	
+					<tr>
+						<th>이벤트 이름</th>
+						<td><%= event.getE_name() %></td>
+					</tr>
+					<tr>
+						<th>이벤트 기간</th>
+						<td><%= event.getE_startDate()%> ~ <%= event.getE_endDate()%></td>
+					</tr>
+				</table>
+			
 				</span>
 			</div>
 		

@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>웹소켓 채팅</title>
+<style type="text/css">
+
+#myid{
+font-family :sans-serif; font-size: 20px;
+}
+#mymsg{
+padding: 5px; border: 1px solid black;
+font-family :sans-serif; font-size: 20px;
+}
+</style>
+
 <script>
 var webSocket = new WebSocket(
 		"<%= application.getInitParameter("CHAT_ADDR") %>/ChatingServer");
@@ -18,7 +29,7 @@ window.onload = function() {
 }
 
 function sendMessage() {
-	chatWindow.innerHTML += "<div class='myMsg'>" + chatMessage.value + "</div>"
+	chatWindow.innerHTML +=  "<div id='myid' class='myMsg'>" + chatId + "</div>"+"<div id='mymsg' class='myMsg'>" + chatMessage.value + "</div>"
 	webSocket.send(chatId + ':' + chatMessage.value);
 	chatMessage.value="";
 	chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -26,6 +37,7 @@ function sendMessage() {
 
 function disconnect() {
 	webSocket.close();
+	window.close();
 }
 function enterKey() {
 	if(window.event.keyCode == 13){
@@ -34,11 +46,11 @@ function enterKey() {
 }
 
 webSocket.onopen = function(event){
-	chatWindow.innerHTML +=  "[<%=loginID%>]님 채팅서버에 연결되셨습니다.<br/>";
+	chatWindow.innerHTML +=  "[<%=loginID%>]님이 서버에 연결되셨습니다.<br/>";
 };
 
 webSocket.onclose = function(event) {
-	chatWindow.innerHTML += "웹소켓 서버가 종료되었습니다.<br/>";
+	chatWindow.innerHTML += "[<%=loginID%>]님이 서버를 종료하셨습니다.<br/>";
 };
 webSocket.onerror = function(event) {
 	alert(event.data);
@@ -64,7 +76,7 @@ webSocket.onmessage = function(event) {
 </script>
 <style type="text/css">
 	#chatWindow{
-		border:1px solid black; width:270px; height: 310px; overflow:scroll; padding:5px;
+		border:1px solid black; width:270px; height: 310px; overflow:scroll; padding:5px; 
 	}
 	#chatMessage{width: 236px; height: 30px;}
 #sendBtn{height: 30px; position: relative; top: 2px; left: -2px;}
@@ -74,10 +86,11 @@ webSocket.onmessage = function(event) {
 </style>
 
 </head>
-<body>
-
+<body onresize="parent.resizeTo(330,480)" onload="parent.resizeTo(330,480)">
+	<div style="display: flex; justify-content: space-between; align-items: center;">
 	대화명 : <%=loginID %><input type="hidden" id="chatId" value="${param.chatId }" readonly="readonly"> 
 	<button id="closeBtn" onclick="disconnect();">채팅종료</button>
+	</div>
 	<div id="chatWindow"></div>
 	<div>
 		<input type="text" id="chatMessage" onkeyup="enterKey();">
