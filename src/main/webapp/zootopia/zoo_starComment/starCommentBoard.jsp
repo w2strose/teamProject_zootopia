@@ -1,23 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="zoo_Hotel.zoo_HotelDAO" %>
-<%@ page import="zoo_Hotel.zoo_HotelVO" %>
-<%@ page import="zoo_Star.StarListVO" %>
-<%@ page import="zoo_Star.StarDAO" %>
+<%@ page import="zoo_Star.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*" %>
 <%
-request.setCharacterEncoding("UTF-8");
-int loginID = 1;
- 
-ArrayList<zoo_HotelVO> listHt = null;
 
-StarDAO starDao = new StarDAO();
-zoo_HotelDAO dbPro = new zoo_HotelDAO();
-listHt = dbPro.listHt(loginID);
-
-double result = starDao.AvgStar();
-
+	String r_number = request.getParameter("r_number");
+	String loginID = (String)session.getAttribute("loginID");
+	
+	StarListVO vo = new StarListVO();
+	StarDAO dbPro = new StarDAO();
+	vo = dbPro.getStar(r_number);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -44,96 +38,43 @@ double result = starDao.AvgStar();
     	});
     });
   </script>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+  
 <style type="text/css">
-
-	#tableHotel {
+	#tablebreakDown {
 	border-collapse: separate;
 	border-spacing: 1px;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	line-height: 1;
-	margin: 20px 10px;
+	margin: auto;
 	font-family :'Hahmlet', serif;
 	}
-	#tableHotel th {
-	width: 90px;
+	#tablebreakDown #coment_board {
+	width : 50%;	
+	}
+	#tablebreakDown th {
+	font-size : 15px;
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	font-size : 15px;
 	font-family :'Hahmlet', serif;
 	background: orange;
 	}
-	#tableHotel td {
-	width: 90px;
+	#tablebreakDown td {
+	width: 500px;
 	padding: 10px;
 	font-family :'Hahmlet', serif;
 	vertical-align: top;
 	border-bottom: 1px solid #ccc;
 	background: #eee;
 	}
+	
 </style>
 
-<!-- 지도관련 -->
 
-<!-- 사용자 정의 CSS -->
-<link rel="stylesheet" type="text/css" href="../css/reset.css" />
-<link rel="stylesheet" type="text/css" href="../css/common.css" />
-
-<!-- jQuery Framework 참조하기 -->
-<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
-
-<!-- plugin 참조 -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript" src="../plugins/gmap/gmaps.js"></script>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-#map 
-{ 
-	width: 50%; height: 450px; 
-	margin:auto;
-}
-</style>
-
-<!-- 사용자 스크립트 블록 -->
-<script type="text/javascript">
-	/** 전역변수들 생성 */
-	// 구글맵 객체
-	var map = null;
-	// 위도 기본값
-	var lat = 37.498627;
-	// 경도 기본값
-	var lng = 127.030767;
-		$(function() {
-		// 구글맵 생성 (기본 사용 방)
-		map = new GMaps({
-			// 지도가 출력될 div의 id
-			"el" : '#map',
-			// 지도가 표시될 위/경도
-			"lat" : lat,
-			"lng" : lng,
-			// 줌 컨트롤 사용 여부
-			"zoomControl" : true
-		});
-			// 표시중인 위치에 마커 추가
-			map.addMarker({
-			"lat" : lat,
-			"lng" : lng,
-			"title" : '글로벌인',
-			"click" : function(e) {
-				console.log(e);
-			},
-			"mouseover" : function(e) {
-				console.log(e);
-			},
-			"infoWindow" : {
-				"content" : '<p>글로벌인</p>'
-			}
-		});
-	});
-</script>
 </head>
 <body>
 <!-- Header -->
@@ -161,65 +102,41 @@ double result = starDao.AvgStar();
       
 <!-- Section -->  
 
-<section style="height: 1000px;">
+<section style="height: 1500px;">
 	<div class="section_bar" align="center">
-		호텔 정보 
+		별점 / 코멘트 
 	</div>
-	<br>
+	<h3 align="center">별점/코멘트 입력 게시판</h3>
 	<br><br>
-	<% if(listHt == null) {%>
-		<table id="tableHotel">
-			<tr>
-				<td align="center" colspan="4">호텔 정보가<br>없습니다</td>
-			</tr>
-		</table>
-			<% }else{for(zoo_HotelVO vo : listHt) { %>
-		<table id="tableHotel">
-			<tr>
-				<th align="center" colspan="4"><%=vo.getH_name() %></th>
-			</tr>
-			<tr>
-				<td align="center">방 개수</td>
-				<td align="center" colspan="3"><%= vo.getH_roomnumber()%></td>
-			</tr>
-			<tr>
-				<td align="center">전화번호</td>
-				<td align="center"><%=vo.getH_phone1() %></td>
-				<td align="center"><%=vo.getH_phone2() %></td>
-				<td align="center"><%=vo.getH_phone3() %></td>
-			</tr>
-			<tr>
-				<td align="center">주소</td>
-				<td align="center" colspan="3"><%=vo.getH_address() %></td>
-			</tr>
-			<tr>
-				<td align="center">우편 번호</td>
-				<td align="center" colspan="3"><%=vo.getH_postnum() %></td>
-			</tr>
-			<tr>	
-				<td align="center">상세 주소</td>
-				<td align="center" colspan="3"><%=vo.getH_jibunaddress() %></td>
-			</tr>
-			<tr>
-				<td colspan="4" align="center"><%=vo.getH_coment() %></td>
-			</tr>
-		</table>
-	
-		<% } %> 
-		
-		<div>
-			<table id="tableHotel">
-				<tr>
-					<td>별점</td>
-					<td><%= result %></td>
-				</tr>
-			</table>
-		</div>
-		<!-- 지도 -->
-		<div class="example">
-			<div id="map"></div>
-		</div>
-	<%} %>
+	<form action="starCommentUpdate.jsp" method="post">
+	<table id="tablebreakDown">
+	 	<tr>
+	 		<th align="center">예약 번호</th>
+	 		<td align="center"><%= r_number %></td>
+	 	</tr>
+	 	<tr>
+	 		<th align="center">제목</th>
+	 		<td align="center"><%= vo.getS_title() %></td>
+	 	</tr>
+	 	<tr align="center">
+		<th>별점</th>
+			<td align="center"><%= vo.getS_star() %></td>
+		</tr>
+		<tr>
+			<th colspan="2">내용</th>
+		</tr>
+		<tr height="300">
+			<td colspan="2"><%=vo.getS_coment() %></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<input type="button" value="수정하기" onclick="location.href='starCommentUpdate.jsp?r_number=<%=r_number%>'">&nbsp;&nbsp;
+				<input type="button" value="삭제하기" onclick="location.href='starCommentDelete.jsp?r_number=<%=r_number%>'">&nbsp;&nbsp;
+				<input type="button" value="목록" onclick="document.location.href='../comment.jsp?'">&nbsp;
+			</td>
+		</tr>
+	 </table>
+	</form>
 	
 </section>
 
