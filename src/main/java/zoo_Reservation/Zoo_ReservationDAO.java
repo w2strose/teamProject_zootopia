@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import zoo_Reservation.Zoo_OperationVO;
 import zoo_Reservation.Zoo_ReservationVO;
+import zoo_qna.Zoo_qnaVO;
 
 public class Zoo_ReservationDAO {
 
@@ -147,6 +148,77 @@ public class Zoo_ReservationDAO {
 			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
 		}
 	}
-	
+	public int getreserCount() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int x = 0;
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement("select count(*) from zoo_reservation");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				x = rs.getInt(1);
+				
+			}
+			
+			
+			
+		}catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
+		}
+		
+		return x;
+				
+	}
+	public List<Zoo_ReservationVO> getreserList(int start, int end) { // ¼öÁ¤ 1
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Zoo_ReservationVO> reserList = null;
+		
+		try {
+			con = getConnection();
+			
+			pstmt = con.prepareStatement("select * from (select rownum rnum, id, o_number, r_number, r_date, r_member from (select * from zoo_reservation order by r_number desc)) where rnum >= ? and rnum <=?");
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+				
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				reserList = new ArrayList<Zoo_ReservationVO>();
+				do {
+					Zoo_ReservationVO reser = new Zoo_ReservationVO();
+					reser.setId(rs.getString("id"));
+					reser.setO_number(rs.getInt("o_number"));
+					reser.setR_number(rs.getInt("r_number"));
+					reser.setR_date(rs.getString("r_date"));
+					reser.setR_member(rs.getInt("r_member"));
+					reserList.add(reser);
+				 
+				}while(rs.next());
+			}else {
+				reserList = new ArrayList<Zoo_ReservationVO>();
+			}
+			
+		}catch(Exception se) {
+			System.out.println("Exception"+se);
+		}finally {
+			if(con!=null)try {con.close();}catch(SQLException s2) {}
+			if(pstmt!=null)try {pstmt.close();}catch(SQLException s3) {}
+			if(rs!=null)try {rs.close();}catch(SQLException s1) {}
+		}
+		return reserList;
+	}
 	
 }

@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="zoo_Reservation.Zoo_OperationVO,zoo_Reservation.Zoo_ReservationDAO,java.util.List" %>
+<%@ page import="zoo_Reservation.Zoo_OperationVO,zoo_Reservation.*,java.util.List" %>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -34,11 +34,34 @@
 	int endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 	int week = cal.get(Calendar.DAY_OF_WEEK);
 	
-	String loginID = (String)session.getAttribute("loginID");
+	String loginID = null;
+	loginID = (String)session.getAttribute("loginID");
 	Zoo_ReservationDAO dao = new Zoo_ReservationDAO();
 	int day;
 	
-			
+	int count = 0;
+	int number = 0;
+	int pageSize = 10;
+	String pageNum = request.getParameter("pageNum");
+	if(pageNum==null){
+		pageNum = "1";
+	}
+	//현재 페이지
+	
+	int currentPage = Integer.parseInt(pageNum);
+	int startRow = (currentPage-1)*pageSize+1;
+	int endRow = currentPage*pageSize;
+	
+
+	List<Zoo_ReservationVO> reserList = null;
+	Zoo_ReservationDAO rdao = new Zoo_ReservationDAO();
+	count = rdao.getreserCount();// 전체 글수
+	if(count>0) {
+		reserList = dao.getreserList(startRow,endRow);
+		
+	}
+	number = count -(currentPage-1)*pageSize;
+
 		
 %>
 
@@ -136,10 +159,99 @@ table.type12 td {
             </nav>
     </div> 
 <!-- section -->
+<%try{if(loginID!=null){
+	if(loginID.substring(0,2).equals("GM")){ %>
 <section style="height: 70%;">
 	<div class="section_bar" align="center">
-		Reservation Section
+		예약 확인 페이지
 	
+	</div>
+	
+	<div align="center" style="margin-top: 70px;"><br>
+<%
+	if(count==0){ // 저장된 글이 없을 경우
+%>
+<table width="600" cellpadding="0" cellspacing="0">
+	<tr align="center">
+		<td>Q&A에 저장된 글이 없습니다.</td>
+	</tr>
+</table>
+<%}else{ // 글이 있을 경우%>
+<table align="center" class="type11">
+	<tr height="30" >
+		<th align="center" width="50">예약번호</th>
+		<th align="center" width="150">예약일자</th>
+		<th align="center" width="150">방 종류</th>
+		<th align="center" width="100">맡기실 마리 수</th>
+		<th align="center" width="100">예약자</th>
+		<!-- <td align="center" width="150">작성일</td> -->
+	
+	</tr>
+	<%
+	for(int i =0;i<reserList.size();i++){
+		Zoo_ReservationVO article = (Zoo_ReservationVO)reserList.get(i);
+	%>
+	<tr height="30">
+		<td align="center" width="50"><%=number--%></td>
+		<td width="150">
+		<a href="getQna.jsp?num=<%=article.getR_number()%>&pageNum=<%=currentPage%>">
+			<%=article.getR_date()%></a>
+		<td align="center" width="150"><%=article.getId()%></td>
+		<td align="center" width="100"><%=article.getR_member()%></td>
+		<td align="center" width="100"><%=article.getId()%></td>
+		<%-- <td align="center" width="150"><%=sdf.format(article.getRegdate()) %></td> --%>
+	
+	</tr>
+	 <%} %> 	
+</table>
+ <%} %> 
+ 
+<%
+if(count>0){
+	int pageBlock = 5;
+	int imsi = count % pageSize == 0 ? 0 : 1;
+	int pageCount = count/pageSize + imsi;
+	int startPage = (int)((currentPage -1)/pageBlock)*pageBlock+1; 
+	int endPage = startPage + pageBlock-1;
+	
+	if(endPage > pageCount) endPage = pageCount;
+	if(startPage > pageBlock) {
+		
+%>
+<a href="reservation.jsp?pageNum=<%=startPage-pageBlock%>" style="font-family:'Hahmlet';font-size: 13px;">[이전]</a>
+	<%} 
+	 for(int i = startPage; i<=endPage; i++){
+	 %>
+	 
+	 
+<a href="reservation.jsp?pageNum=<%=i%>" style="font-family:'Hahmlet';font-size: 13px;">[<%=i %>]</a>
+<%
+}
+	if(endPage < pageCount){
+		  
+	 %>
+<a href="reservation.jsp?pageNum=<%=startPage+pageBlock%>" style="font-family:'Hahmlet';font-size: 13px;">[다음]</a>
+	
+	<%}
+	} %>
+	<table width="650">
+		<tr>
+			<td align="right" >
+			<%try{if(!loginID.equals(null)){ %>
+			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="방 등록하기" onclick="window.location='insertOperation.jsp'">
+			<%} }catch(Exception e){}%>
+			</td>
+		</tr>
+	</table>
+</div>
+
+	</section>
+
+<%}else {
+%>
+<section style="height: 70%;">
+	<div class="section_bar" align="center">
+		예약 페이지
 	</div><br>
 	<div align="center">
 	<form action="reservation_page.jsp" method="post" align="center" style="font-size: 15px;" >
@@ -268,6 +380,8 @@ table.type12 td {
 	</form>
 </div>
 </section>
+
+<% } }}catch(Exception e){}%>
 
 <!-- footer -->
 <footer class="site-footer" style="margin-top:326px;">

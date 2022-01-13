@@ -82,7 +82,7 @@ table.type11 td {
 <!-- section -->
 <section>
 	<div class="section_bar" align="center">
-		Reservation Section
+		예약 페이지
 	
 	</div>
 	<form action="reservation_proc.jsp" method="post" >

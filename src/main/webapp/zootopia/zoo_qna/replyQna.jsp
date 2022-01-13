@@ -96,7 +96,7 @@ table.type11 td {
 <!-- Section -->  
 <section>
 	<div class="section_bar" align="center">
-		Q&A Section
+		Q&A
 	
 	</div>
 	
