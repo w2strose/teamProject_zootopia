@@ -86,7 +86,7 @@ webSocket.onmessage = function(event) {
 </style>
 
 </head>
-<body onresize="parent.resizeTo(330,480)" onload="parent.resizeTo(330,480)">
+<body>
 	<div style="display: flex; justify-content: space-between; align-items: center;">
 	대화명 : <%=loginID %><input type="hidden" id="chatId" value="${param.chatId }" readonly="readonly"> 
 	<button id="closeBtn" onclick="disconnect();">채팅종료</button>
