@@ -29,6 +29,43 @@ public static Zoo_breakdownDAO getinstance(){
 		return instance;
 	}
 	
+	public boolean listBkSet(String id, int number)
+	{
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean coment = false;
+		
+		try {
+			
+			con = ConnUtil.getConnection();
+			
+			String sql = "select H.id,H.h_name,O.o_type, O.o_charge,R.r_date,R.r_member,R.r_number,S.s_coment from zoo_star S,zoo_hotel H,zoo_operation O,zoo_reservation R "
+					+ "where H.id=? and O.o_number = r.o_number and s.r_number = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, number);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				if(rs.getString("s_coment") != null)
+				{
+					coment = true;
+				}
+			}
+			
+		}catch(Exception se) {
+			System.out.println("Exception " + se);
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException s1) {}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException s1) {}
+			if(con != null) try {con.close();}catch(SQLException s1) {}
+		}
+		
+		return coment;
+	}
+	
+	
 	public ArrayList<Zoo_breakdownVO> listBk(String id)
 	{
 		Connection con = null;

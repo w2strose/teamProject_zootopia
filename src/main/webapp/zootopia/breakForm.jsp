@@ -12,6 +12,7 @@ ArrayList<Zoo_breakdownVO> listBk = null;
 
 Zoo_breakdownDAO dbPro = new Zoo_breakdownDAO();
 listBk = dbPro.listBk(loginID);
+boolean coment = false;
 
 %>
 <!DOCTYPE html>
@@ -41,8 +42,11 @@ listBk = dbPro.listBk(loginID);
 	margin: auto;
 	font-family :'Hahmlet', serif;
 	}
+	#tablebreakDown #coment_board {
+	width : 50%;	
+	}
 	#tablebreakDown th {
-	width: 500px;
+	font-size : 15px;
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
@@ -58,7 +62,7 @@ listBk = dbPro.listBk(loginID);
 	border-bottom: 1px solid #ccc;
 	background: #eee;
 	}
-
+	
 </style>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 
@@ -107,23 +111,41 @@ listBk = dbPro.listBk(loginID);
       
 
 <section style="height: 800px;">
-	<div class="section_bar">
-		메인 페이지
+	<div class="section_bar" align="center">
+		과거 예약 내역
 	</div>
 	<br><br>	
-	<table border="1" cellpadding="0" cellspacing="0" width="500" id="tablebreakDown">
-		<%if(listBk != null) {%>
+	<table id="tablebreakDown">
+		<%if(listBk != null) 
+		{ %>
 		
 		<tr>
-			<td align="center"> 예약 번호 </td>
-			<td align="center"> 호텔 이름 </td>
-			<td align="center"> 방 타입 </td>
-			<td align="center"> 방 요금 </td>
-			<td align="center"> 예약 날짜 </td>
-			<td align="center"> 예약 마리 수</td>
-			<td align="center"> 별점 / 코멘트</td>
+			<th align="center"> 예약 번호 </th>
+			<th align="center"> 호텔 이름 </th>
+			<th align="center"> 방 타입 </th>
+			<th align="center"> 방 요금 </th>
+			<th align="center"> 예약 날짜 </th>
+			<th align="center"> 예약 마리 수</th>
+			<th align="center"> 별점 / 코멘트</th>
 		</tr>
-		<%for(Zoo_breakdownVO vo : listBk) {%>
+			<%for(Zoo_breakdownVO vo : listBk) 
+			{ %>
+		
+ 			<%coment = dbPro.listBkSet(loginID, vo.getR_number());%>
+ 		
+	 			<%if(coment){ %>
+		<tr>
+			<td align="center"><%=vo.getR_number() %></td>
+			<td align="center"><%=vo.getH_name() %></td>
+			<td align="center"><%=vo.getO_type() %></td>
+			<td align="center"><%=vo.getO_charge() %></td>
+			<td align="center"><%=vo.getR_date() %></td>
+			<td align="center"><%=vo.getR_member() %></td>
+			<td align="center"><input type="submit" value="수정하기"
+			onclick="location='zoo_starComment/starCommentUpdate.jsp?r_number=<%=vo.getR_number()%>'"></td>
+		</tr>
+				<% } 
+	 			else { %>
 		<tr>
 			<td align="center"><%=vo.getR_number() %></td>
 			<td align="center"><%=vo.getH_name() %></td>
@@ -134,7 +156,7 @@ listBk = dbPro.listBk(loginID);
 			<td align="center"><input type="submit" value="등록하기"
 			onclick="location='zoo_starComment/starComment.jsp?loginID=<%=loginID%>&r_number=<%=vo.getR_number()%>'"></td>
 		</tr>
-		<%} }else{%>
+				<%}}}else{%>
 		<tr>
 			<td>예약한 호텔이 없습니다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
 			<input type="button" value="돌아가기" onclick="history.back()"></td>

@@ -42,8 +42,11 @@ listBk = dao.listBk(loginID);
 	margin: auto;
 	font-family :'Hahmlet', serif;
 	}
+	#tablebreakDown #coment_board {
+	width : 50%;	
+	}
 	#tablebreakDown th {
-	width: 500px;
+	font-size : 15px;
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
@@ -59,7 +62,7 @@ listBk = dao.listBk(loginID);
 	border-bottom: 1px solid #ccc;
 	background: #eee;
 	}
-
+	
 </style>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 
@@ -108,29 +111,46 @@ listBk = dao.listBk(loginID);
       
 
 <section style="height: 800px;">
-	<div class="section_bar">
-		메인 페이지
+	<div class="section_bar" align="center">
+		이용 후기 게시판
 	</div>
 	<br><br>	
-	<table border="1" cellpadding="0" cellspacing="0" width="500" id="tablebreakDown">
+	<table cellpadding="0" cellspacing="0" width="700" id="tablebreakDown">
 		<%if(listBk != null) {%>
 		
 		<tr>
-			<td align="center"> 예약번호 </td>
-			<td align="center"> 제목 </td>
-			<td align="center"> 별점 </td>
-			<td align="center"> 코멘트 날짜 </td>
-			<td align="center"> 내용</td>
+			<th align="center" width="200"> 예약번호 </th>
+			<th align="center"> 제목 </th>
+			<th align="center"> 별점 </th>
+			<th align="center"> 코멘트 날짜 </th>
+			<th align="center" id="coment_board"> 내용</th>
 		</tr>
-		<%for(StarListVO vo : listBk) {%>
+		<%for(StarListVO vo : listBk) {
+			
+			int coment_length = vo.getS_coment().length();
+			if(coment_length < 25){%>
+		<!-- 코멘트 길이가 30자 이하일 때 -->
 		<tr>
-			<td align="center"><%=vo.getR_number() %></td>
+			<td align="center" width="200"><%=vo.getR_number() %></td>
 			<td align="center"><%=vo.getS_title() %></td>
 			<td align="center"><%=vo.getS_star()%></td>
 			<td align="center"><%=vo.getS_regdate() %></td>
-			<td align="center"><%=vo.getS_coment() %></td>
+			<td align="center" id="coment_board"><a href="zoo_starComment/starCommentBoard.jsp?r_number=<%=vo.getR_number()%>"><%=vo.getS_coment() %></a></td>
 		</tr>
-		<%} }else{%>
+		<%}else{%>
+		<!-- 코멘트 길이가 30자 이상 일 때 -->
+		<tr>
+			<td align="center" width="200"><%=vo.getR_number() %></td>
+			<td align="center"><%=vo.getS_title() %></td>
+			<td align="center"><%=vo.getS_star()%></td>
+			<td align="center"><%=vo.getS_regdate() %></td>
+			<%String coment = vo.getS_coment().substring(0,25); %>
+			<td align="center" id="coment_board"><a href="zoo_starComment/starCommentBoard.jsp?r_number=<%=vo.getR_number()%>"><%=coment %> <br><b><font color="red">[더보기]</font></b></a></td>
+		</tr>	
+		
+		
+		<%}}}else{%>
+		}
 		<tr>
 			<td>예약한 호텔이 없습니다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
 			<input type="button" value="돌아가기" onclick="history.back()"></td>

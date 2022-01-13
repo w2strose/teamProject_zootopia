@@ -12,12 +12,13 @@ public class Zoo_breakdownVO {
 	private String o_charge;
 	private String r_date;
 	private int r_member;
+	private String s_coment;
 	
 	public Zoo_breakdownVO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Zoo_breakdownVO(String id, String h_name, String o_type, String o_charge, String r_date, int r_member, int r_number) {
+	public Zoo_breakdownVO(String id, String h_name, String o_type, String o_charge, String r_date, int r_member, int r_number,String s_coment) {
 
 		this.id = id;
 		this.h_name = h_name;
@@ -26,8 +27,18 @@ public class Zoo_breakdownVO {
 		this.r_date = r_date;
 		this.r_member = r_member;
 		this.r_number = r_number;
+		this.s_coment = s_coment;
 	
-	
+	}
+	public Zoo_breakdownVO(String id, String h_name, String o_type, String o_charge, String r_date, int r_member, int r_number) {
+		
+		this.id = id;
+		this.h_name = h_name;
+		this.o_type = o_type;
+		this.o_charge = o_charge;
+		this.r_date = r_date;
+		this.r_member = r_member;
+		this.r_number = r_number;		
 	}
 
 	public String getH_name() {
@@ -36,6 +47,14 @@ public class Zoo_breakdownVO {
 
 	public void setH_name(String h_name) {
 		this.h_name = h_name;
+	}
+
+	public String getS_coment() {
+		return s_coment;
+	}
+
+	public void setS_coment(String s_coment) {
+		this.s_coment = s_coment;
 	}
 
 	public String getO_type() {

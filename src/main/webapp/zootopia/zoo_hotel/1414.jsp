@@ -7,14 +7,16 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*" %>
 <%
-
-int loginID = 1;
 request.setCharacterEncoding("UTF-8");
+int loginID = 1;
  
 ArrayList<zoo_HotelVO> listHt = null;
 
+StarDAO starDao = new StarDAO();
 zoo_HotelDAO dbPro = new zoo_HotelDAO();
 listHt = dbPro.listHt(loginID);
+
+double result = starDao.AvgStar();
 
 %>
 <!DOCTYPE html>
@@ -60,6 +62,7 @@ listHt = dbPro.listHt(loginID);
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
+	font-size : 15px;
 	font-family :'Hahmlet', serif;
 	background: orange;
 	}
@@ -163,7 +166,6 @@ listHt = dbPro.listHt(loginID);
 		호텔 정보 
 	</div>
 	<br>
-	<h3 align="center"> 호텔 정보 페이지</h3>
 	<br><br>
 	<% if(listHt == null) {%>
 		<table id="tableHotel">
@@ -174,7 +176,7 @@ listHt = dbPro.listHt(loginID);
 			<% }else{for(zoo_HotelVO vo : listHt) { %>
 		<table id="tableHotel">
 			<tr>
-				<td align="center" colspan="4"><%=vo.getH_name() %></td>
+				<th align="center" colspan="4"><%=vo.getH_name() %></th>
 			</tr>
 			<tr>
 				<td align="center">방 개수</td>
@@ -204,10 +206,19 @@ listHt = dbPro.listHt(loginID);
 		</table>
 	
 		<% } %> 
+		
+		<div>
+			<table id="tableHotel">
+				<tr>
+					<td>별점</td>
+					<td><%= result %></td>
+				</tr>
+			</table>
 		</div>
 		<!-- 지도 -->
 		<div class="example">
 			<div id="map"></div>
+		</div>
 	<%} %>
 	
 </section>

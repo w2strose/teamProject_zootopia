@@ -13,6 +13,9 @@ public class StarListVO {
 	private String s_regdate;
 	private String s_coment;
 
+	public StarListVO() {
+	// TODO Auto-generated constructor stub
+}
 	public StarListVO(String id,int r_number, int s_number,
 					String s_title, double s_star,
 					String s_regdate,String s_coment) 

@@ -39,25 +39,40 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css">
   
 <style type="text/css">
-#tableHotel
-{
-	border : 1px solid;
+#tablebreakDown {
 	border-collapse: separate;
-	border-top: 1px solid black;
-	border-left: 1px solid black;
-}
-#tableHotel th
-{
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;	
-}
-#tableHotel td
-{
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
-}
+	border-spacing: 1px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	line-height: 1;
+	margin: auto;
+	font-family :'Hahmlet', serif;
+	}
+	#tablebreakDown #coment_board {
+	width : 50%;	
+	}
+	#tablebreakDown th {
+	font-size : 15px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	font-family :'Hahmlet', serif;
+	background: orange;
+	}
+	#tablebreakDown td {
+	width: 500px;
+	padding: 10px;
+	font-family :'Hahmlet', serif;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #eee;
+	}
+	
 	
 </style>
+
 
 
 </head>
@@ -97,40 +112,48 @@
 	<form action="starCommentProc.jsp" method="post">
 	
 	<input type="hidden" name="r_number" value="<%=r_number %>" >
-	<table width="700" border="1px solid black" align="center">
+	<table id=tablebreakDown>
 		<tr>
-			<td>예약 번호</td>
+			<th>예약 번호</th>
 			<td><%=r_number %></td>
 		</tr>
 		<tr align="center">
-			<td>제목</td>
-			<td><input type="text" name="title"></td>
+			<th>제목</th>
+			<td><input type="text"  size="70" maxlength="70" name="title"></td>
 		</tr>
 		<tr align="center">
-		<td>별점</td>
-		<td>
-			<select style="width:50px;height:18px" name="star">
-				<option>0.0</option>
-				<option>0.5</option>
-				<option>1.0</option>
-				<option>1.5</option>
-				<option>2.0</option>
-				<option>2.5</option>
-				<option>3.0</option>
-				<option>3.5</option>
-				<option>4.0</option>
-				<option>4.5</option>
-				<option>5.0</option>
-			</select>
-		</td>
-		</tr>
-		<tr height="300">
-			<td colspan="2">
-			<textarea rows="20" cols="100" name="coment"></textarea>
+			<th>별점</th>
+			<td>
+				<select style="width:50px;height:18px" name="star">
+					<option>0.0</option>
+					<option>0.5</option>
+					<option>1.0</option>
+					<option>1.5</option>
+					<option>2.0</option>
+					<option>2.5</option>
+					<option>3.0</option>
+					<option>3.5</option>
+					<option>4.0</option>
+					<option>4.5</option>
+					<option>5.0</option>
+				</select>
 			</td>
 		</tr>
+		<tr>
+			<th colspan="2">내용</th>
+		<tr>
+		<tr height="300">
+			<td colspan="2">
+			<textarea rows="20" cols="80" name="coment"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="2"><input type="submit" value="등록하기">&nbsp;&nbsp;
+			<input type="button" value="목록" onclick="document.location.href='../comment.jsp?'">&nbsp;</td>
+			
+		</tr>
 		</table>
-		<input type="submit" value="등록하기">
+		
 	</form>
 		
 	
