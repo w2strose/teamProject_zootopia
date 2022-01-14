@@ -23,7 +23,7 @@
 <title>zootopia QnA</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<script type="text/javascript" src="../js/script.js">
+<script type="text/javascript">
 function check() {
 
 	if(document.reply.B_answer.value==""){

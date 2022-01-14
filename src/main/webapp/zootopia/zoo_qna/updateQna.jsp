@@ -23,7 +23,7 @@
 <title>zootopia QnA</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<script type="text/javascript" src="../js/script.js">
+<script type="text/javascript">
 
 function check() {
 
@@ -108,7 +108,7 @@ table.type11 td {
 	
 	<div align="center" style="margin-top: 70px;"><br>
 	<form action="updateQna_proc.jsp" name="update">
-		<table align="center" class="type11">	
+		<table align="center" class="type11" >	
 			<tr height="30">
 				<th align="center" width="125" >글 번호</th>
 				<td align="center"><%=board.getB_number()%></td>

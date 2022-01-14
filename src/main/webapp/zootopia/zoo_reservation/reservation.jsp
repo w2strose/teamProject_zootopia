@@ -164,9 +164,7 @@ table.type12 td {
 <section style="height: 70%;">
 	<div class="section_bar" align="center">
 		예약 확인 페이지
-	
 	</div>
-	
 	<div align="center" style="margin-top: 70px;"><br>
 <%
 	if(count==0){ // 저장된 글이 없을 경우
@@ -180,11 +178,10 @@ table.type12 td {
 <table align="center" class="type11">
 	<tr height="30" >
 		<th align="center" width="50">예약번호</th>
-		<th align="center" width="150">예약일자</th>
 		<th align="center" width="150">방 종류</th>
-		<th align="center" width="100">맡기실 마리 수</th>
+		<th align="center" width="100">반려동물 수</th>
 		<th align="center" width="100">예약자</th>
-		<!-- <td align="center" width="150">작성일</td> -->
+		<th align="center" width="150">예약일자</th>
 	
 	</tr>
 	<%
@@ -193,13 +190,10 @@ table.type12 td {
 	%>
 	<tr height="30">
 		<td align="center" width="50"><%=number--%></td>
-		<td width="150">
-		<a href="getQna.jsp?num=<%=article.getR_number()%>&pageNum=<%=currentPage%>">
-			<%=article.getR_date()%></a>
 		<td align="center" width="150"><%=article.getId()%></td>
 		<td align="center" width="100"><%=article.getR_member()%></td>
 		<td align="center" width="100"><%=article.getId()%></td>
-		<%-- <td align="center" width="150"><%=sdf.format(article.getRegdate()) %></td> --%>
+		<td align="center" width="150"><%=article.getR_date()%></td>
 	
 	</tr>
 	 <%} %> 	
@@ -238,7 +232,7 @@ if(count>0){
 		<tr>
 			<td align="right" >
 			<%try{if(!loginID.equals(null)){ %>
-			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="방 등록하기" onclick="window.location='insertOperation.jsp'">
+			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="방 등록하기" onclick="window.location='insertOperation.jsp'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<%} }catch(Exception e){}%>
 			</td>
 		</tr>
@@ -363,25 +357,132 @@ if(count>0){
 		<%}
 		
 		} %>
-		
 	</table><br>
-	
-	<%
-		try{	
-	if(loginID.equals("GM")){ %>
-		<div align="center">
-			<input type="button" style="font-family:'Hahmlet';font-size: 13px;" value="방 등록하기" onclick="window.location='insertOperation.jsp'">
-		</div>
-	<%}else {}
-	
-	}catch(Exception e){}%>
-	
-	
 	</form>
 </div>
 </section>
 
-<% } }}catch(Exception e){}%>
+<% } }else{%>
+	<section style="height: 70%;">
+	<div class="section_bar" align="center">
+		예약 페이지
+	</div><br>
+	<div align="center">
+	<form action="reservation_page.jsp" method="post" align="center" style="font-size: 15px;" >
+	<a href="reservation.jsp?year=<%=year%>&month=<%=month-1%>" style="font-family:'Hahmlet', serif;">이전달</a>&nbsp;
+	<b style="font-family:'Hahmlet', serif;"><%=year %>년&nbsp;&nbsp;<%=month %>월</b>
+	<a href="reservation.jsp?year=<%=year%>&month=<%=month+1%>" style="font-family:'Hahmlet', serif;">&nbsp;다음달</a>
+	<table class="type12">
+		<tr>
+			<th style=color:red;>일</th>
+			<th>월</th>
+			<th>화</th>
+			<th>수</th>
+			<th>목</th>
+			<th>금</th>
+			<th style=color:blue;>토</th>
+		</tr>
+		
+		<tr>
+			<%
+				for(int i=1;i<week;i++){
+			%>
+			<td >&nbsp;</td>
+			<%
+				}
+			%>
+			<%
+				for(int j=1; j<=endDay;j++){
+					week++;
+					if(week%7 ==2){
+			%>
+		</tr>
+		<tr>
+			<%} %>
+			<%if(week%7 ==2){ %>
+			<td>
+			<a href="reservation.jsp?year=<%=year %>&month=<%=month %>&day=<%=j%>" style="color:red"><%=j %></a>
+			</td>
+			<%}else if(week%7==1){ %>
+			<td>
+			<a href="reservation.jsp?year=<%=year %>&month=<%=month %>&day=<%=j%>" style="color:blue"><%=j %></a>
+			</td>
+			<%}else { %>
+			<td>
+			<a href="reservation.jsp?year=<%=year %>&month=<%=month %>&day=<%=j%>" style="color:black"><%=j %></a>
+			</td>
+				<%}
+			}%>
+		</tr>
+	</table><br>
+	<%
+	
+	if(request.getParameter("day")!=null){ 
+		day = Integer.parseInt(request.getParameter("day"));
+		
+		Zoo_OperationVO vo = new Zoo_OperationVO();
+		List<Zoo_OperationVO> voList = dao.operationSearch(year, month, day);
+		
+	
+	%> 
+	<table class="type11" >
+		<%	if(voList.size()!=0){ %>
+		<tr>
+			<th>예약 일자</th>
+			<th>예약 번호</th>
+			<th>호텔 번호</th>
+			<th>방 종류</th>
+			<th>예약 가격</th>
+			<th>예약 가능여부</th>
+		</tr>
+		<%for(Zoo_OperationVO ovoo : voList) {%>
+		<tr>
+			<td><%=year%>-<%=month%>-<%=day%></td>
+			<td><%=ovoo.getO_number() %></td>
+			<td><%=ovoo.getH_number() %></td>
+			<td><%=ovoo.getO_type() %></td>
+			<td><%=ovoo.getO_charge() %></td>
+			<td><%String ok = null;
+				if(ovoo.getO_ok().equals("1")) {
+					ok = "예약가능";	%>
+				<input type="hidden" name="O_date" value="<%=year%>-<%=month%>-<%=day%>">
+				<input type="hidden" name="O_number" value="<%=ovoo.getO_number()%>">
+				<input type="hidden" name="O_type" value="<%=ovoo.getO_type()%>">
+				<input type="hidden" name="O_charge" value="<%=ovoo.getO_charge()%>">
+				
+				<%-- <a href="reservation_Proc.jsp?O_number=<%=ovoo.getO_number()%>"><%=ok %></a> --%> 
+				<input type="submit" style="font-family:'Hahmlet';" value="<%=ok%>">
+				<%}else{ %>
+				예약불가
+				<%} %>
+			</td>	
+		</tr>
+		<%}
+			
+		}else {%>
+		
+			<tr>
+				<th>예약 일자</th>
+				<th>예약 번호</th>
+				<th>호텔 번호</th>
+				<th>방 종류</th>
+				<th>예약 가격</th>
+				<th>예약 가능여부</th>
+			</tr>
+			<tr>
+				<td>-</td>
+				<td colspan="4">예약 가능한 방이 없습니다.</td>
+				<td>-</td>	
+			</tr>
+		<%}
+		
+		} %>
+		
+	</table><br>
+	</form>
+</div>
+</section>
+<%}}catch(Exception e){}%>
 
 <!-- footer -->
 <footer class="site-footer" style="margin-top:326px;">

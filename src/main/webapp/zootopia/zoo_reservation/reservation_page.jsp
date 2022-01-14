@@ -21,7 +21,16 @@
 <title>zootopia Reservation</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript">
+function check() {
+
+	if(document.reser.R_member.value==""){
+		alert("반려동물 수를 입력하세요.");
+		document.reser.R_member.focus();
+		return false;
+	}
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
@@ -85,7 +94,8 @@ table.type11 td {
 		예약 페이지
 	
 	</div>
-	<form action="reservation_proc.jsp" method="post" >
+	<div style="margin-top: 70px;">
+	<form action="reservation_proc.jsp" method="post" name="reser" >
 	<table align="center" class="type11">
  		
  		<tr>
@@ -104,7 +114,7 @@ table.type11 td {
  			</td>
  		</tr>
  		<tr>
- 			<th width="200"  align="center">맡기실 마리 수</th>
+ 			<th width="200"  align="center">반려동물 수</th>
  			<td width="200" align="left">
 				<input type="text" name="R_member">
  			</td>
@@ -112,14 +122,14 @@ table.type11 td {
  			<td colspan="2"  align="center"> 
  				<input type="hidden" name="R_date" value="<%=date%>">
 				<input type="hidden" name="O_number" value="<%=O_number%>">
- 				<input type="submit" style="font-family:'Hahmlet';font-size: 13px;" value="예약하기">
+ 				<input type="submit" style="font-family:'Hahmlet';font-size: 13px;" value="예약하기" onclick="return check()">
  				<input type="reset" style="font-family:'Hahmlet';font-size: 13px;" value="다시작성">
   			</td>
  		
  		</tr>
 	</table>
 </form>
-
+</div>
 </section>
 
 <!-- footer -->
