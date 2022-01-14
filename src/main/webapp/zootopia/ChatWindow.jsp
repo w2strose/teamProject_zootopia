@@ -12,8 +12,24 @@
 font-family :sans-serif; font-size: 20px;
 }
 #mymsg{
-padding: 5px; border: 1px solid black;
-font-family :sans-serif; font-size: 20px;
+padding: 5px; display: flex;
+    align-items: center;
+    justify-content: flex-end;
+font-family :sans-serif; font-size: 14px;
+width: 70%; background-color: yellow;
+border-radius: 20px;
+margin-bottom: 5px;
+margin-right: 2px;
+}
+#sdrmsg2{
+	padding: 5px; display: flex;
+    align-items: center;
+    justify-content: flex-start;
+font-family :sans-serif; font-size: 14px;
+width: 70%; background-color: white;
+border-radius: 20px;
+margin-bottom: 5px;
+margin-right: 2px;
 }
 </style>
 
@@ -29,7 +45,7 @@ window.onload = function() {
 }
 
 function sendMessage() {
-	chatWindow.innerHTML +=  "<div id='myid' class='myMsg'>" + chatId + "</div>"+"<div id='mymsg' class='myMsg'>" + chatMessage.value + "</div>"
+	chatWindow.innerHTML +=  "<div id='mymsg2'><div id='mymsg' class='myMsg'>" + chatMessage.value + "</div></div>"
 	webSocket.send(chatId + ':' + chatMessage.value);
 	chatMessage.value="";
 	chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -46,7 +62,7 @@ function enterKey() {
 }
 
 webSocket.onopen = function(event){
-	chatWindow.innerHTML +=  "[<%=loginID%>]님이 서버에 연결되셨습니다.<br/>";
+	chatWindow.innerHTML +=  "[<%=loginID%>]님이 서버에 연결되셨습니다.<br/><br/>";
 };
 
 webSocket.onclose = function(event) {
@@ -64,11 +80,11 @@ webSocket.onmessage = function(event) {
 	if(content != ""){
 		if(content.match("/")){ // 귓속말
 			if(content.match(("/" + chatId))){
-				var temp = content.replace(("/" + chatId), "[귓속말] : ");
-				chatWindow.innerHTML += "<div>" + sender + "" + temp + "</div>";
+				var temp = content.replace(("/" + chatId), "[귓속말] ");
+				chatWindow.innerHTML += "<div id='sdrmsg'>" + sender + " </div> <div id='sdrmsg2' class='myMsg'> " + temp + "</div>";
 			}
 		}else{
-			chatWindow.innerHTML += "<div>" + sender + " : " + content + "</div>";
+			chatWindow.innerHTML += "<div id='sdrmsg'>" + sender + " </div> <div id='sdrmsg2' class='myMsg'> " + content + "</div>";
 		}
 	}
 	chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -76,25 +92,37 @@ webSocket.onmessage = function(event) {
 </script>
 <style type="text/css">
 	#chatWindow{
-		border:1px solid black; width:270px; height: 310px; overflow:scroll; padding:5px; 
+		border:1px solid black; width:280px; height: 310px; overflow:scroll; padding:5px; 
 	}
-	#chatMessage{width: 236px; height: 30px;}
+	#chatMessage{width: 236px; height: 24px;}
 #sendBtn{height: 30px; position: relative; top: 2px; left: -2px;}
 #closeBtn{margin-bottom: 3px; position: relative; top: 2px; left: 2px;}
 #chatId{width: 158px; height: 24px; border: 1px solid #AAAAAA; background-color: #EEEEEE;}
 .myMsg{text-align: right;}
+#mymsg2{
+display: flex;
+	justify-content: flex-end;
+}
+#sdrmsg{
+	display: flex;
+	font-family :'Hahmlet', serif;
+	font-size: 12px;
+}
 </style>
-
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Single+Day&family=Staatliches&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="overflow-x: hidden; overflow-y: hidden;" bgcolor="orange">
+	<div style=" display: flex; flex-direction: column; align-items: center;">
 	<div style="display: flex; justify-content: space-between; align-items: center;">
-	대화명 : <%=loginID %><input type="hidden" id="chatId" value="${param.chatId }" readonly="readonly"> 
-	<button id="closeBtn" onclick="disconnect();">채팅종료</button>
+	<div style="font-family: font-family:'Hahmlet';font-size: 20px; font-size: 20px; margin-right: 120px;">대화명 : <%=loginID %></div>
+	<input type="hidden" id="chatId" value="${param.chatId }" readonly="readonly"> 
+	<button id="closeBtn" onclick="disconnect();" style="font-family:'Hahmlet';font-size: 13px;">채팅종료</button>
 	</div>
-	<div id="chatWindow"></div>
-	<div>
+	<div id="chatWindow" style="overflow-x: hidden; background-color: rgb(246, 246, 246);"></div>
+	<div style="margin-top: 2px;">
 		<input type="text" id="chatMessage" onkeyup="enterKey();">
-		<button id="sendBtn" onclick="sendMessage();">전송</button>
+		<button id="sendBtn" onclick="sendMessage();" style="font-family:'Hahmlet';font-size: 13px;">전송</button>
+	</div>
 	</div>
 
 </body>

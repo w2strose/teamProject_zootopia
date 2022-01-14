@@ -142,16 +142,26 @@ if(count > 0){
 		
 	<script>
 	function chatWinOpen() {
+		var options = 'top=400, left=1000, width=330, height=410, status=no, menubar=no, toolbar=no, resizable=no';
 		var id = document.getElementById("loginID");
-	/* 	if(id == null) */
 		window.open("ChatWindow.jsp?chatId=" + id.value, "",
-				"width=330,height=480");
+				options);
 		
 	}
-</script>
+	function chatLoginOpen() {
+		var id = document.getElementById("loginID");
+		alert("로그인을 먼저 해주시기바랍니다.");
+		window.open("login.jsp");
+	}
+	</script>
 	<div align="center" style="position: fixed; right: 20px; bottom: 20px;">
 	<input type="hidden" id="loginID" value="<%=loginID %>" name="loginValue" />
+	
+	<%try {if(loginID != null){ %>
 	<button onClick="chatWinOpen();" style="background-color:orange;width: 50px;height: 50px;border-radius: 12px;display: flex;justify-content: center;align-items: center;"><img src="img/whitechat.png" alt=""  width="40px;" height="40px;"></button>
+	<%}else{ %>
+	<button onClick="chatLoginOpen();" style="background-color:orange;width: 50px;height: 50px;border-radius: 12px;display: flex;justify-content: center;align-items: center;"><img src="img/whitechat.png" alt=""  width="40px;" height="40px;"></button>
+	<%}}catch(Exception e){} %>
 	</div>
 
 </section>

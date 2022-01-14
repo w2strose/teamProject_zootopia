@@ -117,10 +117,9 @@
 						</div>
 						<div style="width: 300px; height: 50px;display: flex;justify-content: center; flex-direction: column;">
 								<b style="font-family :'Hahmlet', serif; font-size: 14px; margin-bottom: 5px;">생년월일</b>
-								<div style="display: flex; justify-content:center; width: 300px; height: 20px; border: 1px solid black;
-							background-color: white; font-family :'Hahmlet', serif; font-size: 14px; ">
-							  <%= vo.getBirth() %>
-							</div>	
+								
+							 <input type="date" name="birth" size="20" style="padding: 5px; font-family :'Hahmlet', serif; font-size: 14px; width: 290px; height: 20px;"placeholder="2021-12-31">
+								
 						</div>
 						
 						<div style="width: 300px; height: 100px; display: flex; justify-content: center; flex-direction: column; ">
