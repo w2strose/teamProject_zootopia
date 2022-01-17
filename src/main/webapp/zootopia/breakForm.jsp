@@ -80,6 +80,13 @@ boolean coment = false;
     
     }
 
+    function logoutCheck() {
+		if (confirm("정말 로그아웃하시겠습니까??") == true){    //확인
+			location.href="logout.jsp";
+		}else{   //취소
+	    	return false;
+		}
+	}
  </script>
 
 </head>
@@ -115,18 +122,31 @@ boolean coment = false;
 		과거 예약 내역
 	</div>
 	<br><br>	
+	<div align="center">
+		<div class="loginOutside">
+	
+			<div class="loginInside">
+				
+				
+		<a class="loginbox" href="login.jsp">회원정보</a>
+		<a class="loginbox" href="modifyForm.jsp">정보수정</a>
+		<a class="loginbox loginboxActive" href="breakForm.jsp?loginID=<%=loginID%>">과거예약</a>
+		<a class="loginbox" href="deleteForm.jsp">회원탈퇴</a>
+		<a class="loginbox logoutbox" onclick="logoutCheck()">로그아웃</a>
+			</div>
+	<div style="background: rgb(246, 246, 246);overflow-y:auto;" align="center">
 	<table id="tablebreakDown">
 		<%if(listBk != null) 
 		{ %>
 		
 		<tr>
-			<th align="center"> 예약 번호 </th>
-			<th align="center"> 호텔 이름 </th>
-			<th align="center"> 방 타입 </th>
-			<th align="center"> 방 요금 </th>
-			<th align="center"> 예약 날짜 </th>
-			<th align="center"> 예약 마리 수</th>
-			<th align="center"> 별점 / 코멘트</th>
+			<td align="center"> 예약 번호 </td>
+			<td align="center"> 호텔 이름 </td>
+			<td align="center"> 방 타입 </td>
+			<td align="center"> 방 요금 </td>
+			<td align="center"> 예약 날짜 </td>
+			<td align="center"> 예약 마리 수</td>
+			<td align="center"> 별점 / 코멘트</td>
 		</tr>
 			<%for(Zoo_breakdownVO vo : listBk) 
 			{ %>
@@ -135,36 +155,46 @@ boolean coment = false;
  		
 	 			<%if(coment){ %>
 		<tr>
-			<td align="center"><%=vo.getR_number() %></td>
-			<td align="center"><%=vo.getH_name() %></td>
-			<td align="center"><%=vo.getO_type() %></td>
-			<td align="center"><%=vo.getO_charge() %></td>
-			<td align="center"><%=vo.getR_date() %></td>
-			<td align="center"><%=vo.getR_member() %></td>
-			<td align="center"><input type="submit" value="수정하기"
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getR_number() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getH_name() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getO_type() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getO_charge() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getR_date() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getR_member() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><input type="submit" value="수정하기"
 			onclick="location='zoo_starComment/starCommentUpdate.jsp?r_number=<%=vo.getR_number()%>'"></td>
 		</tr>
 				<% } 
 	 			else { %>
 		<tr>
-			<td align="center"><%=vo.getR_number() %></td>
-			<td align="center"><%=vo.getH_name() %></td>
-			<td align="center"><%=vo.getO_type() %></td>
-			<td align="center"><%=vo.getO_charge() %></td>
-			<td align="center"><%=vo.getR_date() %></td>
-			<td align="center"><%=vo.getR_member() %></td>
-			<td align="center"><input type="submit" value="등록하기"
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getR_number() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getH_name() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getO_type() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getO_charge() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getR_date() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><%=vo.getR_member() %></td>
+			<td align="center" style="background: rgb(246, 246, 246)"><input type="submit" value="등록하기"
 			onclick="location='zoo_starComment/starComment.jsp?loginID=<%=loginID%>&r_number=<%=vo.getR_number()%>'"></td>
 		</tr>
 				<%}}}else{%>
 		<tr>
-			<td>예약한 호텔이 없습니다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
-			<input type="button" value="돌아가기" onclick="history.back()"></td>
+			<td align="center"> 예약 번호 </td>
+			<td align="center"> 호텔 이름 </td>
+			<td align="center"> 방 타입 </td>
+			<td align="center"> 방 요금 </td>
+			<td align="center"> 예약 날짜 </td>
+			<td align="center"> 예약 마리 수</td>
+			<td align="center"> 별점 / 코멘트</td>
+		</tr>
+		<tr>
+			<td colspan="7">예약한 호텔이 없습니다 
 		</tr>
 
 		<%} %>
 	</table>
-	
+			</div>	
+		</div>
+	</div>		
 	
 
 </section>

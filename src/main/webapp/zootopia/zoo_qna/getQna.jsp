@@ -153,7 +153,7 @@ table.type12 td {
 		<%-- <%}catch(Exception e){} %> --%>
 
 	</form>
-	<%try{ if(loginID.equals("GM")||loginID.equals(board.getId())){ %>
+	<%try{if(loginID!=null){ if(loginID.equals("GM")||loginID.equals(board.getId())){ %>
 	
 	
 	<form action="">
@@ -179,6 +179,32 @@ table.type12 td {
 			</tr>
 		</table>
 	</form>
+	<%}else{	%>	
+	
+		<form action="">
+		<table align="center" class="type11">	
+			<tr height="30">
+				<th align="center" width="125" >답변글</th>
+				<td align="left" width="375" colspan="3">
+				답변은 작성자와 운영자만 확인할 수 있습니다.
+				</td>
+			</tr>
+		</table>	
+		</form>	
+		
+	<%}}else{	%>	
+	
+		<form action="">
+		<table align="center" class="type11">	
+			<tr height="30">
+				<th align="center" width="125" >답변글</th>
+				<td align="left" width="375" colspan="3">
+				답변은 작성자와 운영자만 확인할 수 있습니다.
+				</td>
+			</tr>
+		</table>	
+		</form>	
+		
 	<%}}catch(Exception e){} %>
 </div>
 

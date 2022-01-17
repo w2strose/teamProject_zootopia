@@ -78,7 +78,7 @@ public static Zoo_breakdownDAO getinstance(){
 			con = ConnUtil.getConnection();
 			
 			String sql = "select H.id,H.h_name,O.o_type, O.o_charge,R.r_date,R.r_member,R.r_number from zoo_hotel H,zoo_operation O,zoo_reservation R "
-					+ "where H.id=? and O.o_number = r.o_number";
+					+ "where r.id=? and O.o_number = r.o_number";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
