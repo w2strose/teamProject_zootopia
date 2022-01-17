@@ -13,6 +13,25 @@ function idCheck(id){
 	}
 }
 
+function commentCheck(){
+	if(document.commentForm.title.value==""){
+		alert("제목을 입력해주세요");
+		document.commentForm.title.focus();
+		return;
+	}
+	if(document.commentForm.star.value==""){
+		alert("별점을 입력해주세요");
+		document.commentForm.star.focus();
+		return;
+	}
+	if(document.commentForm.coment.value==""){
+		alert("내용을 입력해주세요");
+		document.commentForm.coment.focus();
+		return;
+	}
+	document.commentForm.submit();
+}
+
 
 function inputCheck(){
 	if(document.regForm.id.value == ""){

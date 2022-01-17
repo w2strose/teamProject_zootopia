@@ -166,16 +166,16 @@ table.type11 td {
 
 			if (startPage > pageBlock) {
 		%>			
-		<a href="event.jsp?pageNum=<%=startPage - pageBlock%>"> [이전page] </a>
+		<a href="event.jsp?pageNum=<%=startPage - pageBlock%>" style="font-family :'Hahmlet', serif;"> [이전page] </a>
 		<%
 		}		
 		for (int i = startPage; i <= endPage; i++) {
 		%>
-		 <a href="event.jsp?pageNum=<%=i%>"> [<%=i%>]</a>
+		 <a href="event.jsp?pageNum=<%=i%>" style="font-family :'Hahmlet', serif;"> [<%=i%>]</a>
 		<%}
 		if (endPage < pageCount) {
 		%>
-		<a href="event.jsp?pageNum=<%=startPage + pageBlock%>"> [다음page] </a>
+		<a href="event.jsp?pageNum=<%=startPage + pageBlock%>" style="font-family :'Hahmlet', serif;"> [다음page] </a>
 		<%
 				}
 			} 
@@ -190,7 +190,7 @@ table.type11 td {
 		<% } %>
 	<% if(loginID.equals("GM")){ %>
 		<div align="center">
-			<input type="button" value="이벤트 등록하기" onclick="window.location='eventWriteFrom.jsp'">
+			<input type="button" value="이벤트 등록하기" style="position: relative; top: -7px; font-family :'Hahmlet', serif;" onclick="window.location='eventWriteFrom.jsp'">
 		</div>
 	<%}else{} %>
 	

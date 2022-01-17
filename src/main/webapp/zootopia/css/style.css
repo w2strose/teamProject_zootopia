@@ -301,7 +301,7 @@ form.login{
             border-radius: 5px;
             margin : 0px 0 20px 0;
 }
-        button {
+   /*      button {
             background-color:orange;
             color : white;
             width:300px;
@@ -310,7 +310,7 @@ form.login{
             border : none;
             border-radius: 5px;
             margin : 0px 0 10px 0;
-        }
+        } */
 
         .title {
             font-size : 20px;

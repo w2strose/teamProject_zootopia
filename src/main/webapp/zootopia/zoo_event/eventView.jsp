@@ -77,29 +77,31 @@
                   
                     	<div style="margin-left: 20px; font-size: 15px;">
                     		<img src="../img/dateicon.png">
-                        		<span class="event_date"> <%= event.getE_startDate() %>~ <%= event.getE_endDate() %> </span>
+                        		<span class="event_date" style="font-family :'Hahmlet', serif;"> <%= event.getE_startDate() %>~ <%= event.getE_endDate() %> </span>
                         </div>
                         <div class="qs_info" style="margin-right: 20px; font-size: 15px;">
-                            <p><img src="../img/viewuser.png" />
+                            <p style="font-family :'Hahmlet', serif;"><img src="../img/viewuser.png" />
                             <%= event.getE_readcount() %>
                             </p>                        
                         </div>
                     </div>
     </div>
     <div align="center" style="margin-top: 230px;">
-	<img alt="" src="../img/<%= event.getE_image()%>" id="viewImage"><br><br><br><br>
+	<img alt="" src="../img/<%= event.getE_image()%>" id="viewImage"><br><br>
+	<div style="font-family :'Hahmlet', serif;"><%=event.getE_content() %></div>
+	<br><br>
 	<div align="center" style="margin-top: 20px; display: flex; justify-content: center">
 	
-		<input type="button" value="목록" onclick="document.location.href='event.jsp'">
+		<input style="font-family :'Hahmlet', serif;" type="button" value="목록" onclick="document.location.href='event.jsp'">
 	<%
 	if(session.getAttribute("loginID")==null || session.getAttribute("loginID").equals("") || session.getAttribute("loginID").equals(null)){
 		%>
 		
 		<% } %>
 	<% if(loginID.equals("GM")){ %>
-			<input type="button" value="이벤트 수정하기" onclick="window.location='eventupdateFrom.jsp?E_number=<%=event.getE_number()%>&pageNum=<%=pageNum%>'">
+			<input type="button" style="font-family :'Hahmlet', serif;" value="이벤트 수정하기" onclick="window.location='eventupdateFrom.jsp?E_number=<%=event.getE_number()%>&pageNum=<%=pageNum%>'">
 			<form action="eventdeleteFrom.jsp?E_number=<%=event.getE_number()%>&pageNum=<%=pageNum%>" name="deleteform" method="post">
-				<input type="button" value="이벤트 삭제하기" onclick="deleteCheck()">
+				<input style="font-family :'Hahmlet', serif;" type="button" value="이벤트 삭제하기" onclick="deleteCheck()">
 			</form>
 	<%}else{} %>	
 		

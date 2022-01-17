@@ -17,7 +17,7 @@
 <meta charset="UTF-8">
 <title>ZootopiaHotel</title>
 
-
+<script type="text/javascript" src="../js/script.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,7 +109,7 @@
 	<h3 align="center">별점/코멘트 입력 게시판</h3>
 	<br><br>
 	
-	<form action="starCommentProc.jsp" method="post">
+	<form action="starCommentProc.jsp" method="post" name="commentForm">
 	
 	<input type="hidden" name="r_number" value="<%=r_number %>" >
 	<table id=tablebreakDown>
@@ -140,16 +140,17 @@
 			</td>
 		</tr>
 		<tr>
-			<th colspan="2">내용</th>
-		<tr>
-		<tr height="300">
-			<td colspan="2">
+			<th >내용</th>
+			<td >
 			<textarea rows="20" cols="80" name="coment"></textarea>
 			</td>
 		</tr>
+		
 		<tr>
-			<td align="right" colspan="2"><input type="submit" value="등록하기">&nbsp;&nbsp;
-			<input type="button" value="목록" onclick="document.location.href='../comment.jsp?'">&nbsp;</td>
+			<td align="right" colspan="2">
+			<button type="button" onClick="commentCheck()" style="font-family: 'Hahmlet';font-size: 13px">등록하기</button>&nbsp;&nbsp;
+			<button type="button"  onclick="document.location.href='../comment.jsp?'" style="font-family: 'Hahmlet';font-size: 13px;">목록</button>&nbsp;
+			</td>
 			
 		</tr>
 		</table>

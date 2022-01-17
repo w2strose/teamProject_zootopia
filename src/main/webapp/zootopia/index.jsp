@@ -104,6 +104,14 @@ if(count > 0){
 	</div>
 	
 	<%if(count == 0){// 이벤트 없을경우 %>
+	<div class="hero-image">
+  <div class="hero-text">
+  	<img id="main__logo" src="img/pome.jpg" width="70px" height="70px"/>
+    <h1 id="title__logo1">Zootopia</h1>
+    <p>반려동물과 함께 만드는 이야기</p>
+    
+  </div>
+</div>
 			 <br><br>
 			  <div align="center">
 				<span>현재 진행중인 이벤트가 없습니다..</span>
